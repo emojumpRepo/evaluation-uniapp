@@ -15,11 +15,25 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/user/personal",
-          "pathName": "pages/user/personal",
+          "name": "pages/evaluation/index",
+          "pathName": "pages/evaluation/index",
           "query": "",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "pages/user/personal",
+          "pathName": "pages/user/personal",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages-sub/baby/index",
+          "pathName": "pages-sub/baby/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

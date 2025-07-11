@@ -23,7 +23,7 @@ export const tabbarList = [
   {
     iconPath: 'static/tabbar/home.png',
     selectedIconPath: 'static/tabbar/homeHL.png',
-    pagePath: 'pages/index/index',
+    pagePath: 'pages/home/index',
     text: '首页',
     icon: 'home',
     // 选用 UI  框架自带的 icon时，iconType 为 uiLib
@@ -32,24 +32,20 @@ export const tabbarList = [
   {
     iconPath: 'static/tabbar/example.png',
     selectedIconPath: 'static/tabbar/exampleHL.png',
-    pagePath: 'pages/about/about',
-    text: '关于',
+    pagePath: 'pages/evaluation/index',
+    text: '测评',
     icon: 'i-carbon-code',
     // 注意 unocss 的图标需要在 页面上引入一下，或者配置到 unocss.config.ts 的 safelist 中
     iconType: 'unocss',
   },
-  // {
-  //   pagePath: 'pages/my/index',
-  //   text: '我的',
-  //   icon: '/static/logo.svg',
-  //   iconType: 'local',
-  // },
-  // {
-  //   pagePath: 'pages/mine/index',
-  //   text: '我的',
-  //   icon: 'iconfont icon-my',
-  //   iconType: 'iconfont',
-  // },
+  {
+    iconPath: 'static/tabbar/personal.png',
+    selectedIconPath: 'static/tabbar/personalHL.png',
+    pagePath: 'pages/user/index',
+    text: '我的',
+    icon: 'i-carbon-code',
+    iconType: 'unocss',
+  },
 ]
 
 // NATIVE_TABBAR(1) 和 CUSTOM_TABBAR_WITH_CACHE(2) 时，需要tabbar缓存
