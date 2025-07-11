@@ -2,6 +2,7 @@ import { defineUniPages } from '@uni-helper/vite-plugin-uni-pages'
 import { tabBar } from './src/layouts/fg-tabbar/tabbarList'
 
 export default defineUniPages({
+  entryPagePath: 'pages/home/index', // 入口页面路径
   globalStyle: {
     navigationStyle: 'default',
     navigationBarTitleText: 'unibest',
@@ -18,6 +19,16 @@ export default defineUniPages({
         'z-paging/components/z-paging$1/z-paging$1.vue',
     },
   },
+  pages: [
+    {
+      path: 'pages/home/index',
+      type: 'home',
+      layout: 'tabbar',
+      style: {
+        navigationBarTitleText: '首页',
+      },
+    },
+  ],
   // tabbar 的配置统一在 “./src/layouts/fg-tabbar/tabbarList.ts” 文件中
   tabBar: tabBar as any,
 })
