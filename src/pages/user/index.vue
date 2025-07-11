@@ -33,9 +33,8 @@ function handleMenuClick(type: string) {
       })
       break
     case 'baby':
-      uni.showToast({
-        title: '宝宝管理功能开发中',
-        icon: 'none',
+      uni.navigateTo({
+        url: '/pages-sub/baby/index',
       })
       break
     case 'evaluation':
