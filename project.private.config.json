@@ -20,6 +20,13 @@
           "query": "",
           "scene": null,
           "launchMode": "default"
+        },
+        {
+          "name": "pages-sub/baby/index",
+          "pathName": "pages/article/index",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
         }
       ]
     }

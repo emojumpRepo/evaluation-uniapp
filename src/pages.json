@@ -27,7 +27,7 @@
       {
         "iconPath": "static/tabbar/home.png",
         "selectedIconPath": "static/tabbar/homeHL.png",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/index",
         "text": "首页",
         "icon": "home",
         "iconType": "uiLib"
@@ -52,15 +52,6 @@
   },
   "pages": [
     {
-      "path": "pages/index/index",
-      "type": "home",
-      "layout": "tabbar",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "首页"
-      }
-    },
-    {
       "path": "pages/about/about",
       "type": "page",
       "layout": "tabbar",
@@ -77,11 +68,19 @@
       }
     },
     {
+      "path": "pages/home/detail",
+      "type": "page"
+    },
+    {
+      "path": "pages/home/index",
+      "type": "page"
+    },
+    {
       "path": "pages/user/index",
       "type": "page",
       "layout": "tabbar",
       "style": {
-        "navigationBarTitleText": "我的",
+        "navigationBarTitleText": "用户中心",
         "navigationBarBackgroundColor": "#ffffff",
         "navigationBarTextStyle": "black"
       }
@@ -100,6 +99,14 @@
     {
       "root": "pages-sub",
       "pages": [
+        {
+          "path": "baby/add",
+          "type": "page"
+        },
+        {
+          "path": "baby/index",
+          "type": "page"
+        },
         {
           "path": "demo/index",
           "type": "page",
