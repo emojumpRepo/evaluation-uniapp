@@ -19,16 +19,51 @@ export default defineUniPages({
         'z-paging/components/z-paging$1/z-paging$1.vue',
     },
   },
+  // tabbar 的配置统一在 “./src/layouts/fg-tabbar/tabbarList.ts” 文件中
+  tabBar: tabBar as any,
   pages: [
     {
       path: 'pages/home/index',
       type: 'home',
-      layout: 'tabbar',
       style: {
         navigationBarTitleText: '首页',
       },
+      layout: 'tabbar',
+    },
+    {
+      path: 'pages/evaluation/index',
+      type: 'page',
+      layout: 'tabbar',
+      style: {
+        navigationBarTitleText: '测评',
+      },
+    },
+    {
+      path: 'pages/home/detail',
+      type: 'page',
+      layout: 'default',
+      style: {
+        navigationBarTitleText: '问卷详情',
+      },
+    },
+    {
+      path: 'pages/user/index',
+      type: 'page',
+      layout: 'tabbar',
+      style: {
+        navigationBarTitleText: '用户中心',
+        navigationBarBackgroundColor: '#ffffff',
+        navigationBarTextStyle: 'black',
+      },
+    },
+    {
+      path: 'pages/user/personal',
+      type: 'page',
+      style: {
+        navigationBarTitleText: '我的档案',
+        navigationBarBackgroundColor: '#ffffff',
+        navigationBarTextStyle: 'black',
+      },
     },
   ],
-  // tabbar 的配置统一在 “./src/layouts/fg-tabbar/tabbarList.ts” 文件中
-  tabBar: tabBar as any,
 })

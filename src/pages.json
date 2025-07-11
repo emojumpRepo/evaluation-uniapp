@@ -1,4 +1,5 @@
 {
+  "entryPagePath": "pages/home/index",
   "globalStyle": {
     "navigationStyle": "default",
     "navigationBarTitleText": "unibest",
@@ -35,8 +36,8 @@
       {
         "iconPath": "static/tabbar/example.png",
         "selectedIconPath": "static/tabbar/exampleHL.png",
-        "pagePath": "pages/about/about",
-        "text": "关于",
+        "pagePath": "pages/evaluation/index",
+        "text": "测评",
         "icon": "i-carbon-code",
         "iconType": "unocss"
       },
@@ -52,28 +53,28 @@
   },
   "pages": [
     {
-      "path": "pages/about/about",
-      "type": "page",
-      "layout": "tabbar",
+      "path": "pages/home/index",
+      "type": "home",
       "style": {
-        "navigationBarTitleText": "关于"
-      }
+        "navigationBarTitleText": "首页"
+      },
+      "layout": "tabbar"
     },
     {
-      "path": "pages/about/alova",
+      "path": "pages/evaluation/index",
       "type": "page",
-      "layout": "default",
       "style": {
-        "navigationBarTitleText": "Alova 请求演示"
-      }
+        "navigationBarTitleText": "测评"
+      },
+      "layout": "tabbar"
     },
     {
       "path": "pages/home/detail",
-      "type": "page"
-    },
-    {
-      "path": "pages/home/index",
-      "type": "page"
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "问卷详情"
+      },
+      "layout": "default"
     },
     {
       "path": "pages/user/index",
@@ -101,18 +102,18 @@
       "pages": [
         {
           "path": "baby/add",
-          "type": "page"
-        },
-        {
-          "path": "baby/index",
-          "type": "page"
-        },
-        {
-          "path": "demo/index",
           "type": "page",
           "layout": "default",
           "style": {
-            "navigationBarTitleText": "分包页面"
+            "navigationBarTitleText": "添加宝宝"
+          }
+        },
+        {
+          "path": "baby/index",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "宝宝管理"
           }
         }
       ]

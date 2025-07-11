@@ -32,8 +32,8 @@ export const tabbarList = [
   {
     iconPath: 'static/tabbar/example.png',
     selectedIconPath: 'static/tabbar/exampleHL.png',
-    pagePath: 'pages/about/about',
-    text: '关于',
+    pagePath: 'pages/evaluation/index',
+    text: '测评',
     icon: 'i-carbon-code',
     // 注意 unocss 的图标需要在 页面上引入一下，或者配置到 unocss.config.ts 的 safelist 中
     iconType: 'unocss',

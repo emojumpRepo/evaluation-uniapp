@@ -1,3 +1,12 @@
+<route lang="json">
+{
+  "layout": "default",
+  "style": {
+    "navigationBarTitleText": "宝宝管理"
+  }
+}
+</route>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 
