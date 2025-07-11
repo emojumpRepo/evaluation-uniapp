@@ -24,7 +24,7 @@ export function getCode() {
  * @param loginForm 登录表单
  */
 export function login(loginForm: ILoginForm) {
-  return http.post<IUserLogin>('/user/login', loginForm)
+  return http.post<IUserLogin>('/system/auth/login', loginForm)
 }
 
 /**
