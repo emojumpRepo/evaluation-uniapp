@@ -39,6 +39,14 @@
         "text": "关于",
         "icon": "i-carbon-code",
         "iconType": "unocss"
+      },
+      {
+        "iconPath": "static/tabbar/personal.png",
+        "selectedIconPath": "static/tabbar/personalHL.png",
+        "pagePath": "pages/user/index",
+        "text": "我的",
+        "icon": "i-carbon-code",
+        "iconType": "unocss"
       }
     ]
   },
@@ -66,6 +74,25 @@
       "layout": "default",
       "style": {
         "navigationBarTitleText": "Alova 请求演示"
+      }
+    },
+    {
+      "path": "pages/user/index",
+      "type": "page",
+      "layout": "tabbar",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/user/personal",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "我的档案",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black"
       }
     }
   ],
