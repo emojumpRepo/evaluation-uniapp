@@ -117,12 +117,9 @@ export function getEnvBaseUrl() {
       miniProgram: { envVersion },
     } = uni.getAccountInfoSync()
 
-    console.log('envVersion', envVersion)
-
     switch (envVersion) {
       case 'develop':
         baseUrl = import.meta.env.VITE_SERVER_BASEURL__WEIXIN_DEVELOP || baseUrl
-        console.log('baseUrl', baseUrl)
         break
       case 'trial':
         baseUrl = import.meta.env.VITE_SERVER_BASEURL__WEIXIN_TRIAL || baseUrl

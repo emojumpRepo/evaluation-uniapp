@@ -10,21 +10,36 @@
 </route>
 
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
+import AuthModel from '@/components/AuthModel/index.vue'
+import { useUserStore } from '@/store'
 import { phoneDesensitization } from '@/utils/format'
 
 defineOptions({
   name: 'User',
 })
 
-const userInfo = ref({
-  name: '用户',
-  avatar: '/static/images/default-avatar.png',
-  phone: '13800138000',
-})
+const userStore = useUserStore()
+const { userInfo, isLogin } = storeToRefs(userStore)
+
+const showAuthModal = ref(false) // 登录弹窗
+
+// 显示登录弹窗
+function handleShowAuthModal() {
+  console.log('点击立即登录，当前登录状态:', isLogin.value)
+  if (isLogin.value)
+    return
+  console.log('显示登录弹窗')
+  showAuthModal.value = true
+}
 
 // 菜单点击处理
 function handleMenuClick(type: string) {
   console.log('点击菜单:', type)
+  if (!isLogin.value) {
+    showAuthModal.value = true
+    return
+  }
 
   switch (type) {
     case 'profile':
@@ -41,17 +56,6 @@ function handleMenuClick(type: string) {
       uni.showToast({
         title: '测评记录功能开发中',
         icon: 'none',
-      })
-      break
-    case 'help':
-      uni.showToast({
-        title: '帮助中心功能开发中',
-        icon: 'none',
-      })
-      break
-    case 'about':
-      uni.navigateTo({
-        url: '/pages/about/about',
       })
       break
     case 'edit':
@@ -72,15 +76,11 @@ function handleLogout() {
     success: (res) => {
       if (res.confirm) {
         console.log('退出登录')
-        // 这里添加退出登录逻辑
+        userStore.logout()
       }
     },
   })
 }
-
-onLoad(() => {
-  console.log('用户页面加载')
-})
 </script>
 
 <template>
@@ -94,15 +94,19 @@ onLoad(() => {
             <view class="avatar-badge" />
           </view>
           <view class="user-details">
-            <text class="user-name">
-              {{ userInfo.name }}
-            </text>
+            <view class="user-name" @click="handleShowAuthModal">
+              <text>
+                {{ userInfo.nickname || '立即登录' }}
+              </text>
+              <wd-icon v-if="!isLogin" name="arrow-right" size="20" color="#fff" />
+            </view>
+
             <text class="user-phone">
-              {{ phoneDesensitization(userInfo.phone) }}
+              {{ isLogin ? phoneDesensitization(userInfo.mobile) : '使用更多功能，请登录' }}
             </text>
           </view>
         </view>
-        <view class="edit-btn" @tap="handleMenuClick('edit')">
+        <view class="edit-btn" @click="handleMenuClick('edit')">
           <text class="i-carbon-edit text-white" />
         </view>
       </view>
@@ -188,14 +192,15 @@ onLoad(() => {
     </view>
 
     <!-- 退出登录 -->
-    <view class="logout-container">
-      <view class="logout-btn" @tap="handleLogout">
+    <view v-if="isLogin" class="logout-container">
+      <view class="logout-btn" @click="handleLogout">
         <text class="logout-text">
           退出登录
         </text>
       </view>
     </view>
   </view>
+  <AuthModel v-model="showAuthModal" />
 </template>
 
 <style lang="scss" scoped>
@@ -246,11 +251,13 @@ onLoad(() => {
 }
 
 .user-name {
-  display: block;
-  font-size: 40rpx;
+  display: flex;
+  align-items: center;
+  font-size: 36rpx;
   font-weight: 600;
   color: white;
   margin-bottom: 8rpx;
+  gap: 10rpx;
 }
 
 .user-phone {
