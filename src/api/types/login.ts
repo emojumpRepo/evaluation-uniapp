@@ -2,19 +2,25 @@
  * 用户信息
  */
 export interface IUserInfoVo {
-  id: number
-  username: string
+  userId: number
   avatar: string
-  token: string
+  nickname: string
+  accessToken: string
+  refreshToken: string
+  openid: string
+  expiresTime: number
+  mobile: string
 }
 
 /**
  * 登录返回的信息
  */
 export interface IUserLogin {
-  id: string
-  username: string
-  token: string
+  userId: number
+  accessToken: string
+  refreshToken: string
+  openid: string
+  expiresTime: number
 }
 
 /**

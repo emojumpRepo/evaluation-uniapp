@@ -51,7 +51,7 @@ export default defineUniPages({
       type: 'page',
       layout: 'tabbar',
       style: {
-        navigationBarTitleText: '用户中心',
+        navigationBarTitleText: '我的',
         navigationBarBackgroundColor: '#ffffff',
         navigationBarTextStyle: 'black',
       },
