@@ -1,20 +1,52 @@
 /**
  * 用户信息
  */
-export interface IUserInfoVo {
-  id: number
-  username: string
-  avatar: string
-  token: string
+export type IUserInfoVo = IUserBaseInfo & IUserLogin
+
+/**
+ * 用户基本信息
+ */
+export interface IUserBaseInfo {
+  avatar: string // 头像
+  nickname: string // 昵称
+  mobile: string // 手机号
+  idCard: string // 身份证号
+  name: string // 真实姓名
+  sex: number // 性别
+  height: number // 身高
+  weight: number // 体重
+  bloodType: string // 血型
+  address: string // 地址
+  school: string // 学校
+  familyRole: number // 家庭角色 1: 父亲 2: 母亲 3: 其他
+}
+
+export function getDefaultUserBaseInfo(): IUserBaseInfo {
+  return {
+    avatar: '',
+    nickname: '',
+    mobile: '',
+    idCard: '',
+    name: '',
+    sex: 0,
+    height: 0,
+    weight: 0,
+    bloodType: '',
+    address: '',
+    school: '',
+    familyRole: 0,
+  }
 }
 
 /**
  * 登录返回的信息
  */
 export interface IUserLogin {
-  id: string
-  username: string
-  token: string
+  userId: number
+  accessToken: string
+  refreshToken: string
+  openid: string
+  expiresTime: number
 }
 
 /**

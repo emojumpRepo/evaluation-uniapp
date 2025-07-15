@@ -1,4 +1,4 @@
-import type { ICaptcha, IUpdateInfo, IUpdatePassword, IUserInfoVo, IUserLogin } from './types/login'
+import type { ICaptcha, IUpdatePassword, IUserLogin } from './types/login'
 import { http } from '@/http/http'
 
 /**
@@ -20,32 +20,26 @@ export function getCode() {
 }
 
 /**
- * 用户登录
+ * 用户微信小程序登录
  * @param loginForm 登录表单
  */
-export function login(loginForm: ILoginForm) {
-  return http.post<IUserLogin>('/user/login', loginForm)
+export function wxLogin(data: { type: number, code: string, state: string }) {
+  return http.post<IUserLogin>('/member/auth/social-login', data, undefined, { 'tenant-id': import.meta.env.VITE_TENANT_ID })
 }
 
 /**
- * 获取用户信息
+ * 用户手机号快速登录
+ * @param loginForm 登录表单
  */
-export function getUserInfo() {
-  return http.get<IUserInfoVo>('/user/info')
+export function phoneLogin(data: { phoneCode: string, loginCode: string, state: string }) {
+  return http.post<IUserLogin>('/member/auth/weixin-mini-app-login', data, undefined, { 'tenant-id': import.meta.env.VITE_TENANT_ID })
 }
 
 /**
- * 退出登录
+ * 登出系统
  */
 export function logout() {
-  return http.get<void>('/user/logout')
-}
-
-/**
- * 修改用户信息
- */
-export function updateInfo(data: IUpdateInfo) {
-  return http.post('/user/updateInfo', data)
+  return http.post('/member/auth/logout')
 }
 
 /**
@@ -67,17 +61,4 @@ export function getWxCode() {
       fail: err => reject(new Error(err)),
     })
   })
-}
-
-/**
- * 微信登录参数
- */
-
-/**
- * 微信登录
- * @param params 微信登录参数，包含code
- * @returns Promise 包含登录结果
- */
-export function wxLogin(data: { code: string }) {
-  return http.post<IUserLogin>('/user/wxLogin', data)
 }
