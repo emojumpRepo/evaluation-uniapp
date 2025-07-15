@@ -1,4 +1,4 @@
-import type { ICaptcha, IUpdateInfo, IUpdatePassword, IUserInfoVo, IUserLogin } from './types/login'
+import type { ICaptcha, IUpdatePassword, IUserLogin } from './types/login'
 import { http } from '@/http/http'
 
 /**
@@ -36,22 +36,10 @@ export function phoneLogin(data: { phoneCode: string, loginCode: string, state: 
 }
 
 /**
- * 获取用户信息
+ * 登出系统
  */
-export function getUserInfo() {
-  return http.get<IUserInfoVo>('/member/user/get')
-}
-
-// 登出系统
 export function logout() {
   return http.post('/member/auth/logout')
-}
-
-/**
- * 修改用户信息
- */
-export function updateInfo(data: IUpdateInfo) {
-  return http.post('/user/updateInfo', data)
 }
 
 /**
