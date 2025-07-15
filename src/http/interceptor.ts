@@ -58,6 +58,7 @@ const httpInterceptor = {
     if (accessToken) {
       options.header.Authorization = `Bearer ${accessToken}`
     }
+    options.header['tenant-id'] = import.meta.env.VITE_TENANT_ID
   },
 }
 

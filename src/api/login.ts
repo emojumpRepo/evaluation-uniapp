@@ -24,7 +24,7 @@ export function getCode() {
  * @param loginForm 登录表单
  */
 export function wxLogin(data: { type: number, code: string, state: string }) {
-  return http.post<IUserLogin>('/member/auth/social-login', data, undefined, { 'tenant-id': import.meta.env.VITE_TENANT_ID })
+  return http.post<IUserLogin>('/member/auth/social-login', data)
 }
 
 /**
@@ -32,7 +32,7 @@ export function wxLogin(data: { type: number, code: string, state: string }) {
  * @param loginForm 登录表单
  */
 export function phoneLogin(data: { phoneCode: string, loginCode: string, state: string }) {
-  return http.post<IUserLogin>('/member/auth/weixin-mini-app-login', data, undefined, { 'tenant-id': import.meta.env.VITE_TENANT_ID })
+  return http.post<IUserLogin>('/member/auth/weixin-mini-app-login', data)
 }
 
 /**
