@@ -8,32 +8,30 @@
 </route>
 
 <script setup lang="ts">
+import type { BirthType, Guardian, IBabyInfo } from '@/api/types/baby'
+import dayjs from 'dayjs'
+import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
+import { createBaby, getBabyInfo, updateBabyInfo } from '@/api/baby'
+import UploadAvatar from '@/components/UploadAvatar/index.vue'
+import { useUserStore } from '@/store/user'
 
-type BirthType = '自然' | '剖腹产' | '早产' | '足月'
-type Guardian = '父母' | '老人' | '其他'
-
-interface BabyForm {
-  name: string
-  birthday: number
-  gender: '男' | '女'
-  height: string
-  weight: string
-  birthType: BirthType
-  guardian: Guardian
-  avatar: string
-}
+const props = defineProps<{
+  id?: number
+}>()
+const userStore = useUserStore()
+const { userInfo } = storeToRefs(userStore)
 
 // 表单数据
-const form = ref<BabyForm>({
+const form = ref<IBabyInfo>({
   name: '',
-  birthday: Date.now(),
-  gender: '男',
-  height: '',
-  weight: '',
+  birthday: '',
+  gender: 1,
+  height: null,
+  weight: null,
   birthType: '自然',
   guardian: '父母',
-  avatar: '',
+  avatar: 'http://test.yudao.iocoder.cn/user/avatar/20250715/G0bTIS90DRSvc90f423c08a6cb7bb3ab969a5301474c_1752564908905.png',
 })
 
 // 选项配置
@@ -69,7 +67,7 @@ function formatDate(date: Date): string {
 // 处理数值输入
 function handleNumberInput(value: string, field: 'height' | 'weight') {
   if (value === '') {
-    form.value[field] = ''
+    form.value[field] = null
     return
   }
 
@@ -83,10 +81,10 @@ function handleNumberInput(value: string, field: 'height' | 'weight') {
         title: '身高不能超过200cm',
         icon: 'none',
       })
-      form.value.height = '200'
+      form.value.height = 200
       return
     }
-    form.value.height = num.toString()
+    form.value.height = num
   }
   else {
     if (num > 100) {
@@ -94,32 +92,20 @@ function handleNumberInput(value: string, field: 'height' | 'weight') {
         title: '体重不能超过100kg',
         icon: 'none',
       })
-      form.value.weight = '100'
+      form.value.weight = 100
       return
     }
-    form.value.weight = num.toString()
+    form.value.weight = num
   }
 }
 
-// 选择头像
-async function chooseAvatar() {
-  try {
-    const res = await uni.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-    })
-
-    if (res.tempFilePaths && res.tempFilePaths[0]) {
-      form.value.avatar = res.tempFilePaths[0]
-    }
-  }
-  catch (error) {
-    uni.showToast({
-      title: '选择头像失败',
-      icon: 'none',
-    })
-  }
+/**
+ * 上传头像
+ * @param avatar 头像
+ */
+async function uploadAvatar(avatar: string) {
+  form.value.avatar = avatar
+  console.log('form.value', form.value)
 }
 
 // 提交表单
@@ -137,13 +123,29 @@ async function onSubmit() {
       title: '保存中...',
     })
 
-    console.log('提交表单', form.value)
+    const data = {
+      ...form.value,
+      birthday: dayjs(form.value.birthday).format('YYYY-MM-DD'),
+    }
+
+    console.log('😊😊需要保存的数据', data)
+
+    if (props.id) {
+      await updateBabyInfo(data)
+    }
+    else {
+      await createBaby({
+        ...data,
+        userId: userInfo.value.userId,
+      })
+    }
 
     uni.hideLoading()
     uni.showToast({
       title: '保存成功',
       icon: 'success',
     })
+    uni.navigateBack()
   }
   catch (error) {
     uni.hideLoading()
@@ -153,37 +155,42 @@ async function onSubmit() {
     })
   }
 }
+
+async function getBabyInfoData() {
+  try {
+    const res = await getBabyInfo(props.id!)
+    console.log('获取宝宝信息', res)
+    if (res.code === 0) {
+      form.value = {
+        ...res.data,
+        birthday: dayjs(res.data.birthday).valueOf(),
+      }
+
+      console.log('😊😊获取宝宝信息', form.value)
+    }
+  }
+  catch (error) {
+    console.error('获取宝宝信息失败:', error)
+  }
+}
+
+onMounted(async () => {
+  if (props.id) {
+    await getBabyInfoData()
+  }
+})
 </script>
 
 <template>
-  <div class="box-border h-screen bg-gray-100 pt-4">
+  <div class="box-border h-screen bg-gray-50 pt-4">
     <!-- 头像选择器 -->
-    <div class="mb-4 flex items-center justify-center">
-      <div
-        class="relative h-24 w-24 flex cursor-pointer items-center justify-center overflow-hidden rounded-full bg-gray-200 shadow"
-        @click="chooseAvatar"
-      >
-        <template v-if="form.avatar">
-          <image
-            :src="form.avatar"
-            class="h-full w-full object-cover"
-            mode="aspectFill"
-          />
-        </template>
-        <template v-else>
-          <view class="flex flex-col items-center text-gray-400">
-            <view class="i-carbon-camera mb-1 text-24px" />
-            <text class="text-xs">
-              点击上传
-            </text>
-          </view>
-        </template>
-      </div>
+    <div class="mx-5 mb-4">
+      <UploadAvatar :avatar="form.avatar" @upload="uploadAvatar" />
     </div>
 
     <!-- 表单内容 -->
     <wd-form :model="form" :rules="rules">
-      <wd-cell-group custom-class="mx-4 rounded-lg overflow-hidden" border>
+      <wd-cell-group custom-class="mx-5 rounded-lg overflow-hidden" border>
         <wd-cell title="孩子基本信息" title-width="100%" />
 
         <!-- 姓名 -->
@@ -192,7 +199,6 @@ async function onSubmit() {
           prop="name"
           label="孩子姓名"
           placeholder="请输入姓名"
-          clearable
           :maxlength="20"
         />
 
@@ -206,12 +212,12 @@ async function onSubmit() {
         />
 
         <!-- 性别 -->
-        <wd-cell title="性别" prop="gender">
+        <wd-cell title="性别" prop="gender" center custom-class="!line-height-0">
           <wd-radio-group v-model="form.gender" shape="dot" inline>
-            <wd-radio value="男">
+            <wd-radio :value="1">
               男
             </wd-radio>
-            <wd-radio value="女">
+            <wd-radio :value="2">
               女
             </wd-radio>
           </wd-radio-group>
@@ -223,7 +229,6 @@ async function onSubmit() {
           label="身高"
           placeholder="请输入身高"
           type="digit"
-          clearable
           @change="val => handleNumberInput(val, 'height')"
         >
           <template #suffix>
@@ -237,7 +242,6 @@ async function onSubmit() {
           label="体重"
           placeholder="请输入体重"
           type="digit"
-          clearable
           @change="val => handleNumberInput(val, 'weight')"
         >
           <template #suffix>
@@ -247,7 +251,7 @@ async function onSubmit() {
 
         <!-- 生育方式 -->
         <wd-cell title="生育方式" prop="birthType" vertical>
-          <div class="flex items-center gap-5">
+          <div class="flex items-center justify-between">
             <span
               v-for="type in birthTypeOptions"
               :key="type"
@@ -278,12 +282,10 @@ async function onSubmit() {
     </wd-form>
 
     <!-- 提交按钮 -->
-    <view class="fixed bottom-0 left-0 right-0 px-4 pb-5">
+    <view class="fixed bottom-0 left-0 right-0 z-10 px-5 pb-5">
       <wd-button
-        block
-        :loading="false"
         :disabled="!formValid"
-        custom-class="save-btn"
+        custom-class="save-btn w-full"
         @click="onSubmit"
       >
         保存
