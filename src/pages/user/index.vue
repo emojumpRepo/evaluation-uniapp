@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
 import AuthModel from '@/components/AuthModel/index.vue'
 import { useUserStore } from '@/store'
 import { phoneDesensitization } from '@/utils/format'
@@ -81,6 +82,11 @@ function handleLogout() {
     },
   })
 }
+
+onMounted(async () => {
+  if (isLogin.value)
+    await userStore.getUserInfo()
+})
 </script>
 
 <template>
@@ -90,13 +96,13 @@ function handleLogout() {
       <view class="header-content">
         <view class="user-info">
           <view class="avatar-container">
-            <image :src="userInfo.avatar" class="user-avatar" mode="aspectFill" />
+            <image :src="isLogin ? userInfo.avatar : '/static/images/default-avatar.png'" class="user-avatar" mode="aspectFill" />
             <view class="avatar-badge" />
           </view>
           <view class="user-details">
             <view class="user-name" @click="handleShowAuthModal">
               <text>
-                {{ userInfo.nickname || '立即登录' }}
+                {{ isLogin ? userInfo.nickname : '立即登录' }}
               </text>
               <wd-icon v-if="!isLogin" name="arrow-right" size="20" color="#fff" />
             </view>
