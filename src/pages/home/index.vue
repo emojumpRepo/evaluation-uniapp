@@ -67,18 +67,13 @@ const articles = ref<IArticle[]>([])
 
 // 使用 useRequest 管理请求状态
 const { loading, error, run: fetchArticles } = useRequest(
-  () => getArticleList({ page: page.value, pageSize: pageSize.value }),
+  () => getArticleList({ page: page.value, pageSize: pageSize.value, ...(currentCategory.value !== 'all' && { category: currentCategory.value }) }),
   { immediate: false },
 )
 
 // 根据分类和搜索关键词筛选文章
 const filteredArticles = computed(() => {
   let result = articles.value
-
-  // 按分类筛选
-  if (currentCategory.value !== 'all') {
-    result = result.filter(article => article.category === currentCategory.value)
-  }
 
   // 按搜索关键词筛选
   if (searchKeyword.value.trim()) {
@@ -95,6 +90,10 @@ const filteredArticles = computed(() => {
 // 选择分类
 function selectCategory(id: string) {
   currentCategory.value = id
+  page.value = 1
+  hasMore.value = true
+  articles.value = []
+  getArticleListData()
 }
 
 // 跳转到文章详情
@@ -153,7 +152,6 @@ async function onRefresh() {
 
   try {
     await getArticleListData()
-    toast.success('刷新成功')
   }
   finally {
     isRefreshing.value = false
