@@ -13,8 +13,8 @@ import type { IUserBaseInfo } from '@/api/types/login'
 import { storeToRefs } from 'pinia'
 import { watch } from 'vue'
 import { getDefaultUserBaseInfo } from '@/api/types/login'
+import UploadAvatar from '@/components/UploadAvatar/index.vue'
 import { useUserStore } from '@/store'
-import { uploadFileUrl, useUpload } from '@/utils/uploadFile'
 
 defineOptions({
   name: 'UserPersonal',
@@ -57,46 +57,14 @@ watch(userInfo, (newUserInfo) => {
   console.log('用户信息变化，同步到表单:', extractedInfo)
 }, { deep: true })
 
-// 上传进度
-const uploadProgress = ref(0)
-
-// 使用useUpload钩子
-const { loading: uploading, error: uploadError, run: startUpload } = useUpload<{ url: string }>(
-  uploadFileUrl.USER_AVATAR,
-  {},
-  {
-    maxSize: 5, // 最大5MB
-    sourceType: ['album', 'camera'],
-    directory: 'user/avatar',
-    onProgress: (p) => {
-      uploadProgress.value = p
-      console.log(`上传进度：${p}%`)
-    },
-    onSuccess: async (res) => {
-      console.log('上传成功', res)
-      if (res) {
-        formData.value.avatar = res as unknown as string
-        console.log('formData.value', formData.value)
-        await userStore.updateUserInfo(formData.value)
-        uni.showToast({
-          title: '头像上传成功',
-          icon: 'success',
-        })
-      }
-    },
-    onError: (err) => {
-      console.error('上传失败', err)
-      uni.showToast({
-        title: '上传失败，请重试',
-        icon: 'error',
-      })
-    },
-  },
-)
-
-// 处理头像上传
-function handleAvatarUpload() {
-  startUpload()
+/**
+ * 上传头像
+ * @param avatar 头像
+ */
+async function uploadAvatar(avatar: string) {
+  formData.value.avatar = avatar
+  console.log('formData.value', formData.value)
+  await userStore.updateUserInfo(formData.value)
 }
 
 // 上传组件的文件列表
@@ -199,19 +167,7 @@ async function saveProfile() {
 <template>
   <scroll-view scroll-y class="scroll-container bg-gray-50 px-5 pb-18 pt-4">
     <!-- 头部信息 -->
-    <div class="flex flex-col items-center rounded-lg bg-white p-5">
-      <div class="relative mb-3">
-        <image :src="formData.avatar" class="user-avatar" mode="aspectFill" />
-        <div v-if="uploading" class="upload-progress">
-          {{ uploadProgress }}%
-        </div>
-      </div>
-      <div class="flex justify-center">
-        <wd-button type="primary" icon="camera" size="small" :loading="uploading" @click="handleAvatarUpload">
-          上传头像
-        </wd-button>
-      </div>
-    </div>
+    <UploadAvatar :avatar="formData.avatar" @upload="uploadAvatar" />
 
     <!-- 表单内容区域 -->
     <div class="mt-5 rounded-lg bg-white p-1">
@@ -281,25 +237,6 @@ async function saveProfile() {
 .scroll-container {
   height: 100vh;
   box-sizing: border-box;
-}
-
-.user-avatar {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 50%;
-  border: 3px solid #e5e7eb;
-}
-
-.upload-progress {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
 }
 
 :deep(.is-checked.is-button) {
