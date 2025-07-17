@@ -1,5 +1,6 @@
-<script setup>
-import { reactive, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
+import { PolicyType } from '@/api/user'
 import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
 
@@ -10,6 +11,11 @@ const props = defineProps({
   },
 })
 
+enum PolicyTitle {
+  service_agreement = '服务协议',
+  privacy_policy = '隐私协议',
+}
+
 const show = defineModel({
   type: Boolean,
   default: false,
@@ -17,45 +23,21 @@ const show = defineModel({
 
 const userStore = useUserStore()
 
-const state = reactive({
-  protocol: true,
-})
-
-const currentProtocol = ref(false)
-
-// 同意协议
-function onAgree() {
-  state.protocol = true
-}
-
-// 拒绝协议
-function onRefuse() {
-  state.protocol = false
-}
+const isAgree = ref(true) // 是否同意协议
+const showAgreement = ref(false) // 是否显示协议弹窗
+const agreementType = ref<PolicyType>(PolicyType.SERVICE_AGREEMENT) // 协议类型
 
 // 查看协议
-function onProtocol(title) {
-  show.value = false
-  // 跳转到协议页面 - 需要根据实际路由结构调整
-  uni.navigateTo({
-    url: `/pages/agreement/index?title=${encodeURIComponent(title)}`,
-  })
+function handleAgreement(type: PolicyType) {
+  console.log('handleAgreement', type)
+  showAgreement.value = true
+  agreementType.value = type
 }
 
 // 微信登录
 async function handleWechatLogin() {
-  if (state.protocol !== true) {
-    currentProtocol.value = true
-    setTimeout(() => {
-      currentProtocol.value = false
-    }, 1000)
-
-    if (state.protocol === false) {
-      toast.error('您已拒绝协议，无法继续登录')
-    }
-    else {
-      toast.warning('请选择是否同意协议')
-    }
+  if (!isAgree.value) {
+    toast.error('请先阅读并同意协议')
     return
   }
 
@@ -76,9 +58,14 @@ async function handleWechatLogin() {
 }
 
 // 微信小程序的"手机号快速验证"
-async function getPhoneNumber(e) {
+async function getPhoneNumber(e: any) {
+  if (!isAgree.value) {
+    toast.error('请先阅读并同意协议')
+    return
+  }
+
   if (e.detail.errMsg !== 'getPhoneNumber:ok') {
-    toast.error('登录失败')
+    toast.error('您已拒绝授权，无法继续登录')
     return
   }
 
@@ -172,19 +159,19 @@ async function getPhoneNumber(e) {
         <view class="agreement-option">
           <view class="radio-container">
             <wd-checkbox
-              v-model="state.protocol" color="#3b82f6" style="transform: scale(0.9)"
+              v-model="isAgree" color="#3b82f6" style="transform: scale(0.9)" @change="() => console.log('isAgree', isAgree)"
             >
               <view class="agreement-text-container">
                 <text class="agreement-text">
                   我已阅读并同意
                 </text>
-                <text class="protocol-link" @tap.stop="onProtocol('用户协议')">
+                <text class="protocol-link" @tap.stop="handleAgreement(PolicyType.SERVICE_AGREEMENT)">
                   《用户协议》
                 </text>
                 <text class="agreement-text">
                   与
                 </text>
-                <text class="protocol-link" @tap.stop="onProtocol('隐私协议')">
+                <text class="protocol-link" @tap.stop="handleAgreement(PolicyType.PRIVACY_POLICY)">
                   《隐私协议》
                 </text>
               </view>
@@ -194,6 +181,7 @@ async function getPhoneNumber(e) {
       </view>
     </view>
   </wd-popup>
+  <AgreementModel v-model="showAgreement" :type="agreementType" :title="PolicyTitle[agreementType]" @agree="isAgree = true" />
 </template>
 
 <style lang="scss" scoped>
@@ -284,23 +272,6 @@ async function getPhoneNumber(e) {
   flex-direction: column;
   align-items: center;
   margin-bottom: 40rpx;
-}
-
-.logo-container {
-  width: 100rpx;
-  height: 100rpx;
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20rpx;
-  box-shadow: 0 8rpx 30rpx rgba(59, 130, 246, 0.3);
-}
-
-.logo-icon {
-  font-size: 48rpx;
-  color: white;
 }
 
 .welcome-text {
@@ -437,40 +408,6 @@ async function getPhoneNumber(e) {
   color: #64748b;
 }
 
-// 协议区域
-.agreement-section {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border-radius: 20rpx;
-  padding: 30rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
-}
-
-.agreement-title {
-  text-align: center;
-  margin-bottom: 30rpx;
-}
-
-.agreement-title-text {
-  display: block;
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #1e293b;
-  margin-bottom: 8rpx;
-}
-
-.agreement-subtitle {
-  display: block;
-  font-size: 24rpx;
-  color: #64748b;
-}
-
-.agreement-options {
-  display: flex;
-  flex-direction: column;
-  gap: 20rpx;
-}
-
 .agreement-option {
   display: flex;
   align-items: flex-start;
@@ -481,14 +418,6 @@ async function getPhoneNumber(e) {
 
   &:active {
     background: rgba(255, 255, 255, 0.8);
-  }
-}
-
-.refuse-option {
-  border: 2rpx solid rgba(239, 68, 68, 0.3);
-
-  &:hover {
-    border-color: rgba(239, 68, 68, 0.5);
   }
 }
 
