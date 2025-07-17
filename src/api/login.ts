@@ -50,15 +50,8 @@ export function updateUserPassword(data: IUpdatePassword) {
 }
 
 /**
- * 获取微信登录凭证
- * @returns Promise 包含微信登录凭证(code)
+ * 刷新令牌
  */
-export function getWxCode() {
-  return new Promise<UniApp.LoginRes>((resolve, reject) => {
-    uni.login({
-      provider: 'weixin',
-      success: res => resolve(res),
-      fail: err => reject(new Error(err)),
-    })
-  })
+export function refreshToken(refreshToken: string) {
+  return http.post(`/member/auth/refresh-token?refreshToken=${refreshToken}`)
 }

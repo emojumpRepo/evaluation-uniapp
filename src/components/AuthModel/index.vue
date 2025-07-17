@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { PolicyType } from '@/api/user'
+import { PolicyTitle, PolicyType } from '@/api/types/user'
 import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
 
@@ -10,11 +10,6 @@ const props = defineProps({
     default: 'login',
   },
 })
-
-enum PolicyTitle {
-  service_agreement = '服务协议',
-  privacy_policy = '隐私协议',
-}
 
 const show = defineModel({
   type: Boolean,

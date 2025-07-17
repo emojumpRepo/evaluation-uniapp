@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { getAgreement, PolicyType } from '@/api/user'
+import { PolicyType } from '@/api/types/user'
+import { getAgreement } from '@/api/user'
 
 const props = defineProps({
   type: {

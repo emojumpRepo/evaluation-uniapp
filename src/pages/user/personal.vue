@@ -140,11 +140,9 @@ async function saveProfile() {
         title: '请填写完整信息',
         icon: 'none',
       })
-      console.log('表单对象:', formData.value)
       return
     }
 
-    // 这里添加保存逻辑
     uni.showLoading({
       title: '保存中...',
     })

@@ -1,13 +1,6 @@
 import type { IUserBaseInfo, IUserInfoVo } from './types/login'
+import type { PolicyType } from './types/user'
 import { http } from '@/http/http'
-
-/**
- * 协议类型
- */
-export enum PolicyType {
-  SERVICE_AGREEMENT = 'service_agreement',
-  PRIVACY_POLICY = 'privacy_policy',
-}
 
 /**
  * 获取用户信息
