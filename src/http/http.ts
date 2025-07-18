@@ -1,8 +1,11 @@
+import type { IUserInfoVo } from '@/api/types/login'
 import type { CustomRequestOptions } from '@/http/interceptor'
+import { useUserStore } from '@/store'
 
 export function http<T>(options: CustomRequestOptions) {
   // 1. 返回 Promise 对象
   return new Promise<IResData<T>>((resolve, reject) => {
+    const userStore = useUserStore()
     uni.request({
       ...options,
       dataType: 'json',
@@ -10,20 +13,49 @@ export function http<T>(options: CustomRequestOptions) {
       responseType: 'json',
       // #endif
       // 响应成功
-      success(res) {
+      async success(res) {
+        // 业务code 401，主动刷新token
+        if (res.data && typeof res.data === 'object' && (res.data as any).code === 401) {
+          // 兼容userInfo为ref或对象
+          const ok = await userStore.refreshToken()
+          const userInfo = ((userStore.userInfo && 'value' in userStore.userInfo) ? userStore.userInfo.value : userStore.userInfo) as IUserInfoVo
+          if (ok && userInfo.accessToken) {
+            // 重试原请求
+            const retryOptions = { ...options }
+            retryOptions.header = retryOptions.header || {}
+            retryOptions.header.Authorization = `Bearer ${userInfo.accessToken}`
+            return uni.request({ ...retryOptions, async success(retryRes) {
+              // 递归处理401
+              if (retryRes.data && typeof retryRes.data === 'object' && (retryRes.data as any).code === 401) {
+                userStore.logout()
+                uni.showToast({ title: '登录已过期，请重新登录', icon: 'none' })
+                reject(retryRes)
+                return
+              }
+              if (retryRes.statusCode >= 200 && retryRes.statusCode < 300) {
+                resolve(retryRes.data as IResData<T>)
+              }
+              else {
+                !options.hideErrorToast && uni.showToast({ icon: 'none', title: (retryRes.data as IResData<T>).msg || '请求错误' })
+                reject(retryRes)
+              }
+            }, fail: reject })
+          }
+          else {
+            userStore.logout()
+            uni.showToast({ title: '登录已过期，请重新登录', icon: 'none' })
+            reject(res)
+            return
+          }
+        }
         // 状态码 2xx，参考 axios 的设计
         if (res.statusCode >= 200 && res.statusCode < 300) {
-          // 2.1 提取核心数据 res.data
           resolve(res.data as IResData<T>)
         }
         else if (res.statusCode === 401) {
-          // 401错误  -> 清理用户信息，跳转到登录页
-          // userStore.clearUserInfo()
-          // uni.navigateTo({ url: '/pages/login/login' })
           reject(res)
         }
         else {
-          // 其他错误 -> 根据后端错误信息轻提示
           !options.hideErrorToast
           && uni.showToast({
             icon: 'none',

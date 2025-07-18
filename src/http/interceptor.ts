@@ -30,20 +30,16 @@ const httpInterceptor = {
     // 非 http 开头需拼接地址
     if (!options.url.startsWith('http')) {
       // #ifdef H5
-      // console.log(__VITE_APP_PROXY__)
       if (JSON.parse(__VITE_APP_PROXY__)) {
-        // 自动拼接代理前缀
         options.url = import.meta.env.VITE_APP_PROXY_PREFIX + options.url
       }
       else {
         options.url = baseUrl + options.url
       }
       // #endif
-      // 非H5正常拼接
       // #ifndef H5
       options.url = baseUrl + options.url
       // #endif
-      // TIPS: 如果需要对接多个后端服务，也可以在这里处理，拼接成所需要的地址
     }
     // 1. 请求超时
     options.timeout = 10000 // 10s
@@ -54,9 +50,9 @@ const httpInterceptor = {
     }
     // 3. 添加 token 请求头标识
     const userStore = useUserStore()
-    const { accessToken } = userStore.userInfo as unknown as IUserInfoVo
-    if (accessToken) {
-      options.header.Authorization = `Bearer ${accessToken}`
+    const userInfo = ((userStore.userInfo && 'value' in userStore.userInfo) ? userStore.userInfo.value : userStore.userInfo) as IUserInfoVo
+    if (userInfo.accessToken) {
+      options.header.Authorization = `Bearer ${userInfo.accessToken}`
     }
     options.header['tenant-id'] = import.meta.env.VITE_TENANT_ID
   },

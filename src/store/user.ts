@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import {
   logout as _logout,
   phoneLogin as _phoneLogin,
+  refreshToken as _refreshToken,
   wxLogin as _wxLogin,
 } from '@/api/login'
 import { getUserInfo as _getUserInfo, updateInfo as _updateInfo } from '@/api/user'
@@ -47,12 +48,14 @@ export const useUserStore = defineStore(
         val.avatar = userInfoState.avatar
       }
       userInfo.value = val
+      uni.setStorageSync('userInfo', userInfo.value)
     }
 
     const setUserAvatar = (avatar: string) => {
       userInfo.value.avatar = avatar
       console.log('设置用户头像', avatar)
       console.log('userInfo', userInfo.value)
+      uni.setStorageSync('userInfo', userInfo.value)
     }
 
     // 删除用户信息
@@ -180,6 +183,7 @@ export const useUserStore = defineStore(
           icon: 'success',
         })
         await getUserInfo()
+        uni.setStorageSync('userInfo', userInfo.value)
       }
       else {
         uni.showToast({
@@ -188,6 +192,35 @@ export const useUserStore = defineStore(
         })
       }
       return res.data
+    }
+
+    /**
+     * 刷新令牌并自动更新用户信息和本地storage
+     */
+    const refreshToken = async () => {
+      const userInfoVal = ((userInfo && 'value' in userInfo) ? userInfo.value : userInfo) as IUserInfoVo
+      const refreshTokenVal = userInfoVal.refreshToken
+      if (!refreshTokenVal)
+        return false
+      try {
+        const res = await _refreshToken(refreshTokenVal)
+        if (res.code === 0 && res.data) {
+          const data = res.data as any
+          userInfoVal.accessToken = data.accessToken
+          userInfoVal.refreshToken = data.refreshToken
+          userInfoVal.expiresTime = data.expiresTime
+          uni.setStorageSync('userInfo', userInfoVal)
+          return true
+        }
+        else {
+          removeUserInfo()
+          return false
+        }
+      }
+      catch (e) {
+        removeUserInfo()
+        return false
+      }
     }
 
     /**
@@ -207,6 +240,8 @@ export const useUserStore = defineStore(
       updateUserInfo,
       setUserAvatar,
       logout,
+      refreshToken, // 新增
+      setUserInfo,
     }
   },
   {

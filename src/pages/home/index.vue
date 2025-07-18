@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import type { IArticle } from '@/api/types/article'
+import type { Banner, IArticle } from '@/api/types/article'
 import { computed, ref } from 'vue'
-import { getArticleList, likeArticle } from '@/api/article'
+import { getArticleList, getBannerList, likeArticle } from '@/api/article'
 import useRequest from '@/hooks/useRequest'
 import { toast } from '@/utils/toast'
+
+const tabbarUrl = ['/pages/home/index', '/pages/user/index', '/pages/evaluation/index']
 
 const page = ref(1)
 const pageSize = ref(10)
@@ -12,29 +14,7 @@ const searchKeyword = ref('')
 const isRefreshing = ref(false)
 
 // 轮播图数据
-const banners = ref([
-  {
-    id: 1,
-    title: '儿童早期教育专题：激发孩子的学习兴趣',
-    image: '',
-    type: 'article',
-    articleId: 1,
-  },
-  {
-    id: 2,
-    title: '亲子互动游戏合集：增进亲子感情的趣味活动',
-    image: '',
-    type: 'article',
-    articleId: 2,
-  },
-  {
-    id: 3,
-    title: '育儿专家在线答疑：解决家长的困扰',
-    image: '',
-    type: 'article',
-    articleId: 3,
-  },
-])
+const banners = ref([])
 
 // 当前轮播图索引
 const currentSwiperIndex = ref(0)
@@ -45,9 +25,23 @@ function onSwiperChange(e: any) {
 }
 
 // 轮播图点击事件
-function onBannerClick(banner: any) {
-  if (banner.type === 'article') {
-    goToDetail(banner.articleId)
+function onBannerClick(banner: Banner) {
+  console.log('👌轮播图点击', banner)
+
+  if (banner.linkUrl) {
+    if (tabbarUrl.includes(banner.linkUrl)) {
+      uni.switchTab({
+        url: banner.linkUrl,
+      })
+    }
+    else {
+      uni.navigateTo({
+        url: banner.linkUrl,
+      })
+    }
+  }
+  else {
+    toast.info(`版本号：${uni.getSystemInfoSync().appVersion}`)
   }
 }
 
@@ -68,6 +62,11 @@ const articles = ref<IArticle[]>([])
 // 使用 useRequest 管理请求状态
 const { loading, error, run: fetchArticles } = useRequest(
   () => getArticleList({ page: page.value, pageSize: pageSize.value, ...(currentCategory.value !== 'all' && { category: currentCategory.value }) }),
+  { immediate: false },
+)
+
+const { loading: bannerLoading, error: bannerError, run: fetchBanner } = useRequest(
+  () => getBannerList(),
   { immediate: false },
 )
 
@@ -144,6 +143,22 @@ async function getArticleListData(loadMore = false) {
   }
 }
 
+async function getBannerListData() {
+  const res = await fetchBanner()
+  console.log('👌获取轮播图', res)
+  if (res && res.length > 0) {
+    banners.value = res.sort((a, b) => a.sort - b.sort)
+  }
+  else {
+    banners.value = [{
+      id: 1,
+      title: '儿童早期教育专题：激发孩子的学习兴趣',
+      imageUrl: '/static/images/banner.png',
+      linkUrl: '/pages/home/index',
+    }]
+  }
+}
+
 // 下拉刷新
 async function onRefresh() {
   isRefreshing.value = true
@@ -189,6 +204,7 @@ function formatTime(time: string) {
 
 onShow(async () => {
   await getArticleListData()
+  await getBannerListData()
 })
 </script>
 
@@ -213,16 +229,17 @@ onShow(async () => {
       :duration="500"
       indicator-dots
       indicator-active-color="#3b82f6"
+      :loading="bannerLoading"
       @change="onSwiperChange"
     >
       <swiper-item
         v-for="banner in banners"
         :key="banner.id"
         class="relative"
-        @click="onBannerClick(banner)"
+        @tap="onBannerClick(banner)"
       >
         <image
-          :src="banner.image"
+          :src="banner.imageUrl"
           mode="aspectFill"
           class="h-full w-full"
         />

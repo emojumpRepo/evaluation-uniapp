@@ -4,5 +4,7 @@
  * @returns 脱敏后的手机号
  */
 export function phoneDesensitization(phone: string) {
+  if (!phone)
+    return ''
   return phone.replace(/(\d{3})(\d{4})(\d{4})/, '$1****$3')
 }
