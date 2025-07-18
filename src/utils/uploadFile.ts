@@ -21,7 +21,7 @@ import { toast } from './toast'
  */
 export const uploadFileUrl = {
   /** 用户头像上传地址 */
-  USER_AVATAR: `${import.meta.env.VITE_SERVER_BASEURL}/user/avatar`,
+  USER_AVATAR: `${import.meta.env.VITE_SERVER_BASEURL}/infra/file/upload`,
 }
 
 /**
@@ -51,6 +51,8 @@ export interface UploadOptions {
   sizeType?: Array<'original' | 'compressed'>
   /** 选择图片的来源，album-相册，camera-相机 */
   sourceType?: Array<'album' | 'camera'>
+  /** 文件目录 */
+  directory?: string
   /** 文件大小限制，单位：MB */
   maxSize?: number //
   /** 上传进度回调函数 */
@@ -91,6 +93,8 @@ export function useUpload<T = string>(url: string, formData: Record<string, any>
     sizeType = ['original', 'compressed'],
     /** 选择图片的来源 */
     sourceType = ['album', 'camera'],
+    /** 文件目录 */
+    directory = 'user/avatar',
     /** 文件大小限制（MB） */
     maxSize = 10,
     /** 进度回调 */
@@ -116,6 +120,11 @@ export function useUpload<T = string>(url: string, formData: Record<string, any>
     }
     return true
   }
+
+  if (directory) {
+    formData.directory = directory
+  }
+
   /**
    * 触发文件选择和上传
    * 根据平台使用不同的选择器：

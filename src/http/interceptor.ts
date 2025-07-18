@@ -1,3 +1,4 @@
+import type { IUserInfoVo } from '@/api/types/login'
 import { useUserStore } from '@/store'
 import { getEnvBaseUrl } from '@/utils'
 import { platform } from '@/utils/platform'
@@ -53,10 +54,11 @@ const httpInterceptor = {
     }
     // 3. 添加 token 请求头标识
     const userStore = useUserStore()
-    const { token } = userStore.userInfo as unknown as IUserInfo
-    if (token) {
-      options.header.Authorization = `Bearer ${token}`
+    const { accessToken } = userStore.userInfo as unknown as IUserInfoVo
+    if (accessToken) {
+      options.header.Authorization = `Bearer ${accessToken}`
     }
+    options.header['tenant-id'] = import.meta.env.VITE_TENANT_ID
   },
 }
 

@@ -2,7 +2,7 @@
   "libVersion": "3.8.11",
   "projectname": "evaluation-uniapp",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "coverView": true,
     "lazyloadPlaceholderEnable": false,
     "skylineRenderEnable": false,
@@ -10,5 +10,32 @@
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/evaluation/index",
+          "pathName": "pages/evaluation/index",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "pages/user/personal",
+          "pathName": "pages/user/personal",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages-sub/baby/index",
+          "pathName": "pages-sub/baby/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
   }
 }
