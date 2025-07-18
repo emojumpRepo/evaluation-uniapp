@@ -73,6 +73,9 @@ onMounted(async () => {
         <!-- 文章信息栏 -->
         <view class="border-b border-gray-100 px-4 py-1">
           <view class="flex items-center justify-between">
+            <view class="text-sm text-gray-500">
+              作者：emojump
+            </view>
             <!-- 时间和阅读量 -->
             <view class="flex items-center text-sm text-gray-500 space-x-3">
               <view class="flex items-center">
@@ -90,13 +93,12 @@ onMounted(async () => {
         </view>
 
         <!-- 文章封面图 -->
-        <view v-if="articleData.coverImage" class="relative">
+        <view v-if="articleData.coverImage" class="mb-3 mt-5">
           <image
             :src="articleData.coverImage"
             mode="aspectFill"
             class="h-48 w-full object-cover"
           />
-          <view class="absolute inset-0 from-black/20 to-transparent bg-gradient-to-t" />
         </view>
 
         <!-- 文章内容 -->
