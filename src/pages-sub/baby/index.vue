@@ -11,15 +11,17 @@
 import type { IBabyInfo } from '@/api/types/baby'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
-import { getBabyList } from '@/api/baby'
-import { useUserStore } from '@/store/user'
+import { useBabyStore } from '@/store/index'
 
-const userStore = useUserStore()
-const { userInfo } = storeToRefs(userStore)
+const babyStore = useBabyStore()
+const { babyList } = storeToRefs(babyStore)
 
-const babyList = ref<IBabyInfo[]>([]) // 宝宝列表
 const selectedBaby = ref<IBabyInfo | null>(null)
 
+/**
+ * 编辑宝宝
+ * @param baby 宝宝信息
+ */
 function handleEditBaby(baby: IBabyInfo) {
   selectedBaby.value = baby
   uni.navigateTo({
@@ -27,6 +29,9 @@ function handleEditBaby(baby: IBabyInfo) {
   })
 }
 
+/**
+ * 添加宝宝
+ */
 function navigateToAdd() {
   if (babyList.value.length >= 2) {
     uni.showToast({
@@ -41,16 +46,8 @@ function navigateToAdd() {
   })
 }
 
-async function getBabyListData() {
-  const res = await getBabyList(userInfo.value.userId)
-  console.log('获取宝宝列表', res)
-  if (res.code === 0) {
-    babyList.value = res.data
-  }
-}
-
 onShow(async () => {
-  await getBabyListData()
+  await babyStore.getBabyListData()
 })
 </script>
 

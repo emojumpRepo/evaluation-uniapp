@@ -8,7 +8,7 @@ const props = defineProps<{
   id: number
 }>()
 
-const articleData = ref<IArticle>({})
+const articleData = ref<IArticle>()
 const isLiked = ref(false) // 点赞状态
 const isLiking = ref(false) // 点赞loading状态
 

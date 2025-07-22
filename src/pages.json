@@ -61,12 +61,30 @@
       "layout": "tabbar"
     },
     {
+      "path": "pages/evaluation/answer",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "问卷答题",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
       "path": "pages/evaluation/index",
       "type": "page",
       "style": {
         "navigationBarTitleText": "测评"
       },
       "layout": "tabbar"
+    },
+    {
+      "path": "pages/evaluation/questionnaire",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "问卷列表",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black"
+      }
     },
     {
       "path": "pages/home/detail",

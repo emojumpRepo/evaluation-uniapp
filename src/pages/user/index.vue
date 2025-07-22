@@ -14,6 +14,7 @@ import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import AuthModel from '@/components/AuthModel/index.vue'
 import { useUserStore } from '@/store'
+import { useBabyStore } from '@/store/index'
 import { phoneDesensitization } from '@/utils/format'
 
 defineOptions({
@@ -22,6 +23,8 @@ defineOptions({
 
 const userStore = useUserStore()
 const { userInfo, isLogin } = storeToRefs(userStore)
+const babyStore = useBabyStore()
+const { babyList } = storeToRefs(babyStore)
 
 const showAuthModal = ref(false) // 登录弹窗
 
@@ -84,8 +87,10 @@ function handleLogout() {
 }
 
 onMounted(async () => {
-  if (isLogin.value)
+  if (isLogin.value) {
     await userStore.getUserInfo()
+    await babyStore.getBabyListData()
+  }
 })
 </script>
 
@@ -123,7 +128,7 @@ onMounted(async () => {
       <view class="stats-card">
         <view class="stat-item">
           <text class="stat-number">
-            1
+            {{ babyList.length || 0 }}
           </text>
           <text class="stat-label">
             宝宝数量
@@ -171,7 +176,7 @@ onMounted(async () => {
                 宝宝管理
               </text>
               <text class="menu-desc">
-                名下有1个宝宝
+                名下有{{ babyList.length || 0 }}个宝宝
               </text>
             </view>
           </view>
