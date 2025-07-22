@@ -14,7 +14,7 @@ import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { createBaby, getBabyInfo, updateBabyInfo } from '@/api/baby'
 import UploadAvatar from '@/components/UploadAvatar/index.vue'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '@/store/index'
 
 const props = defineProps<{
   id?: number

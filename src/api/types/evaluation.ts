@@ -24,3 +24,13 @@ export interface IAssessment {
   createTime?: string
   creator?: string
 }
+
+export interface IQuestionnaire {
+  id?: number
+  title: string
+  description?: string
+  link: string
+  estimatedDuration?: number
+  accessCount?: number
+  isPopular?: boolean
+}

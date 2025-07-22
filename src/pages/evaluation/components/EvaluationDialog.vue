@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
+import { useBabyStore } from '@/store/index'
 
 interface Emits {
   (e: 'update:visible', value: boolean): void
@@ -12,37 +14,15 @@ defineProps<{
 
 const emit = defineEmits<Emits>()
 
-// 宝宝数据列表
-const babyList = [
-  {
-    id: 1,
-    name: '智无',
-    avatar: '/static/images/avatar.jpg',
-    birthday: '2024-06-13',
-    gender: '男',
-  },
-  {
-    id: 2,
-    name: '小明',
-    avatar: '/static/images/default-avatar.png',
-    birthday: '2024-03-15',
-    gender: '女',
-  },
-  {
-    id: 3,
-    name: '小红',
-    avatar: '/static/images/default-avatar.png',
-    birthday: '2024-08-20',
-    gender: '男',
-  },
-]
+const babyStore = useBabyStore()
+const { babyList } = storeToRefs(babyStore)
 
 // 选中的宝宝ID
-const selectedBabyId = ref<number>(1)
+const selectedBabyId = ref<number>(null)
 
 // 获取当前选中的宝宝
 const selectedBaby = computed(() => {
-  return babyList.find(baby => baby.id === selectedBabyId.value) || babyList[0]
+  return babyList.value.find(baby => baby.id === selectedBabyId.value) || babyList.value[0]
 })
 
 // 选择宝宝
@@ -52,6 +32,13 @@ function selectBaby(babyId: number) {
 
 // 开始测评
 function startEvaluation() {
+  if (!selectedBabyId.value) {
+    uni.showToast({
+      title: '请选择宝宝',
+      icon: 'none',
+    })
+    return
+  }
   emit('confirm', selectedBaby.value)
   emit('update:visible', false)
 }
@@ -60,6 +47,10 @@ function startEvaluation() {
 function closeDialog() {
   emit('update:visible', false)
 }
+
+onMounted(async () => {
+  await babyStore.getBabyListData()
+})
 </script>
 
 <template>
@@ -96,10 +87,10 @@ function closeDialog() {
               <!-- 头像装饰 -->
               <div
                 class="absolute right-50% h-4 w-4 center translate-x-1/2 rounded-full -bottom-2"
-                :class="baby.gender === '女' ? 'bg-pink-4' : 'bg-blue-4'"
+                :class="baby.gender === 2 ? 'bg-pink-4' : 'bg-blue-4'"
               >
                 <text class="text-[8px] text-white">
-                  {{ baby.gender === '女' ? '♀' : '♂' }}
+                  {{ baby.gender === 2 ? '♀' : '♂' }}
                 </text>
               </div>
             </div>
@@ -109,7 +100,7 @@ function closeDialog() {
               <text class="mb-2 font-bold">
                 {{ baby.name }}
               </text>
-              <text class="text-sm text-gray-4 leading-tight">
+              <text class="text-xs text-gray-4 leading-tight">
                 宝宝生日: {{ baby.birthday }}
               </text>
             </div>
