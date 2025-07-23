@@ -34,3 +34,20 @@ export interface IQuestionnaire {
   accessCount?: number
   isPopular?: boolean
 }
+
+export interface IQuestionnaireSubmitReq {
+  assessmentResultId: number
+  questionnaireId: number
+  resultData: string
+  score: number
+  level: string
+  report: string
+  completeTime: string
+}
+
+export interface IAssessmentSubmitReq {
+  assessmentId: number
+  babyId: number
+  resultData: string
+  completeTime: string
+}

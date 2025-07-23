@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import type { IQuestionnaire } from '@/api/types/evaluation'
 import { onMounted, ref } from 'vue'
-import { getQuestionnaires } from '@/api/evaluation'
+import { getPublishedQuestionnaires } from '@/api/evaluation'
 
 const questionnaires = ref<IQuestionnaire[]>([])
 
@@ -27,7 +27,7 @@ function goToQuestionnaire(item: IQuestionnaire) {
 
 onMounted(async () => {
   try {
-    const res = await getQuestionnaires()
+    const res = await getPublishedQuestionnaires()
     console.log('获取问卷列表', res)
     const { code, data } = res
     if (code === 0) {
