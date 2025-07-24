@@ -206,7 +206,7 @@ function startEvaluation() {
       <!-- 立即测评按钮 -->
       <view class="flex justify-end">
         <view
-          class="w-30vw rounded-full bg-blue-500 py-2 text-center text-sm text-white font-medium shadow-sm transition-all"
+          class="w-30vw rounded-full bg-blue-400 py-2 text-center text-sm text-white font-medium shadow-sm transition-all"
           @tap="startEvaluation"
         >
           立即测评

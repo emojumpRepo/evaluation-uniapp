@@ -185,7 +185,7 @@ onMounted(() => {
           class="mr-3 rounded-full px-5 py-2 text-sm font-bold transition-all"
           :class="[
             currentCategory === item.id
-              ? 'bg-blue-500 text-white'
+              ? 'bg-blue-400 text-white'
               : 'bg-gray-200 text-gray-600',
           ]"
           @click="selectCategory(item.id)"

@@ -208,9 +208,6 @@ onMounted(async () => {
                     ✓
                   </text>
                 </div>
-                <text v-if="babyList.length === 1" class="mt-1 text-xs text-blue-500">
-                  自动选中
-                </text>
               </div>
             </div>
           </div>
