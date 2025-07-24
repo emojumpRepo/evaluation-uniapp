@@ -53,3 +53,18 @@ export interface IAssessmentSubmitReq {
   resultData: string
   completeTime: string
 }
+
+export interface IAssessmentResult {
+  assessmentId: number
+  title: string
+  questionnaireCount: number
+  questionnaireResults: [
+    {
+      questionnaireId: number
+      questionnaireTitle: string
+      completedTime: string
+      score: number
+      grade: string
+    },
+  ]
+}

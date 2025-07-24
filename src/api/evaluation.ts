@@ -1,4 +1,4 @@
-import type { IAssessment, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireSubmitReq } from '@/api/types/evaluation'
+import type { IAssessment, IAssessmentResult, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireSubmitReq } from '@/api/types/evaluation'
 import { http } from '@/http/http'
 
 // ================= 测评接口 =================
@@ -18,8 +18,8 @@ export function getPublishedAssessmentList(params: { page: number, pageSize: num
 }
 
 // 参与测评
-export function participateAssessment(params: { id: number, babyId: number }) {
-  return http.post('/emojump/assessment/participate', params)
+export function participateAssessment(params: { assessmentId: number, babyId: number }) {
+  return http.post(`/emojump/assessment/participate?assessmentId=${params.assessmentId}&babyId=${params.babyId}`)
 }
 
 // 提交单个问卷结果（回调）
@@ -71,4 +71,19 @@ export function getHotQuestionnaires(params?: { page: number, pageSize: number }
 // 搜索问卷
 export function searchQuestionnaires(params: { keyword: string }) {
   return http.get<{ list: IQuestionnaire[], total: number }>('/emojump/questionnaire/search', params)
+}
+
+// 获取宝宝问卷测评结果
+export function getBabyQuestionnaireResult(params: { babyId: number }) {
+  return http.get<{ list: IQuestionnaire[], total: number }>('/emojump/questionnaire-result/baby-result-list', params)
+}
+
+// 获取某个测评的问卷结果列表
+export function getAssessmentQuestionnaireResult(params: { assessmentId: number }) {
+  return http.get<{ list: IQuestionnaire[], total: number }>('/emojump/questionnaire-result/questionnaire-result-list', params)
+}
+
+// 获取问卷结果
+export function getQuestionnaireResult(params: { id: number }) {
+  return http.get<IAssessmentResult[]>('/emojump/questionnaire-result/get-result', params)
 }

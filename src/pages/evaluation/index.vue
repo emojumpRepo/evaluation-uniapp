@@ -2,7 +2,7 @@
 import type { IAssessment } from '@/api/types/evaluation'
 import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
-import { getAssessmentList } from '@/api/evaluation'
+import { getAssessmentList, participateAssessment } from '@/api/evaluation'
 import { useBabyStore, useUserStore } from '@/store/index'
 import EvaluationDialog from './components/EvaluationDialog.vue'
 
@@ -75,7 +75,15 @@ function startEvaluation(evaluation: any) {
 }
 
 // 确认开始测评
-function confirmEvaluation(baby: any) {
+async function confirmEvaluation(baby: any) {
+  if (!baby.id) {
+    return
+  }
+  await participateAssessment({
+    assessmentId: selectedEvaluation.value.id,
+    babyId: baby.id,
+  })
+
   uni.navigateTo({
     url: `/pages/evaluation/questionnaire?id=${selectedEvaluation.value.id}&babyId=${baby.id}&isRepeatable=${selectedEvaluation.value.isRepeatable}`,
   })
