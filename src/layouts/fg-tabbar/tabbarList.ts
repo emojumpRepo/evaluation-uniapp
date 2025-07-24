@@ -54,7 +54,7 @@ export const cacheTabbarEnable = selectedTabbarStrategy === TABBAR_MAP.NATIVE_TA
 
 const _tabbar = {
   color: '#999999',
-  selectedColor: '#018d71',
+  selectedColor: '#fda691',
   backgroundColor: '#F8F8F8',
   borderStyle: 'black',
   height: '50px',

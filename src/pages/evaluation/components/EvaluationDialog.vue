@@ -22,8 +22,20 @@ const selectedBabyId = ref<number>(null)
 
 // 获取当前选中的宝宝
 const selectedBaby = computed(() => {
-  return babyList.value.find(baby => baby.id === selectedBabyId.value) || babyList.value[0]
+  return babyList.value.find(baby => baby.id === selectedBabyId.value)
 })
+
+// 当宝宝列表变化时，自动选中逻辑
+watch(babyList, (newBabyList) => {
+  if (newBabyList.length === 1) {
+    // 如果只有一个宝宝，自动选中
+    selectedBabyId.value = newBabyList[0].id
+  }
+  else if (newBabyList.length > 1 && !selectedBabyId.value) {
+    // 如果有多个宝宝且当前没有选中，清空选择让用户自己选择
+    selectedBabyId.value = null
+  }
+}, { immediate: true })
 
 // 检查是否有宝宝
 const hasBabies = computed(() => babyList.value.length > 0)
@@ -43,6 +55,8 @@ const dialogState = computed(() => {
 watch(() => props.visible, async (newVisible) => {
   if (newVisible) {
     try {
+      // 重置选择状态
+      selectedBabyId.value = null
       await babyStore.getBabyListData()
     }
     catch (err) {
@@ -58,7 +72,7 @@ function selectBaby(babyId: number) {
 
 // 开始测评
 function startEvaluation() {
-  if (!selectedBabyId.value) {
+  if (!selectedBabyId.value || !selectedBaby.value) {
     uni.showToast({
       title: '请选择宝宝',
       icon: 'none',
@@ -120,7 +134,7 @@ onMounted(async () => {
           还没有宝宝信息
         </text>
         <text class="mb-8 text-center text-sm text-gray-500">
-          请先添加宝宝信息
+          需要先添加宝宝信息才能进行测评
         </text>
         <button class="w-full rounded-lg bg-blue-500 py-3 text-center text-white" @click="navigateToBabyManagement">
           添加宝宝
@@ -150,10 +164,10 @@ onMounted(async () => {
         <!-- 标题 -->
         <div class="mb-6 text-center">
           <text class="text-lg text-gray-800 font-medium">
-            选择宝宝
+            选择宝宝进行测评
           </text>
           <text class="mt-1 block text-sm text-gray-500">
-            请选择要进行测评的宝宝
+            {{ babyList.length === 1 ? '已自动选择宝宝' : '请选择要进行测评的宝宝' }}
           </text>
         </div>
 
@@ -188,12 +202,15 @@ onMounted(async () => {
               </div>
 
               <!-- 选中状态 -->
-              <div v-if="selectedBabyId === baby.id" class="ml-3">
+              <div v-if="selectedBabyId === baby.id" class="ml-3 flex flex-col items-end">
                 <div class="h-5 w-5 flex items-center justify-center rounded-full bg-blue-500">
                   <text class="text-xs text-white">
                     ✓
                   </text>
                 </div>
+                <text v-if="babyList.length === 1" class="mt-1 text-xs text-blue-500">
+                  自动选中
+                </text>
               </div>
             </div>
           </div>
@@ -204,7 +221,7 @@ onMounted(async () => {
           class="w-full rounded-lg py-2.5 text-center text-sm text-white transition-colors"
           :class="selectedBabyId ? 'bg-blue-500' : 'bg-gray-300'" :disabled="!selectedBabyId" @click="startEvaluation"
         >
-          开始测评
+          {{ babyList.length === 1 ? '开始测评' : (selectedBabyId ? '开始测评' : '请先选择宝宝') }}
         </button>
       </div>
     </div>
