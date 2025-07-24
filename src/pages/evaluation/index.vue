@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import type { IAssessment } from '@/api/types/evaluation'
+import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { getAssessmentList } from '@/api/evaluation'
+import { useBabyStore, useUserStore } from '@/store/index'
 import EvaluationDialog from './components/EvaluationDialog.vue'
+
+const userStore = useUserStore()
+const { isLogin } = storeToRefs(userStore)
+const babyStore = useBabyStore()
 
 // 搜索关键词
 const searchKeyword = ref('')
@@ -58,6 +64,12 @@ const filteredAssessmentList = computed(() => {
 
 // 开始测评
 function startEvaluation(evaluation: any) {
+  if (!isLogin.value) {
+    uni.switchTab({
+      url: '/pages/user/index',
+    })
+    return
+  }
   selectedEvaluation.value = evaluation
   showDialog.value = true
 }
@@ -65,7 +77,7 @@ function startEvaluation(evaluation: any) {
 // 确认开始测评
 function confirmEvaluation(baby: any) {
   uni.navigateTo({
-    url: `/pages/evaluation/questionnaire?id=${selectedEvaluation.value.id}&babyId=${baby.id}`,
+    url: `/pages/evaluation/questionnaire?id=${selectedEvaluation.value.id}&babyId=${baby.id}&isRepeatable=${selectedEvaluation.value.isRepeatable}`,
   })
 }
 
@@ -96,6 +108,9 @@ async function getAssessmentData() {
 
 onShow(async () => {
   await getAssessmentData()
+  if (isLogin.value) {
+    await babyStore.getBabyListData()
+  }
 })
 </script>
 

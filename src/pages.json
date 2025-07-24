@@ -133,6 +133,14 @@
           "style": {
             "navigationBarTitleText": "宝宝管理"
           }
+        },
+        {
+          "path": "record/index",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "测评记录"
+          }
         }
       ]
     }

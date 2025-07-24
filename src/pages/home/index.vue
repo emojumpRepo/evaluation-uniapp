@@ -47,21 +47,22 @@ function onBannerClick(banner: Banner) {
 
 // 分类数据
 const categories = ref([
-  { id: 'all', name: '全部分类' },
-  { id: 'psychology', name: '心理健康' },
-  { id: 'guide', name: '发育指导' },
-  { id: 'family', name: '家庭' },
+  { id: '0', name: '全部分类' },
+  { id: '1', name: '儿童发展与干预' },
+  { id: '2', name: '儿童精神健康' },
+  { id: '3', name: '膳食与健康' },
+  { id: '4', name: '心理健康与生活方式' },
 ])
 
 // 当前选中的分类
-const currentCategory = ref('all')
+const currentCategory = ref('0')
 
 // 文章列表数据
 const articles = ref<IArticle[]>([])
 
 // 使用 useRequest 管理请求状态
 const { loading, error, run: fetchArticles } = useRequest(
-  () => getArticleList({ page: page.value, pageSize: pageSize.value, ...(currentCategory.value !== 'all' && { category: currentCategory.value }) }),
+  () => getArticleList({ page: page.value, pageSize: pageSize.value, ...(currentCategory.value !== '0' && { category: currentCategory.value }) }),
   { immediate: false },
 )
 
@@ -150,12 +151,7 @@ async function getBannerListData() {
     banners.value = res.sort((a, b) => a.sort - b.sort)
   }
   else {
-    banners.value = [{
-      id: 1,
-      title: '儿童早期教育专题：激发孩子的学习兴趣',
-      imageUrl: '/static/images/banner.png',
-      linkUrl: '/pages/home/index',
-    }]
+    banners.value = []
   }
 }
 

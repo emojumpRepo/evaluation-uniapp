@@ -44,7 +44,7 @@ export function getAssessmentResult(params: { id: number, babyId: number }) {
 
 // =================== 问卷接口 ===================
 // 获得已发布问卷列表
-export function getPublishedQuestionnaires(params?: { page: number, pageSize: number }) {
+export function getPublishedQuestionnaires(params?: { page: number, pageSize: number, assessmentId?: number }) {
   return http.get<{ list: IQuestionnaire[], total: number }>('/emojump/questionnaire/published', params)
 }
 

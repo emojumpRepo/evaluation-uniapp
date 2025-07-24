@@ -45,10 +45,6 @@ function navigateToAdd() {
     url: '/pages-sub/baby/add',
   })
 }
-
-onShow(async () => {
-  await babyStore.getBabyListData()
-})
 </script>
 
 <template>

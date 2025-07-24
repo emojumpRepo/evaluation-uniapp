@@ -40,17 +40,14 @@ function startEvaluation() {
     return
   }
   emit('confirm', selectedBaby.value)
-  emit('update:visible', false)
+  closeDialog()
 }
 
 // 关闭弹窗
 function closeDialog() {
+  selectedBabyId.value = null
   emit('update:visible', false)
 }
-
-onMounted(async () => {
-  await babyStore.getBabyListData()
-})
 </script>
 
 <template>

@@ -14,13 +14,14 @@ import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { createBaby, getBabyInfo, updateBabyInfo } from '@/api/baby'
 import UploadAvatar from '@/components/UploadAvatar/index.vue'
-import { useUserStore } from '@/store/index'
+import { useBabyStore, useUserStore } from '@/store/index'
 
 const props = defineProps<{
   id?: number
 }>()
 const userStore = useUserStore()
 const { userInfo } = storeToRefs(userStore)
+const babyStore = useBabyStore()
 
 // 表单数据
 const form = ref<IBabyInfo>({
@@ -139,6 +140,7 @@ async function onSubmit() {
         userId: userInfo.value.userId,
       })
     }
+    await babyStore.getBabyListData()
 
     uni.hideLoading()
     uni.showToast({

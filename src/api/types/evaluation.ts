@@ -18,6 +18,7 @@ export interface IAssessment {
   startTime?: string
   endTime?: string
   needAppointment?: boolean
+  isRepeatable?: boolean
   maxParticipants?: number
   currentParticipants?: number
   remark?: string
@@ -29,6 +30,7 @@ export interface IQuestionnaire {
   id?: number
   title: string
   description?: string
+  completed?: boolean
   link: string
   estimatedDuration?: number
   accessCount?: number
