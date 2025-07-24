@@ -56,7 +56,7 @@ export interface IAssessmentSubmitReq {
 
 export interface IAssessmentResult {
   assessmentId: number
-  title: string
+  assessmentTitle: string
   questionnaireCount: number
   questionnaireResults: [
     {
@@ -64,7 +64,15 @@ export interface IAssessmentResult {
       questionnaireTitle: string
       completedTime: string
       score: number
-      grade: string
+      level: string
     },
   ]
+}
+
+export interface IQuestionnaireResultList {
+  questionnaireId: number
+  title: string
+  completedTime: number
+  score: number
+  level: string
 }
