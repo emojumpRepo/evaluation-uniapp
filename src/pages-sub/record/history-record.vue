@@ -12,6 +12,7 @@ import type { IQuestionnaireResultList } from '@/api/types/evaluation'
 import dayjs from 'dayjs'
 import { onMounted, ref } from 'vue'
 import { getHistoryQuestionnaireResult } from '@/api/evaluation'
+import { getLevelClass } from '@/api/types/evaluation'
 
 const props = defineProps<{
   babyId: number
@@ -21,22 +22,6 @@ const props = defineProps<{
 
 const historyRecordList = ref<IQuestionnaireResultList[]>([]) // 历史记录列表
 const loading = ref(false)
-
-// 获取风险等级样式类
-function getLevelClass(level: string): string {
-  switch (level) {
-    case '低风险':
-      return 'bg-green-100 text-green-600'
-    case '轻度风险':
-      return 'bg-orange-100 text-orange-600'
-    case '中度风险':
-      return 'bg-yellow-100 text-yellow-600'
-    case '高度风险':
-      return 'bg-red-100 text-red-600'
-    default:
-      return 'bg-gray-100 text-gray-600'
-  }
-}
 
 // 查看详情
 function viewDetail(record: IQuestionnaireResultList) {
@@ -49,22 +34,27 @@ function viewDetail(record: IQuestionnaireResultList) {
 onMounted(async () => {
   loading.value = true
   if (props.babyId && props.questionnaireId) {
-    const res = await getHistoryQuestionnaireResult({ questionnaireId: props.questionnaireId, assessmentId: props.assessmentId, babyId: props.babyId })
-    const { code, data } = res
-    console.log('获取问卷历史记录', res)
-    if (code === 0) {
-      if (data.length === 1) {
-        uni.showToast({
-          title: '直接跳转结果页',
-          icon: 'none',
-        })
-      }
-      else {
-        historyRecordList.value = data
+    try {
+      const res = await getHistoryQuestionnaireResult({ questionnaireId: props.questionnaireId, assessmentId: props.assessmentId, babyId: props.babyId })
+      const { code, data } = res
+      console.log('获取问卷历史记录', res)
+      if (code === 0) {
+        if (data.length === 1) {
+          uni.redirectTo({
+            url: `/pages-sub/record/result?id=${data[0].id}`,
+          })
+        }
+        else {
+          historyRecordList.value = data
+          loading.value = false
+        }
       }
     }
+    catch (error) {
+      console.error('获取问卷历史记录失败:', error)
+      loading.value = false
+    }
   }
-  loading.value = false
 })
 </script>
 
@@ -106,7 +96,7 @@ onMounted(async () => {
             </view>
 
             <view class="flex items-center">
-              <text class="rounded-full px-3 py-1.5 text-sm font-medium" :class="getLevelClass(record.level)">
+              <text class="rounded-full px-3 py-1.5 text-sm font-medium" :class="getLevelClass(record.level, ['color', 'bg'])">
                 {{ record.level }}
               </text>
               <text class="ml-3 text-lg text-blue-600">
