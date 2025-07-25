@@ -122,7 +122,8 @@ onMounted(async () => {
             </text>
             <view class="flex items-center gap-1 text-blue-600">
               <text class="text-sm font-medium">
-                {{ item.completed ? '已完成' : '开始答题' }}
+                <!-- {{ item.completed ? '已完成' : '开始答题' }} -->
+                开始答题
               </text>
               <text class="text-sm">
                 {{ item.completed ? '✔' : '→' }}
