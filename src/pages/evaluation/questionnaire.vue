@@ -26,10 +26,10 @@ const questionnaires = ref<IQuestionnaire[]>([])
  * @param item 问卷信息
  */
 function goToQuestionnaire(item: IQuestionnaire) {
-  if (props.isRepeatable && item.completed) {
-    uni.showToast({ title: '该问卷已完成', icon: 'none' })
-    return
-  }
+  // if (props.isRepeatable && item.completed) {
+  //   uni.showToast({ title: '该问卷已完成', icon: 'none' })
+  //   return
+  // }
   const link = `${item.link}&userId=${props.babyId}&assessmentId=${props.id}&questionId=${item.id}`
   uni.navigateTo({
     url: `/pages/evaluation/answer?link=${encodeURIComponent(link)}`,
