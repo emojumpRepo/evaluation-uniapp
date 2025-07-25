@@ -30,7 +30,7 @@ function goToQuestionnaire(item: IQuestionnaire) {
     uni.showToast({ title: '该问卷已完成', icon: 'none' })
     return
   }
-  const link = `${item.link}?babyId=${props.babyId}&assessmentId=${props.id}&questionnaireId=${item.id}`
+  const link = `${item.link}&userId=${props.babyId}&assessmentId=${props.id}&questionId=${item.id}`
   uni.navigateTo({
     url: `/pages/evaluation/answer?link=${encodeURIComponent(link)}`,
   })
