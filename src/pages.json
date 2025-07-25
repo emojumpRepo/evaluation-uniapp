@@ -133,6 +133,30 @@
           "style": {
             "navigationBarTitleText": "宝宝管理"
           }
+        },
+        {
+          "path": "record/history-record",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "问卷记录"
+          }
+        },
+        {
+          "path": "record/index",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "测评记录"
+          }
+        },
+        {
+          "path": "record/result",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "问卷结果"
+          }
         }
       ]
     }

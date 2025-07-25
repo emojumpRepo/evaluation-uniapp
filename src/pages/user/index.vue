@@ -57,9 +57,8 @@ function handleMenuClick(type: string) {
       })
       break
     case 'evaluation':
-      uni.showToast({
-        title: '测评记录功能开发中',
-        icon: 'none',
+      uni.navigateTo({
+        url: '/pages-sub/record/index',
       })
       break
     case 'edit':

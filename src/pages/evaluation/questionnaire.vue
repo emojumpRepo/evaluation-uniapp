@@ -13,6 +13,12 @@ import type { IQuestionnaire } from '@/api/types/evaluation'
 import { onMounted, ref } from 'vue'
 import { getPublishedQuestionnaires } from '@/api/evaluation'
 
+const props = defineProps<{
+  id: number
+  babyId: number
+  isRepeatable: boolean
+}>()
+
 const questionnaires = ref<IQuestionnaire[]>([])
 
 /**
@@ -20,14 +26,20 @@ const questionnaires = ref<IQuestionnaire[]>([])
  * @param item 问卷信息
  */
 function goToQuestionnaire(item: IQuestionnaire) {
+  if (props.isRepeatable && item.completed) {
+    uni.showToast({ title: '该问卷已完成', icon: 'none' })
+    return
+  }
+  const link = `${item.link}&userId=${props.babyId}&assessmentId=${props.id}&questionId=${item.id}`
   uni.navigateTo({
-    url: `/pages/evaluation/answer?link=${encodeURIComponent(item.link)}`,
+    url: `/pages/evaluation/answer?link=${encodeURIComponent(link)}`,
   })
 }
 
 onMounted(async () => {
   try {
-    const res = await getPublishedQuestionnaires()
+    console.log('问卷列表参数', props)
+    const res = await getPublishedQuestionnaires({ page: 1, pageSize: 10, assessmentId: props.id })
     console.log('获取问卷列表', res)
     const { code, data } = res
     if (code === 0) {
@@ -110,10 +122,10 @@ onMounted(async () => {
             </text>
             <view class="flex items-center gap-1 text-blue-600">
               <text class="text-sm font-medium">
-                开始答题
+                {{ item.completed ? '已完成' : '开始答题' }}
               </text>
               <text class="text-sm">
-                →
+                {{ item.completed ? '✔' : '→' }}
               </text>
             </view>
           </view>
