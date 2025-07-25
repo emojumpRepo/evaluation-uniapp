@@ -60,6 +60,7 @@ export interface IAssessmentResult {
   questionnaireCount: number
   questionnaireResults: [
     {
+      id: number
       questionnaireId: number
       questionnaireTitle: string
       completedTime: string
@@ -70,9 +71,18 @@ export interface IAssessmentResult {
 }
 
 export interface IQuestionnaireResultList {
+  id: number
   questionnaireId: number
   title: string
   completedTime: number
   score: number
   level: string
+}
+
+export interface IQuestionnaireResult extends IQuestionnaireResultList {
+  babyId: number
+  assessmentId: number
+  resultData: string
+  answer: string
+  report: string
 }

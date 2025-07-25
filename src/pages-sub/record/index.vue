@@ -29,7 +29,7 @@ const defaultAvatar = 'http://test.yudao.iocoder.cn/user/avatar/20250715/G0bTIS9
 const loading = ref(false)
 // 是否显示宝宝选择器
 const showBabyPicker = ref(false)
-// 当前展开的主题ID数组（用于折叠面板）
+// 当前展开的测评ID数组（用于折叠面板）
 const expandedAssessments = ref<string[]>([])
 
 // 当前选中的宝宝信息
@@ -44,11 +44,22 @@ async function selectBaby(baby: IBabyInfo) {
   showBabyPicker.value = false
 }
 
+function openSelectBabyPicker() {
+  if (babyList.value.length === 0) {
+    uni.showToast({
+      title: '请先添加宝宝',
+      icon: 'none',
+    })
+  }
+  else {
+    showBabyPicker.value = true
+  }
+}
+
 // 查看问卷结果
-function handleQuestionnaire(questionnaire: any) {
-  // 只有已完成的问卷，直接查看结果
+function handleQuestionnaire(questionnaire: any, assessmentId: number) {
   uni.navigateTo({
-    url: `/pages-sub/record/history-record?babyId=${selectedBabyId.value}&questionnaireId=${questionnaire.questionnaireId}`,
+    url: `/pages-sub/record/history-record?babyId=${selectedBabyId.value}&questionnaireId=${questionnaire.questionnaireId}&assessmentId=${assessmentId}`,
   })
 }
 
@@ -86,10 +97,12 @@ async function getAssessmentResultList() {
 }
 
 onMounted(async () => {
+  loading.value = true
   if (babyList.value.length > 0) {
     selectedBabyId.value = babyList.value[0].id
     await getAssessmentResultList()
   }
+  loading.value = false
 })
 </script>
 
@@ -111,13 +124,20 @@ export default {
         </text>
         <view
           class="flex items-center rounded-lg bg-blue-50 px-3 py-2 active:bg-blue-100"
-          @click="showBabyPicker = true"
+          @click="openSelectBabyPicker"
         >
           <image class="mr-2 h-6 w-6 rounded-full" :src="selectedBaby?.avatar || defaultAvatar" mode="aspectFill" />
-          <text class="mr-2 text-sm text-blue-600 font-medium">
-            {{ selectedBaby?.name || '暂无宝宝' }}
-          </text>
-          <wd-icon name="arrow-down" color="#2563EB" size="16px" />
+          <template v-if="selectedBaby?.name">
+            <text class="mr-2 text-sm text-blue-600 font-medium">
+              {{ selectedBaby.name }}
+            </text>
+            <wd-icon name="arrow-down" color="#2563EB" size="16px" />
+          </template>
+          <template v-else>
+            <text class="mr-2 text-sm text-gray-500">
+              暂无宝宝
+            </text>
+          </template>
         </view>
       </view>
     </view>
@@ -125,11 +145,14 @@ export default {
     <!-- 测评主题列表 -->
     <view class="mt-4 px-4 pb-4">
       <!-- 加载状态 -->
-      <wd-loading v-if="loading" />
+      <div v-if="loading" class="mt-50 flex items-center justify-center">
+        <wd-loading />
+      </div>
 
       <!-- 空状态 -->
-      <div v-else-if="assessmentResultList.length === 0">
-        暂无测评记录
+      <div v-else-if="assessmentResultList.length === 0" class="mt-20 flex flex-col items-center justify-center">
+        <image src="@/static/images/empty.png" class="w-1/4" mode="widthFix" />
+        <span class="mt-4 text-sm text-gray-500">暂无测评记录</span>
       </div>
 
       <!-- 测评主题卡片 -->
@@ -168,7 +191,7 @@ export default {
             <!-- 问卷列表 -->
             <div
               v-for="questionnaire in item.questionnaireResults" :key="questionnaire.questionnaireId"
-              class="mt-2 border border-gray-200 rounded-lg p-3 space-y-1" @click="handleQuestionnaire(questionnaire)"
+              class="collapse-item py-4 space-y-1" @click="handleQuestionnaire(questionnaire, item.assessmentId)"
             >
               <view class="flex flex-col gap-3">
                 <view class="flex items-center justify-between">
@@ -203,8 +226,8 @@ export default {
 
     <!-- 宝宝选择弹窗 -->
     <wd-popup v-model="showBabyPicker" position="bottom" :safe-area-inset-bottom="true">
-      <view class="bg-white px-4 py-6">
-        <view class="mb-4 text-center text-lg text-gray-800 font-medium">
+      <view class="bg-white px-4 pb-0 pt-6">
+        <view class="mb-4 text-center text-gray-800">
           选择宝宝
         </view>
 
@@ -218,21 +241,15 @@ export default {
               :src="baby.avatar || 'https://via.placeholder.com/40x40/E5E7EB/9CA3AF?text=👶'" mode="aspectFill"
             />
             <view class="flex-1">
-              <text class="text-base text-gray-800 font-medium">
+              <text class="text-sm text-gray-800">
                 {{ baby.name }}
               </text>
-              <text class="block text-sm text-gray-500">
+              <text class="block text-xs text-gray-500">
                 生日: {{ baby.birthday }}
               </text>
             </view>
-            <wd-icon v-if="selectedBabyId === baby.id" name="check" color="#3B82F6" size="20px" />
+            <wd-icon v-if="selectedBabyId === baby.id" name="check" color="#3B82F6" size="16px" />
           </view>
-        </view>
-
-        <view class="mt-6">
-          <wd-button type="primary" block @click="showBabyPicker = false">
-            确定
-          </wd-button>
         </view>
       </view>
     </wd-popup>
@@ -241,6 +258,16 @@ export default {
 
 <style lang="scss" scoped>
 :deep(.wd-collapse-item__body) {
-  padding-top: 0 !important;
+  padding-top: 3px !important;
+  padding-left: 28px !important;
+  padding-right: 28px !important;
+}
+
+.collapse-item {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.collapse-item:last-child {
+  border-bottom: none;
 }
 </style>
