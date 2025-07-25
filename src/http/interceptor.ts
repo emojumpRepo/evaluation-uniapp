@@ -17,6 +17,11 @@ const baseUrl = getEnvBaseUrl()
 const httpInterceptor = {
   // 拦截前触发
   invoke(options: CustomRequestOptions) {
+    // 静态json文件直接放行
+    if (options.url.includes('/static/schema/') || options.url.includes('/schema/')) {
+      // 不拼接baseUrl，不加token，不加tenant-id，直接返回
+      return
+    }
     // 接口请求支持通过 query 参数配置 queryString
     if (options.query) {
       const queryStr = stringifyQuery(options.query)

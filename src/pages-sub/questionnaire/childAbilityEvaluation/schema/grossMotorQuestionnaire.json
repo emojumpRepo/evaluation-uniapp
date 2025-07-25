@@ -1,0 +1,314 @@
+{
+  "questionnaireTitle": "儿童大运动测评量表",
+  "questionnaireType": "大运动",
+  "questions": [
+    {
+      "targetMonth": "1",
+      "questions": [
+        {
+          "questionText": "头可以竖直保持2s或以上",
+          "questionDescription": "让宝宝坐起或竖抱时，观察其是否能自主将头部竖直并保持至少2秒，不出现明显晃动或低头。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "2",
+      "questions": [
+        {
+          "questionText": "拉起成坐位时头可以自行竖直保持5s或以上",
+          "questionDescription": "拉住宝宝双手将其从仰卧拉起至坐位，观察其头部是否能自主竖直并保持5秒或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "3",
+      "questions": [
+        {
+          "questionText": "竖抱时可以将头举正并稳定10s或以上",
+          "questionDescription": "将宝宝竖直抱起，观察其是否能将头部举正并稳定保持10秒或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "4",
+      "questions": [
+        {
+          "questionText": "可以用自己双腿支持大部分体重达2s或以上",
+          "questionDescription": "让宝宝仰卧，观察其是否能用双腿主动支撑起大部分体重，并保持2秒或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "5",
+      "questions": [
+        {
+          "questionText": "仰卧位，握住腕部轻拉到坐位，可以主动用力坐起，没有头部后滞现象",
+          "questionDescription": "让宝宝仰卧，握住其腕部轻轻拉起至坐位，观察宝宝是否能主动用力坐起，且头部没有后仰滞后现象。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "6",
+      "questions": [
+        {
+          "questionText": "仰卧用玩具逗引，可以自行翻到俯卧位",
+          "questionDescription": "让宝宝仰卧，用玩具在其侧方逗引，观察其是否能自主翻身至俯卧位。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "7",
+      "questions": [
+        {
+          "questionText": "扶腋下立位落下时，能全脚掌着地",
+          "questionDescription": "扶住宝宝腋下让其站立并轻轻落下，观察其是否能用整个脚掌着地而不是只用脚尖或脚后跟。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "8",
+      "questions": [
+        {
+          "questionText": "双手扶栏杆支撑全身重量，保持站立位5s或以上",
+          "questionDescription": "让宝宝双手扶住栏杆，观察其是否能用双手支撑全身重量并保持站立5秒或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "9",
+      "questions": [
+        {
+          "questionText": "站立位时，可自己用力，较协调地移动双腿，向前行走三步或以上",
+          "questionDescription": "让宝宝站立，观察其是否能自主用力，双腿协调地向前行走三步或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "10",
+      "questions": [
+        {
+          "questionText": "背后扶持其腋下抱起， 然后快速做俯冲动作，会出现双手张开，向前伸臂，类似保护自己的动作",
+          "questionDescription": "从背后扶住宝宝腋下，快速做俯冲动作，观察宝宝是否会本能地双手张开、向前伸臂，表现出保护自己的反应。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "11",
+      "questions": [
+        {
+          "questionText": "能独自站立2s或以上",
+          "questionDescription": "让宝宝站立，观察其是否能在无人扶持的情况下独自站立至少2秒。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "12",
+      "questions": [
+        {
+          "questionText": "独自站立10s或以上，允许身体轻微晃动",
+          "questionDescription": "让宝宝独自站立，观察其是否能保持10秒或以上，即使身体有轻微晃动也不跌倒。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "15",
+      "questions": [
+        {
+          "questionText": "行走自如，不左右摇摆，会控制步速，不慌忙前冲",
+          "questionDescription": "观察宝宝是否能自然行走，步伐平稳，不左右摇摆，能根据需要控制步速，不会慌张冲跑。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "18",
+      "questions": [
+        {
+          "questionText": "举手过肩扔球，可无方向",
+          "questionDescription": "给宝宝一个球，观察其是否能将球举过肩膀向前或任意方向扔出，不要求方向准确。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "21",
+      "questions": [
+        {
+          "questionText": "能用脚尖连续行走三步以上，脚跟不得着地",
+          "questionDescription": "让宝宝用脚尖走路，观察其是否能连续行走三步以上且脚跟不着地。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "24",
+      "questions": [
+        {
+          "questionText": "会双足同时跳离地面，同时落地，两次以上",
+          "questionDescription": "让宝宝双脚同时跳起并落地，观察其是否能连续完成两次以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "27",
+      "questions": [
+        {
+          "questionText": "不扶扶手，稳定地上楼梯三阶或以上",
+          "questionDescription": "让宝宝不扶任何东西，观察其是否能独立稳定地上楼梯三阶或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "30",
+      "questions": [
+        {
+          "questionText": "不扶任何物体可单脚站立2s或以上",
+          "questionDescription": "让宝宝不扶任何物体，观察其是否能单脚站立至少2秒不跌倒。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "33",
+      "questions": [
+        {
+          "questionText": "可以双足同时离地跳跃超过20cm宽的白纸，不得踩到纸",
+          "questionDescription": "在地上放一张20厘米宽的白纸，让宝宝双脚同时跳跃跨越白纸，观察其是否能不踩到纸完成动作。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "36",
+      "questions": [
+        {
+          "questionText": "可双脚交替跳起，双脚离地5cm",
+          "questionDescription": "让宝宝双脚交替跳起，观察其是否能双脚离地约5厘米。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "42",
+      "questions": [
+        {
+          "questionText": "不扶扶手，双脚交替上楼，一步一台阶，可交替上楼三阶或以上",
+          "questionDescription": "让宝宝不扶任何东西，双脚交替一步一台阶地上楼梯，观察其是否能连续上三阶或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "48",
+      "questions": [
+        {
+          "questionText": "独脚站立5s或以上，身体稳定",
+          "questionDescription": "让宝宝单脚站立，观察其是否能保持5秒或以上且身体稳定不晃动。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "54",
+      "questions": [
+        {
+          "questionText": "独脚站立10s或以上，身体稳定",
+          "questionDescription": "让宝宝单脚站立，观察其是否能保持10秒或以上且身体稳定不晃动。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "60",
+      "questions": [
+        {
+          "questionText": "能单脚连续跳3次或以上",
+          "questionDescription": "让宝宝单脚连续跳跃，观察其是否能连续跳3次或以上不中断。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "66",
+      "questions": [
+        {
+          "questionText": "可以用手接住球，（三次中接住一次即可）",
+          "questionDescription": "给宝宝一个球，连续抛向其三次，观察其是否能至少接住一次。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "72",
+      "questions": [
+        {
+          "questionText": "可以抱肘单脚原地连续跳3次或以上，基本在原地跳动",
+          "questionDescription": "让宝宝抱住一侧肘部，单脚原地连续跳跃，观察其是否能跳3次或以上且基本保持在原地。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "78",
+      "questions": [
+        {
+          "questionText": "可以连续用足内踝踢球2个或以上",
+          "questionDescription": "给宝宝一个球，观察其是否能用足内踝连续踢球2次或以上不中断。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "84",
+      "questions": [
+        {
+          "questionText": "连续踢带绳的球3个或以上",
+          "questionDescription": "给宝宝带绳的球，观察其是否能连续踢3次或以上不中断。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    }
+  ]
+}
