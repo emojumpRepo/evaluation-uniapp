@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { PolicyTitle, PolicyType } from '@/api/types/user'
+import { useBabyStore } from '@/store/index'
 import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
 
@@ -17,6 +18,7 @@ const show = defineModel({
 })
 
 const userStore = useUserStore()
+const babyStore = useBabyStore()
 
 const isAgree = ref(true) // 是否同意协议
 const showAgreement = ref(false) // 是否显示协议弹窗
@@ -39,6 +41,7 @@ async function handleWechatLogin() {
   try {
     const loginRes = await userStore.wxLogin()
     if (loginRes) {
+      await babyStore.getBabyListData()
       show.value = false
       toast.success('登录成功')
     }
@@ -67,6 +70,7 @@ async function getPhoneNumber(e: any) {
   try {
     const result = await userStore.mobileLogin(e.detail)
     if (result) {
+      await babyStore.getBabyListData()
       show.value = false
       toast.success('登录成功')
     }

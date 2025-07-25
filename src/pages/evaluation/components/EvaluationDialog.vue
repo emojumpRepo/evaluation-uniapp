@@ -80,31 +80,14 @@ function startEvaluation() {
     return
   }
   emit('confirm', selectedBaby.value)
-  emit('update:visible', false)
+  closeDialog()
 }
 
 // 关闭弹窗
 function closeDialog() {
+  selectedBabyId.value = null
   emit('update:visible', false)
 }
-
-// 导航到宝宝管理页面
-function navigateToBabyManagement() {
-  uni.navigateTo({
-    url: '/pages-sub/baby/index',
-  })
-  closeDialog()
-}
-
-onMounted(async () => {
-  try {
-    await babyStore.getBabyListData()
-  }
-  catch (err) {
-    console.error('Failed to load baby data:', err)
-    // Error is already handled in the store, no additional action needed
-  }
-})
 </script>
 
 <template>
