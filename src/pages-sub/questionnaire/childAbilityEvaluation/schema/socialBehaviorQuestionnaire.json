@@ -311,7 +311,12 @@
         {
           "questionText": "会说出三种或以上物品的用途",
           "questionDescription": "让宝宝说出三种或以上常见物品的用途，如杯子用来喝水、铅笔用来写字等。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/bowl.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/stool.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/basketball.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pen.png"
+          ],
           "videoUrl": ""
         },
         {
@@ -369,7 +374,7 @@
         {
           "questionText": "回答简单图片问题（他在干什么？应该扔哪里？）",
           "questionDescription": "出示简单图片，提问“他在干什么”“应该扔哪里”，观察宝宝是否能正确回答。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-1.png",
           "videoUrl": ""
         }
       ]
@@ -426,7 +431,7 @@
         {
           "questionText": "回答图形(△◯▢)",
           "questionDescription": "出示不同图形，提问“这是什么形状”，观察宝宝是否能正确回答。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/shape.png",
           "videoUrl": ""
         },
         {
@@ -449,7 +454,11 @@
         {
           "questionText": "可以回答三个常见物品的用处",
           "questionDescription": "让宝宝说出三个常见物品的用途，如杯子用来喝水、铅笔用来写字等。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/eye.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/boil-water.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/phone.png"
+          ],
           "videoUrl": ""
         },
         {
@@ -461,7 +470,7 @@
         {
           "questionText": "能正确辨别男女厕所标志并用语言表达出性别意义",
           "questionDescription": "出示男女厕所标志，观察宝宝是否能正确辨别并用语言表达出性别意义。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/toilet-logo.jpg",
           "videoUrl": ""
         }
       ]
@@ -472,7 +481,18 @@
         {
           "questionText": "会指认并读数（1-10）",
           "questionDescription": "出示数字卡片，观察宝宝是否能指认并读出1到10的数字。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/one.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/two.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/three.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/four.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/five.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/six.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/seven.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/eight.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/nine.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/ten.png"
+          ],
           "videoUrl": ""
         },
         {
@@ -507,7 +527,7 @@
         {
           "questionText": "出示图画，能正确回答鸡不能在水里游泳",
           "questionDescription": "出示相关图画，提问“鸡能不能在水里游泳”，观察宝宝是否能正确回答不能。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-3.png",
           "videoUrl": ""
         }
       ]
@@ -553,7 +573,10 @@
         {
           "questionText": "可以认识危险标识",
           "questionDescription": "出示常见危险标识，观察宝宝是否能准确识别。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/blast.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/exit.png"
+          ],
           "videoUrl": ""
         }
       ]
@@ -564,7 +587,11 @@
         {
           "questionText": "能辨认两张图或以上所表示的时间",
           "questionDescription": "出示两张或以上表示不同时间的图片，观察宝宝是否能正确辨认。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/clock-1.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/clock-2.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/clock-3.png"
+          ],
           "videoUrl": ""
         },
         {
@@ -576,7 +603,7 @@
         {
           "questionText": "看图能正确回答下雨了，不能在雨里看书，会淋湿、生病、 书湿了",
           "questionDescription": "出示下雨场景的图片，提问“下雨了能不能在雨里看书”，观察宝宝是否能说出会淋湿、生病等正确答案。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-5.png",
           "videoUrl": ""
         }
       ]
@@ -599,7 +626,7 @@
         {
           "questionText": "说出图示中的错误地方",
           "questionDescription": "出示图片，要求宝宝指出图中的错误之处，观察其是否能正确指出。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-6.png",
           "videoUrl": ""
         }
       ]

@@ -30,6 +30,12 @@ function goToQuestionnaire(item: IQuestionnaire) {
   //   uni.showToast({ title: '该问卷已完成', icon: 'none' })
   //   return
   // }
+  if (item.link.includes('/pages-sub/questionnaire/childAbilityEvaluation/index')) {
+    uni.navigateTo({
+      url: item.link,
+    })
+    return
+  }
   const link = `${item.link}&userId=${props.babyId}&assessmentId=${props.id}&questionId=${item.id}`
   uni.navigateTo({
     url: `/pages/evaluation/answer?link=${encodeURIComponent(link)}`,

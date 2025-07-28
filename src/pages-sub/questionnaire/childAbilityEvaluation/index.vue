@@ -1,3 +1,12 @@
+<route lang="json">
+  {
+    "layout": "default",
+    "style": {
+      "navigationBarTitleText": "答题详情"
+    }
+  }
+</route>
+
 <script setup lang="ts">
 import { onLoad } from '@dcloudio/uni-app'
 import { computed, ref } from 'vue'
@@ -179,15 +188,29 @@ onLoad((options) => {
           </text>
         </view>
         <!-- 图片 -->
-        <view class="mb-3">
-          <image v-if="currentQuestion.pictureUrl" :src="currentQuestion.pictureUrl" class="h-40 w-full rounded-xl object-cover" mode="aspectFill" />
-          <view v-else class="h-40 w-full flex items-center justify-center rounded-xl bg-gray-100 text-gray-300">
-            <text>暂无图片</text>
-          </view>
+        <view v-if="currentQuestion.pictureUrl || currentQuestion.pictureUrl.length > 0" class="mb-3">
+          <template v-if="typeof currentQuestion.pictureUrl === 'string'">
+            <image :src="currentQuestion.pictureUrl" class="w-full rounded-xl object-cover" mode="widthFix" />
+          </template>
+          <template v-else>
+            <view class="h-80 w-full overflow-hidden rounded-xl">
+              <swiper class="swiper" indicator-dots>
+                <swiper-item v-for="(item, index) in currentQuestion.pictureUrl" :key="index">
+                  <!-- <view class="h-full w-full flex items-center justify-center">
+                    <img :src="item" mode="aspectFit" class="max-h-full">
+                  </view> -->
+                  <img :src="item" mode="aspectFit" class="w-full">
+                </swiper-item>
+              </swiper>
+            </view>
+          </template>
         </view>
         <!-- 如何操作按钮 -->
         <view class="mb-2">
-          <button class="w-full flex items-center justify-center gap-4 border-2 border-gray-200 rounded-xl border-solid bg-white py-2 text-base" @click="toggleShowDesc">
+          <button
+            class="w-full flex items-center justify-center gap-4 border-2 border-gray-200 rounded-xl border-solid bg-white py-2 text-base"
+            @click="toggleShowDesc"
+          >
             <text class="i-carbon-view size-4" />
             <text class="text-base">
               如何操作
@@ -200,7 +223,10 @@ onLoad((options) => {
           <view class="mb-2">
             {{ currentQuestion.questionDescription }}
           </view>
-          <button v-if="currentQuestion.videoUrl" class="w-full flex items-center justify-center border border-yellow-300 rounded bg-white py-2 text-yellow-700">
+          <button
+            v-if="currentQuestion.videoUrl"
+            class="w-full flex items-center justify-center border border-yellow-300 rounded bg-white py-2 text-yellow-700"
+          >
             <text class="iconfont mr-1">
               ▶️
             </text>
@@ -210,12 +236,18 @@ onLoad((options) => {
       </view>
       <!-- 答题按钮（上下排列） -->
       <view class="mb-2 flex flex-col gap-3">
-        <button class="w-full flex items-center justify-center rounded bg-green-500 py-3 text-lg text-white" @click="nextQuestion">
+        <button
+          class="w-full flex items-center justify-center rounded bg-green-500 py-3 text-lg text-white"
+          @click="nextQuestion"
+        >
           <text class="iconfont mr-2">
             ✔️
           </text>能做到
         </button>
-        <button class="w-full flex items-center justify-center border border-red-200 rounded bg-red-50 py-3 text-lg text-red-500" @click="nextQuestion">
+        <button
+          class="w-full flex items-center justify-center border border-red-200 rounded bg-red-50 py-3 text-lg text-red-500"
+          @click="nextQuestion"
+        >
           <text class="iconfont mr-2">
             ❌
           </text>暂时不能

@@ -17,6 +17,7 @@ const searchKeyword = ref('')
 // 弹窗相关
 const showDialog = ref(false)
 const selectedEvaluation = ref(null)
+const loading = ref(true)
 
 // 测评数据
 const assessmentList = ref<IAssessment[]>([])
@@ -81,6 +82,7 @@ onShow(async () => {
   if (isLogin.value) {
     await babyStore.getBabyListData()
   }
+  loading.value = false
 })
 </script>
 
@@ -93,39 +95,44 @@ onShow(async () => {
           🔍
         </text>
         <input
-          v-model="searchKeyword" placeholder="输入问卷标题的关键词搜索" placeholder-class="text-gray-400"
+          v-model="searchKeyword" :disabled="loading" placeholder="输入问卷标题的关键词搜索" placeholder-class="text-gray-400"
           class="flex-1 bg-transparent text-sm"
         >
       </view>
     </view>
 
-    <!-- 测评列表 -->
-    <scroll-view scroll-y class="box-border flex-1 bg-gray-100 px-4 pt-4">
-      <EvaluationItem
-        v-for="assessment in filteredAssessmentList"
-        :key="assessment.id"
-        :assessment="assessment"
-        @start="startEvaluation"
-      />
+    <template v-if="loading">
+      <div class="mt-50 flex items-center justify-center">
+        <wd-loading />
+      </div>
+    </template>
 
-      <!-- 无搜索结果提示 -->
-      <view v-if="filteredAssessmentList.length === 0" class="flex flex-col items-center justify-center py-20">
-        <text class="text-sm text-gray-400">
-          没有找到相关测评
-        </text>
-        <text class="mt-1 text-xs text-gray-400">
-          试试其他关键词
-        </text>
-      </view>
+    <template v-else>
+      <div class="box-border flex-1 bg-gray-100 px-4 pt-4">
+        <!-- 测评列表 -->
+        <EvaluationItem
+          v-for="assessment in filteredAssessmentList" :key="assessment.id" :assessment="assessment"
+          @start="startEvaluation"
+        />
 
-      <!-- 底部间距 -->
-      <view class="h-20" />
-    </scroll-view>
+        <!-- 无搜索结果提示 -->
+        <view v-if="filteredAssessmentList.length === 0" class="flex flex-col items-center justify-center py-20">
+          <text class="text-sm text-gray-400">
+            没有找到相关测评
+          </text>
+          <text class="mt-1 text-xs text-gray-400">
+            试试其他关键词
+          </text>
+        </view>
+
+        <!-- 底部间距 -->
+        <view class="h-20" />
+      </div>
+    </template>
 
     <!-- 测评详情弹窗 -->
     <EvaluationDialog v-model:visible="showDialog" @confirm="confirmEvaluation" />
   </view>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
