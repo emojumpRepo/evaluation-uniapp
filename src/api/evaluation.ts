@@ -60,7 +60,7 @@ export function getQuestionnaireLink(params: { id: number }) {
 
 // 记录问卷访问
 export function recordQuestionnaireAccess(params: { id: number, babyId: number }) {
-  return http.post('/emojump/questionnaire/record-access', params)
+  return http.post(`/emojump/questionnaire/record-access?id=${params.id}&babyId=${params.babyId}`)
 }
 
 // 获得热门问卷列表
