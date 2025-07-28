@@ -26,10 +26,10 @@ const questionnaires = ref<IQuestionnaire[]>([])
  * @param item 问卷信息
  */
 async function goToQuestionnaire(item: IQuestionnaire) {
-  // if (props.isRepeatable && item.completed) {
-  //   uni.showToast({ title: '该问卷已完成', icon: 'none' })
-  //   return
-  // }
+  if (props.isRepeatable && item.completed) {
+    uni.showToast({ title: '该问卷已完成', icon: 'none' })
+    return
+  }
 
   // 添加访问次数
   await recordQuestionnaireAccess({ id: item.id, babyId: props.babyId })
@@ -50,11 +50,11 @@ async function goToQuestionnaire(item: IQuestionnaire) {
 onMounted(async () => {
   try {
     console.log('问卷列表参数', props)
-    const res = await getPublishedQuestionnaires({ page: 1, pageSize: 10, assessmentId: props.id })
+    const res = await getPublishedQuestionnaires({ assessmentId: props.id, babyId: props.babyId })
     console.log('获取问卷列表', res)
     const { code, data } = res
     if (code === 0) {
-      questionnaires.value = data.list as IQuestionnaire[]
+      questionnaires.value = data
     }
     else {
       uni.showToast({ title: '获取问卷列表失败', icon: 'none' })
@@ -133,8 +133,7 @@ onMounted(async () => {
             </text>
             <view class="flex items-center gap-1 text-blue-600">
               <text class="text-sm font-medium">
-                <!-- {{ item.completed ? '已完成' : '开始答题' }} -->
-                开始答题
+                {{ item.completed ? '已完成' : '开始答题' }}
               </text>
               <text class="text-sm">
                 {{ item.completed ? '✔' : '→' }}
