@@ -13,8 +13,11 @@ export interface IArticle {
 export interface Banner {
   id: number
   title: string
+  subtitle?: string
   imageUrl: string
   linkUrl: string
   sort: number
   status: number
+  type?: number
+  popupContent?: string
 }

@@ -7,11 +7,6 @@ settings:
 overrides:
   bin-wrapper: npm:bin-wrapper-china
 
-patchedDependencies:
-  '@dcloudio/uni-h5':
-    hash: 5763725268e9a493075be3c82d91b590b9ae30e997a04a418494dd7d6d327b9d
-    path: patches/@dcloudio__uni-h5.patch
-
 importers:
 
   .:
@@ -36,7 +31,7 @@ importers:
         version: 3.0.0-4060620250520001(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))
       '@dcloudio/uni-h5':
         specifier: 3.0.0-4060620250520001
-        version: 3.0.0-4060620250520001(patch_hash=5763725268e9a493075be3c82d91b590b9ae30e997a04a418494dd7d6d327b9d)(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))
+        version: 3.0.0-4060620250520001(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))
       '@dcloudio/uni-mp-alipay':
         specifier: 3.0.0-4060620250520001
         version: 3.0.0-4060620250520001(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))
@@ -134,6 +129,9 @@ importers:
       '@iconify-json/carbon':
         specifier: ^1.2.4
         version: 1.2.4
+      '@iconify-json/mdi':
+        specifier: ^1.2.3
+        version: 1.2.3
       '@rollup/rollup-darwin-x64':
         specifier: ^4.28.0
         version: 4.28.0
@@ -1555,6 +1553,9 @@ packages:
 
   '@iconify-json/carbon@1.2.4':
     resolution: {integrity: sha512-DhW2jjMVGwV0DLHc0cmDYohdtGxMra8UuwgjHrryPy+rQX4gXhJwCBBVP2h2UG/92AoRCTn7zUJve4WvY5MLYg==}
+
+  '@iconify-json/mdi@1.2.3':
+    resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -7780,7 +7781,7 @@ snapshots:
   '@dcloudio/uni-components@3.0.0-4060620250520001(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))':
     dependencies:
       '@dcloudio/uni-cloud': 3.0.0-4060620250520001(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))
-      '@dcloudio/uni-h5': 3.0.0-4060620250520001(patch_hash=5763725268e9a493075be3c82d91b590b9ae30e997a04a418494dd7d6d327b9d)(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))
+      '@dcloudio/uni-h5': 3.0.0-4060620250520001(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))
       '@dcloudio/uni-i18n': 3.0.0-4060620250520001
     transitivePeerDependencies:
       - '@nuxt/kit'
@@ -7833,7 +7834,7 @@ snapshots:
     transitivePeerDependencies:
       - vue
 
-  '@dcloudio/uni-h5@3.0.0-4060620250520001(patch_hash=5763725268e9a493075be3c82d91b590b9ae30e997a04a418494dd7d6d327b9d)(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))':
+  '@dcloudio/uni-h5@3.0.0-4060620250520001(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))':
     dependencies:
       '@dcloudio/uni-h5-vite': 3.0.0-4060620250520001(postcss@8.4.49)(rollup@4.41.1)(vue@3.5.15(typescript@5.7.2))
       '@dcloudio/uni-h5-vue': 3.0.0-4060620250520001(vue@3.5.15(typescript@5.7.2))
@@ -8473,6 +8474,10 @@ snapshots:
   '@humanwhocodes/retry@0.4.3': {}
 
   '@iconify-json/carbon@1.2.4':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/mdi@1.2.3':
     dependencies:
       '@iconify/types': 2.0.0
 

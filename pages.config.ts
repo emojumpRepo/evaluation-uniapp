@@ -26,7 +26,7 @@ export default defineUniPages({
       path: 'pages/home/index',
       type: 'home',
       style: {
-        navigationBarTitleText: '首页',
+        navigationBarTitleText: '',
       },
       layout: 'tabbar',
     },

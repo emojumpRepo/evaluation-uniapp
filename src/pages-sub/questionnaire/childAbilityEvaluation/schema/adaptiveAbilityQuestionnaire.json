@@ -1,0 +1,458 @@
+{
+  "questionnaireTitle": "儿童适应能力测评量表",
+  "questionnaireType": "适应能力",
+  "questions": [
+    {
+      "targetMonth": "1",
+      "questions": [
+        {
+          "questionText": "双手拇指内收没有发紧情况",
+          "questionDescription": "观察宝宝双手拇指是否自然放松，没有内收发紧的现象。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "眼睛可以注视黑白卡片",
+          "questionDescription": "将黑白卡片在宝宝面前晃动，观察其眼睛是否能主动注视卡片。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "2",
+      "questions": [
+        {
+          "questionText": "双手握拳，拇指内收，但轻轻叩即可打开",
+          "questionDescription": "观察宝宝双手是否握拳，拇指内收，但轻轻敲击时能自然打开。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "仰卧使用玩具逗引可以立刻注意到玩具（三次测试完成一次即通过）",
+          "questionDescription": "让宝宝仰卧，用玩具在其面前晃动，三次测试中有一次能立刻注视到玩具即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "3",
+      "questions": [
+        {
+          "questionText": "能将双手搭在一起保持3-4s",
+          "questionDescription": "观察宝宝是否能自主将双手搭在一起，并保持3-4秒不分开。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "仰卧位，玩具在面部上方上下移动时可以立即注意",
+          "questionDescription": "让宝宝仰卧，将玩具在其面部上方上下移动，观察其是否能立即注视玩具。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "4",
+      "questions": [
+        {
+          "questionText": "仰卧位，沙锤逗引手臂试图抬起来或有手抓的动作",
+          "questionDescription": "让宝宝仰卧，用沙锤在其面前逗引，观察其手臂是否有主动抬起或抓握沙锤的动作。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "可以与成人对视，并保持5s或以上",
+          "questionDescription": "与宝宝对视，观察其是否能主动与成人对视并持续5秒以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "5",
+      "questions": [
+        {
+          "questionText": "会自发将双手抱到一起玩弄",
+          "questionDescription": "观察宝宝是否会主动将双手抱在一起，并用手指互相玩耍。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "桌面上放一颗小红豆，把小丸动来动去可以明确注意到小丸",
+          "questionDescription": "在桌面上放一颗小红豆或小丸，移动小丸，观察宝宝是否能明确注视并注意到小丸的移动。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "6",
+      "questions": [
+        {
+          "questionText": "抱坐，可以伸手触碰到桌面的积木并抓握到",
+          "questionDescription": "让宝宝抱坐，桌上放积木，观察其是否能主动伸手触碰并抓握到积木。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "抱坐，先后递两块积木，可以一只手拿一块积木并保持在手里10s或以上",
+          "questionDescription": "让宝宝抱坐，依次递给两块积木，观察其是否能一只手拿一块积木并持续保持10秒以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "7",
+      "questions": [
+        {
+          "questionText": "抱坐，可以主动伸手去抓桌上的积木，第一块积木握住并保留在手中后，又成功地用另一只手抓住第二块积木",
+          "questionDescription": "让宝宝抱坐，桌上放两块积木，观察其是否能先用一只手抓住第一块并保留，再用另一只手抓住第二块积木。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "抱坐，可以将第一块积木传到另一只手后，再去拿第二块积木",
+          "questionDescription": "让宝宝抱坐，递给一块积木，观察其是否能将积木从一只手传递到另一只手后，再去抓第二块积木。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "8",
+      "questions": [
+        {
+          "questionText": "连续出示两块积木后，再出示第三块积木，有要取第三块积木的表现，不一定能取到，前两块仍保留在手中",
+          "questionDescription": "连续给宝宝两块积木，再给第三块，观察其是否有主动想取第三块的表现，前两块仍保留在手中。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "示范摇铃，能够有意识地摇铃",
+          "questionDescription": "成人示范摇铃，递给宝宝，观察其是否能主动模仿并有意识地摇铃。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "9",
+      "questions": [
+        {
+          "questionText": "注视下将积木放入杯中，可以自行将积木取出（不能倒出）",
+          "questionDescription": "在宝宝注视下将积木放入杯中，观察其是否能主动用手将积木取出，而不是将杯子倒过来。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "出示两块积木，示范积木对敲后，能把双手合到中线，互敲积木，对击不一定十分准确",
+          "questionDescription": "出示两块积木，成人示范对敲，观察宝宝是否能双手合到中线互敲积木，动作不要求完全准确。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "10",
+      "questions": [
+        {
+          "questionText": "积木放在桌上，在注视下用杯子盖住积木，杯子的把手对着，会主动拿掉杯子，取出藏在杯子里面的积木",
+          "questionDescription": "将积木放在桌上并用杯子盖住，杯把手对着宝宝，观察其是否能主动拿掉杯子并取出里面的积木。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "11",
+      "questions": [
+        {
+          "questionText": "注视下用方巾包起一积木，然后打开，再包上，能有意识地打开包积木的方巾，寻找积木，成功将积木拿到手",
+          "questionDescription": "在宝宝注视下用方巾包住积木，观察其是否能主动打开方巾找到并拿到积木。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "12",
+      "questions": [
+        {
+          "questionText": "试着把小丸投小瓶，捏住小丸试往瓶内投放， 但不一定成功",
+          "questionDescription": "给宝宝一个小丸和小瓶，观察其是否能尝试将小丸投入瓶中，即使不一定成功。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "示范将瓶盖盖在瓶上，会将瓶盖翻正后盖在瓶上",
+          "questionDescription": "成人示范将瓶盖翻正盖在瓶上，递给宝宝，观察其是否能模仿并正确盖好瓶盖。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "15",
+      "questions": [
+        {
+          "questionText": "能将小丸从30ml广口试剂瓶中拿出或倒出",
+          "questionDescription": "将小丸放入30ml广口试剂瓶中，观察宝宝是否能主动将小丸拿出或倒出。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "做出翻书动作两次或以上",
+          "questionDescription": "给宝宝一本书，观察其是否能连续翻书页两次或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "18",
+      "questions": [
+        {
+          "questionText": "可以搭高四块积木或以上，（三次测试完成一次即通过）",
+          "questionDescription": "给宝宝积木，观察其是否能搭高四块或以上，三次测试中有一次成功即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "21",
+      "questions": [
+        {
+          "questionText": "能双手配合将锁头来回移动，超过全拉锁的一半",
+          "questionDescription": "给宝宝一个拉锁，观察其是否能用双手配合将锁头来回移动，移动距离超过拉锁总长的一半。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "可以搭高7～8块积木，（三次测试完成一次即可通过）",
+          "questionDescription": "给宝宝积木，观察其是否能搭高7到8块，三次测试中有一次成功即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "24",
+      "questions": [
+        {
+          "questionText": "会用手抬书页，每次一页，连续翻书三页或以上",
+          "questionDescription": "给宝宝一本书，观察其是否能用手每次翻一页，连续翻三页或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "27",
+      "questions": [
+        {
+          "questionText": "能将拉锁头部分或全部插进锁孔",
+          "questionDescription": "给宝宝一个拉锁，观察其是否能将拉锁头部分或全部插进锁孔。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "会正确把大的给家长，（三次测试完成两次算通过）",
+          "questionDescription": "给宝宝大小不同的物品，要求其把大的递给家长，三次测试中有两次能正确递交即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "30",
+      "questions": [
+        {
+          "questionText": "示范使用三块积木搭成有孔的桥，可以模仿搭出",
+          "questionDescription": "成人示范用三块积木搭成有孔的桥，递给宝宝，观察其是否能模仿搭出相同结构。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "一块和数块积木分放两边，提问指出哪边是多的，再指另一边问“这是几个？”可以先正确指出哪一边多，后回答“是1个”",
+          "questionDescription": "将一块和多块积木分开放两边，提问宝宝哪边多，再问另一边有几个，观察其是否能先指出多的一边，再正确回答另一边的数量。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "33",
+      "questions": [
+        {
+          "questionText": "能将拉锁头全部插进锁孔，并有拉的意识",
+          "questionDescription": "给宝宝一个拉锁，观察其是否能将拉锁头全部插进锁孔，并主动尝试拉动。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能搭高积木10块。（三次测试完成一次即通过）",
+          "questionDescription": "给宝宝积木，观察其是否能搭高10块，三次测试中有一次成功即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "36",
+      "questions": [
+        {
+          "questionText": "能双手配合将螺丝、螺母组装起来",
+          "questionDescription": "给宝宝螺丝和螺母，观察其是否能用双手配合将螺丝和螺母组装在一起。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": " 出示积木，问小儿“这是几块？”能正确回答",
+          "questionDescription": "出示若干积木，提问“这是几块”，观察宝宝是否能准确回答数量。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "42",
+      "questions": [
+        {
+          "questionText": "会用使用剪刀剪直线",
+          "questionDescription": "给宝宝一把剪刀和纸，观察其是否能沿直线剪开纸张。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "出示五块积木，可以回答有五块积木",
+          "questionDescription": "出示五块积木，提问宝宝有几块，观察其是否能准确回答。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "48",
+      "questions": [
+        {
+          "questionText": "根据图片组装螺丝",
+          "questionDescription": "给宝宝图片和螺丝材料，观察其是否能根据图片组装螺丝。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "可以找出两副图片的不同地方（找出三处即通过）",
+          "questionDescription": "出示两副图片，要求宝宝找出三处不同，观察其是否能完成。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "54",
+      "questions": [
+        {
+          "questionText": "可以用筷子夹花生米，熟练地夹起三次以上，过程中无掉落即通过",
+          "questionDescription": "给宝宝一把筷子和花生米，观察其是否能熟练夹起花生米三次以上且过程中无掉落。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "出示图示，提问；“下面哪一个和上面一类的？”两图均答对通过",
+          "questionDescription": "出示图片，提问“下面哪一个和上面一类”，两题都答对即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "60",
+      "questions": [
+        {
+          "questionText": "尝试剪刀沿线剪出圆形",
+          "questionDescription": "给宝宝一把剪刀和画有圆形的纸，观察其是否能沿线剪出圆形。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "根据图片找出五处不同",
+          "questionDescription": "出示图片，要求宝宝找出五处不同，观察其是否能完成。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "66",
+      "questions": [
+        {
+          "questionText": "可以剪出平滑的圆形，无成角、毛边",
+          "questionDescription": "给宝宝一把剪刀和纸，观察其是否能剪出边缘平滑、无毛边和成角的圆形。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "问“两棵树之间站一个人，一排三棵树之间站几个人？”可以回答“两个人”",
+          "questionDescription": "提问“两棵树之间站一个人，一排三棵树之间站几个人”，观察宝宝是否能正确回答“两个人”。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "72",
+      "questions": [
+        {
+          "questionText": "可以临摹出正方形和圆形",
+          "questionDescription": "给宝宝纸和笔，观察其是否能临摹画出正方形和圆形。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "根据图片找出七处不同",
+          "questionDescription": "出示图片，要求宝宝找出七处不同，观察其是否能完成。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "78",
+      "questions": [
+        {
+          "questionText": "试尝试打活结将筷子捆上",
+          "questionDescription": "给宝宝一根绳子和筷子，观察其是否能尝试打活结将筷子捆在一起。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能指对包括第一题在内的三道以上",
+          "questionDescription": "出示多道题目，观察宝宝是否能正确指对其中三道及以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "84",
+      "questions": [
+        {
+          "questionText": "能系鞋带",
+          "questionDescription": "给宝宝鞋带，观察其是否能独立系好鞋带。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "找出关联图片",
+          "questionDescription": "出示多张图片，要求宝宝找出有关联的图片，观察其是否能完成。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    }
+  ]
+}

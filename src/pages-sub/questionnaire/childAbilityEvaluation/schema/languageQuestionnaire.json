@@ -1,0 +1,476 @@
+{
+  "questionnaireTitle": "儿童语言测评量表",
+  "questionnaireType": "语言",
+  "questions": [
+    {
+      "targetMonth": "1",
+      "questions": [
+        {
+          "questionText": "仰卧位眼睛跟踪红球转过中线（三次测试完成一次即通过）",
+          "questionDescription": "让宝宝仰卧，用红球在其面前左右移动，观察其眼睛是否能跟随红球移动并转过身体中线，三次测试中有一次成功即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "可以发出细小柔和的喉音",
+          "questionDescription": "观察宝宝是否能发出细小、柔和的喉咙声音，如咿呀、咕哝等。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "2",
+      "questions": [
+        {
+          "questionText": "眼睛可以上或下跟随红球移动",
+          "questionDescription": "用红球在宝宝面前上下移动，观察其眼睛是否能跟随红球的上下移动。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "可以从喉部发出a、e、o等元音",
+          "questionDescription": "观察宝宝是否能从喉部发出a、e、o等元音音节。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "3",
+      "questions": [
+        {
+          "questionText": "可以用眼及头跟随红球转动180°（三次测试完成一次即通过）",
+          "questionDescription": "让宝宝用眼睛和头部跟随红球转动180度，三次测试中有一次成功即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "逗引但不接触身体能发出“咯咯咯”笑声",
+          "questionDescription": "用语言或表情逗引宝宝但不接触身体，观察其是否能发出“咯咯咯”的笑声。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "4",
+      "questions": [
+        {
+          "questionText": "在喜欢/不满时会高声喊叫",
+          "questionDescription": "观察宝宝在高兴或不满时是否会主动发出高声喊叫。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "会自言自语，发无音节、无意义的音",
+          "questionDescription": "观察宝宝是否会自言自语，发出无音节、无意义的声音。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "5",
+      "questions": [
+        {
+          "questionText": "抱坐，手放置在桌上，手拿第一块积木，当第二块积木靠近时， 目光明确地注视第二块积木",
+          "questionDescription": "让宝宝抱坐，手放在桌上，手拿第一块积木，当第二块积木靠近时，观察其目光是否能明确注视第二块积木。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "看到熟悉的人或玩具时可以咿咿呀呀、ma、pa、ba",
+          "questionDescription": "当宝宝看到熟悉的人或玩具时，观察其是否能发出咿咿呀呀、ma、pa、ba等音。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "6",
+      "questions": [
+        {
+          "questionText": "用红球逗引，注意到后松手，红球落地后，婴儿立即低下头寻找红球",
+          "questionDescription": "用红球逗引宝宝，红球落地后，观察其是否能立即低头主动寻找红球。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "在婴儿背后呼唤其名字，会转头寻找呼唤的人",
+          "questionDescription": "在宝宝背后呼唤其名字，观察其是否能主动转头寻找呼唤的人。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "7",
+      "questions": [
+        {
+          "questionText": "抱坐，将一玩具放于手恰好够不到的桌面上，可以欠身取，并能拿到玩具",
+          "questionDescription": "让宝宝抱坐，将玩具放在手够不到的桌面上，观察其是否能主动欠身去取并成功拿到玩具。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "会 发da-da 、ma-ma的双唇音，但无所指",
+          "questionDescription": "观察宝宝是否能发出da-da、ma-ma等双唇音，但没有特定指向。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "8",
+      "questions": [
+        {
+          "questionText": "以玩具逗引，将要取到时，将玩具移动到稍远的地方，可以持续追逐玩具，但不一定取到",
+          "questionDescription": "用玩具逗引宝宝，当宝宝快要取到时将玩具移远，观察其是否能持续追逐玩具，虽然不一定能取到。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "会模仿咳嗽、弹舌的声音",
+          "questionDescription": "成人做咳嗽或弹舌动作，观察宝宝是否能模仿发出类似声音。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "9",
+      "questions": [
+        {
+          "questionText": "轻摇铜铃以引起注意，会有意识寻找并拨弄或拿捏铃舌",
+          "questionDescription": "轻摇铜铃吸引宝宝注意，观察其是否能主动寻找铃声来源并拨弄或拿捏铃舌。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "说欢迎，不做手势示范，能够做出欢迎的手势",
+          "questionDescription": "对宝宝说“欢迎”，不做手势，观察其是否能主动做出欢迎的手势。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "10",
+      "questions": [
+        {
+          "questionText": "摇响装有硬币的盒，然后避开将硬币取出，给予空盒，可以明确地寻找盒内的硬币",
+          "questionDescription": "摇响装有硬币的盒子吸引宝宝注意，然后取出硬币只给空盒，观察其是否能主动寻找盒内的硬币。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "会模仿“妈妈”、“爸爸”、“拿”、 “走”等语音",
+          "questionDescription": "成人示范说“妈妈”“爸爸”“拿”“走”等词语，观察宝宝是否能模仿发音。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "11",
+      "questions": [
+        {
+          "questionText": "示范拍娃娃，能学大人样子轻拍娃娃",
+          "questionDescription": "成人示范拍娃娃，观察宝宝是否能模仿大人的动作轻拍娃娃。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "有意识并正确地发出相应的字音，如爸、妈、拿、走、姨、奶、汪汪等",
+          "questionDescription": "观察宝宝是否能有意识并准确地发出如爸、妈、拿、走、姨、奶、汪汪等字音。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "12",
+      "questions": [
+        {
+          "questionText": "见到妈妈、爸爸时，会主动地称呼爸爸或妈妈",
+          "questionDescription": "当宝宝见到妈妈或爸爸时，观察其是否能主动称呼爸爸或妈妈。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "15",
+      "questions": [
+        {
+          "questionText": "示范将圆盒盖好，会将圆盒盖上，并盖严",
+          "questionDescription": "成人示范将圆盒盖好，递给宝宝，观察其是否能模仿并将圆盒盖严。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能正确指出3个或3个以上身体部位",
+          "questionDescription": "让宝宝指出自己身体上的3个或3个以上部位，观察其是否能准确指出。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "18",
+      "questions": [
+        {
+          "questionText": "不经指点，能正确将圆形积木一次性放入孔内",
+          "questionDescription": "不给任何提示，观察宝宝是否能将圆形积木一次性准确放入对应孔内。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "会正确地将积木送到要求的地方（三个方向）",
+          "questionDescription": "给宝宝积木，要求其送到指定的三个不同方向，观察其是否能准确完成。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "21",
+      "questions": [
+        {
+          "questionText": "能在红、黄、蓝、绿四色图片中正确指出红色",
+          "questionDescription": "出示红、黄、蓝、绿四色图片，要求宝宝指出红色，观察其是否能正确完成。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "问“这是什么（球）？”“那是谁（带养人）？” “爸爸干什么去了（上班）？”均能正确回答",
+          "questionDescription": "提问“这是什么”“那是谁”“爸爸干什么去了”，观察宝宝是否能准确回答。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "24",
+      "questions": [
+        {
+          "questionText": "嵌板倒转后180°，小孩能正确将圆积木一次性放入圆孔内",
+          "questionDescription": "将嵌板倒转180度，观察宝宝是否能一次性准确将圆积木放入圆孔内。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能自发或稍经提示开头后完整说出两句或以上唐诗或儿歌",
+          "questionDescription": "观察宝宝是否能自发或稍经提示后完整说出两句或以上的唐诗或儿歌。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "27",
+      "questions": [
+        {
+          "questionText": "能将圆、方、三角形三块积木一次性正确放入相应孔内",
+          "questionDescription": "给宝宝圆、方、三角形三块积木，观察其是否能一次性准确放入相应孔内。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能复述出7个字及以上",
+          "questionDescription": "说一句7个字及以上的话或句子，观察宝宝是否能准确复述。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "30",
+      "questions": [
+        {
+          "questionText": "将型板倒转180°，能一次性正确放入翻转后型板的相应孔内",
+          "questionDescription": "将型板倒转180度，观察宝宝是否能一次性准确放入翻转后的相应孔内。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能命名十张图片及以上",
+          "questionDescription": "出示十张图片，要求宝宝为每张图片命名，观察其是否能全部说出。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "33",
+      "questions": [
+        {
+          "questionText": "能正确回答根据指令做三件事擦桌子、摇铃、把门打开，会做每件事情，没有遗忘任何一项，（顺序可颠倒）",
+          "questionDescription": "依次下达擦桌子、摇铃、把门打开三项指令，观察宝宝是否能全部完成，顺序可颠倒。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能正确说出自己的性别",
+          "questionDescription": "提问宝宝“你是男孩还是女孩”，观察其是否能准确说出自己的性别。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "36",
+      "questions": [
+        {
+          "questionText": "出示红、黄、蓝、绿四色，能正确说出两种或以上颜色",
+          "questionDescription": "出示红、黄、蓝、绿四色，要求宝宝说出其中两种或以上颜色，观察其是否能完成。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能命名14张图片及以上",
+          "questionDescription": "出示14张图片，要求宝宝为每张图片命名，观察其是否能全部说出。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "42",
+      "questions": [
+        {
+          "questionText": "认识四种颜色（红、黄、蓝、绿）",
+          "questionDescription": "出示红、黄、蓝、绿四色，要求宝宝分别说出颜色名称，观察其是否能全部说出。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "理解反义词并回答；问（1）火是热的，冰呢？（2）大象的鼻子是长的，小兔的尾巴呢？（3）头发是黑的，牙齿呢？（4）木头是硬的，棉花呢？（答对两个或以上即通过）",
+          "questionDescription": "依次提问反义词相关问题，观察宝宝是否能答对其中两个或以上。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "48",
+      "questions": [
+        {
+          "questionText": "看不完整的图片，说出图片中缺少什么，可示范第一例（完成三处即通过）",
+          "questionDescription": "出示不完整的图片，要求宝宝说出缺少的部分，三处都能说出即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "“妈妈叫我一定不要和小朋友打架”，可以复述上句（偶有漏字/错字算通过）",
+          "questionDescription": "成人说“妈妈叫我一定不要和小朋友打架”，观察宝宝是否能复述该句，偶有漏字或错字也算通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "54",
+      "questions": [
+        {
+          "questionText": "不完整的图片，说出图片中缺少什么（完成四处即通过）",
+          "questionDescription": "出示不完整的图片，要求宝宝说出缺少的部分，四处都能说出即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能灵活左右漱口并将水吐出",
+          "questionDescription": "让宝宝用水漱口，观察其是否能灵活地左右漱口并将水吐出。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "60",
+      "questions": [
+        {
+          "questionText": "看不完整的图片，说出图片中缺少什么（完成五处即通过）",
+          "questionDescription": "出示不完整的图片，要求宝宝说出缺少的部分，五处都能说出即为通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "可以正确回答出姓，连名带姓不能通过",
+          "questionDescription": "提问宝宝的姓氏，观察其是否能准确说出，仅说姓即可，连名带姓不算通过。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "66",
+      "questions": [
+        {
+          "questionText": " 能回答“将一个苹果十字切开是几块？”",
+          "questionDescription": "提问“将一个苹果十字切开是几块”，观察宝宝是否能准确回答。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "可以正确说出自己的属相",
+          "questionDescription": "提问宝宝的属相，观察其是否能准确说出。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "72",
+      "questions": [
+        {
+          "questionText": "可以分清左右",
+          "questionDescription": "让宝宝分辨左右，观察其是否能准确区分左右方向。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "可以描述连环画基本内容",
+          "questionDescription": "给宝宝连环画，要求其描述基本内容，观察其是否能说出主要情节。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "78",
+      "questions": [
+        {
+          "questionText": "可以回答 “面粉能做哪些东西？”（能回答两种或以上）",
+          "questionDescription": "提问“面粉能做哪些东西”，观察宝宝是否能说出两种或以上面粉制品。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "归纳图画主题，能明确理解故事的主题",
+          "questionDescription": "给宝宝一组图画，要求其归纳主题，观察其是否能明确说出故事的主题。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    },
+    {
+      "targetMonth": "84",
+      "questions": [
+        {
+          "questionText": "可以回答“什么动物没有脚？”（可以回答两种动物以上）",
+          "questionDescription": "提问“什么动物没有脚”，观察宝宝是否能说出两种或以上没有脚的动物。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        },
+        {
+          "questionText": "能回答为什么要接种疫苗？",
+          "questionDescription": "提问“为什么要接种疫苗”，观察宝宝是否能说出接种疫苗的原因。",
+          "pictureUrl": "",
+          "videoUrl": ""
+        }
+      ]
+    }
+  ]
+}

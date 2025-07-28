@@ -5,6 +5,7 @@ import { computed, ref } from 'vue'
 import { getAssessmentList, participateAssessment } from '@/api/evaluation'
 import { useBabyStore, useUserStore } from '@/store/index'
 import EvaluationDialog from './components/EvaluationDialog.vue'
+import EvaluationItem from './components/EvaluationItem.vue'
 
 const userStore = useUserStore()
 const { isLogin } = storeToRefs(userStore)
@@ -17,39 +18,8 @@ const searchKeyword = ref('')
 const showDialog = ref(false)
 const selectedEvaluation = ref(null)
 
-// 测评类型
-const assessment_type = [
-  { type: 1, label: '儿童发展测评', backgroundGradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', typeColor: '#ff6b6b' },
-  { type: 2, label: '行为评估', backgroundGradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', typeColor: '#4ecdc4' },
-  { type: 3, label: '认知能力测评', backgroundGradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)', typeColor: '#45b7d1' },
-  { type: 4, label: '情感发展测评', backgroundGradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)', typeColor: '#ff6b6b' },
-  { type: 5, label: '社交技能测评', backgroundGradient: 'linear-gradient(135deg, #d299c2 0%, #fef9d7 100%)', typeColor: '#45b7d1' },
-]
-
 // 测评数据
 const assessmentList = ref<IAssessment[]>([])
-
-// 获取测评背景
-function getAssessmentBackground(type: number) {
-  const option = assessment_type.find(item => item.type === type)
-  return {
-    background: option?.backgroundGradient,
-  }
-}
-
-// 获取测评类型颜色
-function getAssessmentTypeColor(type: number) {
-  const option = assessment_type.find(item => item.type === type)
-  return {
-    backgroundColor: option?.typeColor,
-  }
-}
-
-// 获取测评类型标签
-function getAssessmentTypeLabel(type: number) {
-  const option = assessment_type.find(item => item.type === type)
-  return option?.label
-}
 
 // 根据搜索关键词筛选测评
 const filteredAssessmentList = computed(() => {
@@ -89,14 +59,6 @@ async function confirmEvaluation(baby: any) {
   })
 }
 
-// 格式化参与人数
-function formatParticipants(num: number) {
-  if (num >= 10000) {
-    return `${Math.floor(num / 1000) / 10}万人已测`
-  }
-  return `${num}人已测`
-}
-
 async function getAssessmentData() {
   try {
     const res = await getAssessmentList({ page: 1, pageSize: 10 })
@@ -123,7 +85,7 @@ onShow(async () => {
 </script>
 
 <template>
-  <view class="min-h-screen bg-gray-50">
+  <view class="min-h-screen bg-white">
     <!-- 搜索框 -->
     <view class="px-4 pb-4 pt-4 shadow-sm">
       <view class="flex items-center rounded-full bg-gray-100 px-4 py-3">
@@ -138,58 +100,13 @@ onShow(async () => {
     </view>
 
     <!-- 测评列表 -->
-    <scroll-view scroll-y class="box-border flex-1 px-4 pt-4">
-      <view
-        v-for="assessment in filteredAssessmentList" :key="assessment.id"
-        class="mb-4 overflow-hidden rounded-2xl bg-white shadow-sm"
-      >
-        <!-- 卡片头部图片区域 -->
-        <view class="relative h-40 flex items-end p-4" :style="getAssessmentBackground(assessment.type)">
-          <!-- 分类标签 -->
-          <view
-            class="absolute left-3 top-3 rounded-full px-2 py-1 text-xs text-white"
-            :style="getAssessmentTypeColor(assessment.type)"
-          >
-            {{ getAssessmentTypeLabel(assessment.type) }}
-          </view>
-
-          <!-- 标题 -->
-          <text class="text-lg text-white font-bold leading-tight">
-            {{ assessment.title }}
-          </text>
-        </view>
-
-        <!-- 卡片内容区域 -->
-        <view class="p-4">
-          <!-- 描述 -->
-          <text class="mb-3 block text-sm text-gray-600 leading-relaxed">
-            {{ assessment.description }}
-          </text>
-
-          <!-- 测评信息 -->
-          <view class="mb-4 flex items-center justify-between">
-            <view class="flex items-center gap-4 text-xs text-gray-500">
-              <text>
-                {{ formatParticipants(assessment.currentParticipants) }}
-              </text>
-              <text>
-                {{ assessment.duration }}分钟
-              </text>
-              <text>
-                适合 {{ assessment.targetAudience }}
-              </text>
-            </view>
-          </view>
-
-          <!-- 立即测评按钮 -->
-          <view
-            class="rounded-full bg-blue-500 py-3 text-center text-sm text-white font-medium"
-            @tap="startEvaluation(assessment)"
-          >
-            立即测评
-          </view>
-        </view>
-      </view>
+    <scroll-view scroll-y class="box-border flex-1 bg-gray-100 px-4 pt-4">
+      <EvaluationItem
+        v-for="assessment in filteredAssessmentList"
+        :key="assessment.id"
+        :assessment="assessment"
+        @start="startEvaluation"
+      />
 
       <!-- 无搜索结果提示 -->
       <view v-if="filteredAssessmentList.length === 0" class="flex flex-col items-center justify-center py-20">
@@ -209,3 +126,6 @@ onShow(async () => {
     <EvaluationDialog v-model:visible="showDialog" @confirm="confirmEvaluation" />
   </view>
 </template>
+
+<style scoped>
+</style>
