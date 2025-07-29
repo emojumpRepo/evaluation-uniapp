@@ -22,29 +22,56 @@ const props = defineProps<{
 const questionnaires = ref<IQuestionnaire[]>([])
 
 /**
+ * 构建URL参数
+ * @param item 问卷信息
+ * @returns URL参数字符串
+ */
+function buildUrlParams(item: IQuestionnaire): string {
+  // 使用兼容的方式构建URL参数
+  const params = [
+    `userId=${props.babyId}`,
+    `assessmentId=${props.id}`,
+    `questionId=${item.id}`,
+  ]
+
+  return params.join('&')
+}
+
+/**
  * 跳转到问卷页面
  * @param item 问卷信息
  */
 async function goToQuestionnaire(item: IQuestionnaire) {
-  if (props.isRepeatable && item.completed) {
-    uni.showToast({ title: '该问卷已完成', icon: 'none' })
-    return
+  try {
+    // 检查是否已完成
+    if (props.isRepeatable && item.completed) {
+      uni.showToast({ title: '该问卷已完成', icon: 'none' })
+      return
+    }
+
+    // 添加访问次数
+    await recordQuestionnaireAccess({ id: item.id, babyId: props.babyId })
+
+    // 构建URL参数
+    const urlParams = buildUrlParams(item)
+
+    // 根据问卷类型决定跳转方式
+    if (item.link.includes('/pages-sub/questionnaire/childAbilityEvaluation/index')) {
+      // 儿童能力测评直接跳转
+      const targetUrl = `${item.link}&${urlParams}`
+      uni.navigateTo({ url: targetUrl })
+    }
+    else {
+      // 其他问卷通过answer页面跳转
+      const link = `${item.link}&${urlParams}`
+      const answerUrl = `/pages/evaluation/answer?link=${encodeURIComponent(link)}`
+      uni.navigateTo({ url: answerUrl })
+    }
   }
-
-  // 添加访问次数
-  await recordQuestionnaireAccess({ id: item.id, babyId: props.babyId })
-
-  if (item.link.includes('/pages-sub/questionnaire/childAbilityEvaluation/index')) {
-    uni.navigateTo({
-      url: item.link,
-    })
-    return
+  catch (error) {
+    console.error('跳转问卷失败:', error)
+    uni.showToast({ title: '跳转失败，请重试', icon: 'none' })
   }
-
-  const link = `${item.link}&userId=${props.babyId}&assessmentId=${props.id}&questionId=${item.id}`
-  uni.navigateTo({
-    url: `/pages/evaluation/answer?link=${encodeURIComponent(link)}`,
-  })
 }
 
 onMounted(async () => {

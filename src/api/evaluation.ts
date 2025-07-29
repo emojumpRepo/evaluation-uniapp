@@ -1,4 +1,4 @@
-import type { IAssessment, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireResult, IQuestionnaireResultList, IQuestionnaireSubmitReq } from '@/api/types/evaluation'
+import type { IAssessment, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireAnswerSubmitReq, IQuestionnaireResult, IQuestionnaireResultList, IQuestionnaireSubmitReq } from '@/api/types/evaluation'
 import { http } from '@/http/http'
 
 // ================= 测评接口 =================
@@ -90,4 +90,9 @@ export function getHistoryQuestionnaireResult(params: { questionnaireId: number,
 // 获取问卷结果
 export function getQuestionnaireResult(params: { id: number }) {
   return http.get<IQuestionnaireResult>('/emojump/questionnaire-result/get', params)
+}
+
+// 提交问卷答案
+export function submitQuestionnaireAnswer(params: IQuestionnaireAnswerSubmitReq) {
+  return http.post('/emojump/questionnaire-result/submit-answer', params)
 }
