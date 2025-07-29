@@ -30,10 +30,19 @@ function goToQuestionnaire(item: IQuestionnaire) {
   //   uni.showToast({ title: '该问卷已完成', icon: 'none' })
   //   return
   // }
-  const link = `${item.link}&userId=${props.babyId}&assessmentId=${props.id}&questionId=${item.id}`
-  uni.navigateTo({
-    url: `/pages/evaluation/answer?link=${encodeURIComponent(link)}`,
-  })
+  let link = item.link
+  if (!item.link.startsWith('/pages-sub/questionnaire/childAbilityEvaluation/index')) {
+    console.log(item.link)
+    link = `${item.link}&userId=${props.babyId}&assessmentId=${props.id}&questionId=${item.id}`
+    uni.navigateTo({
+      url: `/pages/evaluation/answer?link=${encodeURIComponent(link)}`,
+    })
+  }
+  else {
+    uni.navigateTo({
+      url: link,
+    })
+  }
 }
 
 onMounted(async () => {
@@ -72,7 +81,10 @@ onMounted(async () => {
         @tap="goToQuestionnaire(item)"
       >
         <!-- 热门标识 -->
-        <view v-if="item.isPopular" class="absolute right-3 top-3 z-10 flex items-center gap-1 rounded-full bg-red-100 px-2 py-1">
+        <view
+          v-if="item.isPopular"
+          class="absolute right-3 top-3 z-10 flex items-center gap-1 rounded-full bg-red-100 px-2 py-1"
+        >
           <text class="text-xs text-red-600">
             🔥 热门
           </text>
