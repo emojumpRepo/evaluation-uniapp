@@ -14,7 +14,11 @@ export function getAssessmentDetail(params: { id: number, babyId: number }) {
 
 // 获得已发布测评列表
 export function getPublishedAssessmentList(params: { page: number, pageSize: number }) {
-  return http.get<{ list: IAssessment[], total: number }>('/emojump/assessment/published', params)
+  console.log('获取已发布测评列表', params)
+  return http.get<{ list: IAssessment[], total: number }>('/emojump/assessment/published', {
+    pageNo: params.page,
+    pageSize: params.pageSize,
+  })
 }
 
 // 参与测评
@@ -44,8 +48,8 @@ export function getAssessmentResult(params: { id: number, babyId: number }) {
 
 // =================== 问卷接口 ===================
 // 获得已发布问卷列表
-export function getPublishedQuestionnaires(params?: { page: number, pageSize: number, assessmentId?: number }) {
-  return http.get<{ list: IQuestionnaire[], total: number }>('/emojump/questionnaire/published', params)
+export function getPublishedQuestionnaires(params?: { assessmentId: number, babyId: number }) {
+  return http.get<IQuestionnaire[]>('/emojump/questionnaire/published', params)
 }
 
 // 查看问卷信息
@@ -60,7 +64,7 @@ export function getQuestionnaireLink(params: { id: number }) {
 
 // 记录问卷访问
 export function recordQuestionnaireAccess(params: { id: number, babyId: number }) {
-  return http.post('/emojump/questionnaire/record-access', params)
+  return http.post(`/emojump/questionnaire/record-access?id=${params.id}&babyId=${params.babyId}`)
 }
 
 // 获得热门问卷列表

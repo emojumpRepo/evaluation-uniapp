@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import type { IQuestionnaire } from '@/api/types/evaluation'
 import { onMounted, ref } from 'vue'
-import { getPublishedQuestionnaires } from '@/api/evaluation'
+import { getPublishedQuestionnaires, recordQuestionnaireAccess } from '@/api/evaluation'
 
 const props = defineProps<{
   id: number
@@ -25,34 +25,36 @@ const questionnaires = ref<IQuestionnaire[]>([])
  * 跳转到问卷页面
  * @param item 问卷信息
  */
-function goToQuestionnaire(item: IQuestionnaire) {
-  // if (props.isRepeatable && item.completed) {
-  //   uni.showToast({ title: '该问卷已完成', icon: 'none' })
-  //   return
-  // }
-  let link = item.link
-  if (!item.link.startsWith('/pages-sub/questionnaire/childAbilityEvaluation/index')) {
-    console.log(item.link)
-    link = `${item.link}&userId=${props.babyId}&assessmentId=${props.id}&questionId=${item.id}`
-    uni.navigateTo({
-      url: `/pages/evaluation/answer?link=${encodeURIComponent(link)}`,
-    })
+async function goToQuestionnaire(item: IQuestionnaire) {
+  if (props.isRepeatable && item.completed) {
+    uni.showToast({ title: '该问卷已完成', icon: 'none' })
+    return
   }
-  else {
+
+  // 添加访问次数
+  await recordQuestionnaireAccess({ id: item.id, babyId: props.babyId })
+
+  if (item.link.includes('/pages-sub/questionnaire/childAbilityEvaluation/index')) {
     uni.navigateTo({
-      url: link,
+      url: item.link,
     })
+    return
   }
+
+  const link = `${item.link}&userId=${props.babyId}&assessmentId=${props.id}&questionId=${item.id}`
+  uni.navigateTo({
+    url: `/pages/evaluation/answer?link=${encodeURIComponent(link)}`,
+  })
 }
 
 onMounted(async () => {
   try {
     console.log('问卷列表参数', props)
-    const res = await getPublishedQuestionnaires({ page: 1, pageSize: 10, assessmentId: props.id })
+    const res = await getPublishedQuestionnaires({ assessmentId: props.id, babyId: props.babyId })
     console.log('获取问卷列表', res)
     const { code, data } = res
     if (code === 0) {
-      questionnaires.value = data.list as IQuestionnaire[]
+      questionnaires.value = data
     }
     else {
       uni.showToast({ title: '获取问卷列表失败', icon: 'none' })
@@ -134,8 +136,7 @@ onMounted(async () => {
             </text>
             <view class="flex items-center gap-1 text-blue-600">
               <text class="text-sm font-medium">
-                <!-- {{ item.completed ? '已完成' : '开始答题' }} -->
-                开始答题
+                {{ item.completed ? '已完成' : '开始答题' }}
               </text>
               <text class="text-sm">
                 {{ item.completed ? '✔' : '→' }}

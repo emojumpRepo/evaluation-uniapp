@@ -297,7 +297,29 @@
         {
           "questionText": "能命名十张图片及以上",
           "questionDescription": "出示十张图片，要求宝宝为每张图片命名，观察其是否能全部说出。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/polarBear.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/chicken.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/frog.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/kiwiFruit.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/mantis.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/tree.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/house.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/umbrella.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/kettle.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pencil.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/key.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/printer.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/knife.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/computer.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pipeWrench.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/ship.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/brush.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/nationalFlag.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/chineseKnot.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/snowflake.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/foot.png"
+          ],
           "videoUrl": ""
         }
       ]
@@ -325,7 +347,7 @@
         {
           "questionText": "出示红、黄、蓝、绿四色，能正确说出两种或以上颜色",
           "questionDescription": "出示红、黄、蓝、绿四色，要求宝宝说出其中两种或以上颜色，观察其是否能完成。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/color.png",
           "videoUrl": ""
         },
         {
@@ -342,7 +364,7 @@
         {
           "questionText": "认识四种颜色（红、黄、蓝、绿）",
           "questionDescription": "出示红、黄、蓝、绿四色，要求宝宝分别说出颜色名称，观察其是否能全部说出。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/color.png",
           "videoUrl": ""
         },
         {
@@ -359,7 +381,14 @@
         {
           "questionText": "看不完整的图片，说出图片中缺少什么，可示范第一例（完成三处即通过）",
           "questionDescription": "出示不完整的图片，要求宝宝说出缺少的部分，三处都能说出即为通过。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/car.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/rabbit.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/elephant.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/toy.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pig.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/penguin.png"
+          ],
           "videoUrl": ""
         },
         {
@@ -393,7 +422,14 @@
         {
           "questionText": "看不完整的图片，说出图片中缺少什么（完成五处即通过）",
           "questionDescription": "出示不完整的图片，要求宝宝说出缺少的部分，五处都能说出即为通过。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/car.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/rabbit.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/elephant.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/toy.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pig.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/penguin.png"
+          ],
           "videoUrl": ""
         },
         {
@@ -433,7 +469,7 @@
         {
           "questionText": "可以描述连环画基本内容",
           "questionDescription": "给宝宝连环画，要求其描述基本内容，观察其是否能说出主要情节。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-4.png",
           "videoUrl": ""
         }
       ]
@@ -450,7 +486,7 @@
         {
           "questionText": "归纳图画主题，能明确理解故事的主题",
           "questionDescription": "给宝宝一组图画，要求其归纳主题，观察其是否能明确说出故事的主题。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-4.png",
           "videoUrl": ""
         }
       ]

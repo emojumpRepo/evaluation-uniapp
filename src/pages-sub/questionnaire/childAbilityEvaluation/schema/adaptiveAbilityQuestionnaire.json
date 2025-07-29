@@ -313,7 +313,7 @@
         {
           "questionText": " 出示积木，问小儿“这是几块？”能正确回答",
           "questionDescription": "出示若干积木，提问“这是几块”，观察宝宝是否能准确回答数量。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/building -blocks.png",
           "videoUrl": ""
         }
       ]
@@ -330,7 +330,7 @@
         {
           "questionText": "出示五块积木，可以回答有五块积木",
           "questionDescription": "出示五块积木，提问宝宝有几块，观察其是否能准确回答。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/square.png",
           "videoUrl": ""
         }
       ]
@@ -347,7 +347,18 @@
         {
           "questionText": "可以找出两副图片的不同地方（找出三处即通过）",
           "questionDescription": "出示两副图片，要求宝宝找出三处不同，观察其是否能完成。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-1.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-2.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-3.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-4.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-5.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-6.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-7.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-8.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-9.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-10.png"
+          ],
           "videoUrl": ""
         }
       ]
@@ -364,7 +375,10 @@
         {
           "questionText": "出示图示，提问；“下面哪一个和上面一类的？”两图均答对通过",
           "questionDescription": "出示图片，提问“下面哪一个和上面一类”，两题都答对即为通过。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/type-1.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/type-2.png"
+          ],
           "videoUrl": ""
         }
       ]
@@ -381,7 +395,18 @@
         {
           "questionText": "根据图片找出五处不同",
           "questionDescription": "出示图片，要求宝宝找出五处不同，观察其是否能完成。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-1.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-2.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-3.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-4.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-5.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-6.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-7.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-8.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-9.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-10.png"
+          ],
           "videoUrl": ""
         }
       ]
@@ -398,7 +423,7 @@
         {
           "questionText": "问“两棵树之间站一个人，一排三棵树之间站几个人？”可以回答“两个人”",
           "questionDescription": "提问“两棵树之间站一个人，一排三棵树之间站几个人”，观察宝宝是否能正确回答“两个人”。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-2.png",
           "videoUrl": ""
         }
       ]
@@ -415,7 +440,18 @@
         {
           "questionText": "根据图片找出七处不同",
           "questionDescription": "出示图片，要求宝宝找出七处不同，观察其是否能完成。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-1.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-2.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-3.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-4.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-5.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-6.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-7.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-8.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-9.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/different-10.png"
+          ],
           "videoUrl": ""
         }
       ]
@@ -432,7 +468,12 @@
         {
           "questionText": "能指对包括第一题在内的三道以上",
           "questionDescription": "出示多道题目，观察宝宝是否能正确指对其中三道及以上。",
-          "pictureUrl": "",
+          "pictureUrl": [
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pic-1.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pic-2.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pic-3.png",
+            "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pic-4.png"
+          ],
           "videoUrl": ""
         }
       ]
@@ -449,7 +490,7 @@
         {
           "questionText": "找出关联图片",
           "questionDescription": "出示多张图片，要求宝宝找出有关联的图片，观察其是否能完成。",
-          "pictureUrl": "",
+          "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-5.png",
           "videoUrl": ""
         }
       ]

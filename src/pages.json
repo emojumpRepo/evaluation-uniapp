@@ -157,6 +157,14 @@
           "style": {
             "navigationBarTitleText": "问卷结果"
           }
+        },
+        {
+          "path": "questionnaire/childAbilityEvaluation/index",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "答题详情"
+          }
         }
       ]
     }

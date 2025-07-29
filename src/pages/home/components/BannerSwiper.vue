@@ -15,7 +15,7 @@ const currentSwiperIndex = ref(0)
 
 // 弹窗相关
 const showPopup = ref(false)
-const popupContent = ref('')
+const clickBanner = ref()
 
 // 使用 useRequest 管理请求状态
 const { loading: bannerLoading, error: bannerError, run: fetchBanner } = useRequest(
@@ -35,7 +35,7 @@ function onBannerClick(banner: Banner) {
   // 根据type判断处理方式
   if (banner.type === 2) {
     // type为2显示弹窗
-    popupContent.value = banner.popupContent || '暂无内容'
+    clickBanner.value = banner
     showPopup.value = true
   }
   else if (banner.type === 1) {
@@ -61,7 +61,7 @@ function onBannerClick(banner: Banner) {
 // 关闭弹窗
 function closePopup() {
   showPopup.value = false
-  popupContent.value = ''
+  clickBanner.value = null
 }
 
 // 获取轮播图数据
@@ -95,28 +95,11 @@ onMounted(() => {
 <template>
   <view class="relative px-4">
     <swiper
-      v-if="banners.length > 0"
-      class="h-40 w-full overflow-hidden rounded-lg"
-      circular
-      autoplay
-      :interval="3000"
-      :duration="500"
-      indicator-dots
-      indicator-active-color="#ffa07a"
-      :loading="bannerLoading"
-      @change="onSwiperChange"
+      v-if="banners.length > 0" class="h-40 w-full overflow-hidden rounded-lg" :interval="3000"
+      :duration="500" indicator-dots circular autoplay indicator-active-color="#ffa07a" :loading="bannerLoading" @change="onSwiperChange"
     >
-      <swiper-item
-        v-for="banner in banners"
-        :key="banner.id"
-        class="relative"
-        @tap="onBannerClick(banner)"
-      >
-        <image
-          :src="banner.imageUrl"
-          mode="aspectFill"
-          class="h-full w-full"
-        />
+      <swiper-item v-for="banner in banners" :key="banner.id" class="relative" @tap="onBannerClick(banner)">
+        <image :src="banner.imageUrl" mode="aspectFill" class="h-full w-full" />
         <view class="gradient-overlay absolute inset-0" />
         <view class="absolute bottom-0 left-0 right-0 p-4 text-white">
           <text class="block text-lg font-bold leading-tight">
@@ -130,14 +113,24 @@ onMounted(() => {
     </swiper>
 
     <!-- 弹窗 -->
-    <view v-if="showPopup" class="popup-overlay" @click="closePopup">
-      <view class="popup-content" @click.stop>
-        <rich-text :nodes="popupContent" />
-        <button class="popup-close-btn" @click="closePopup">
-          关闭
-        </button>
+    <wd-popup
+      v-model="showPopup" position="bottom" :safe-area-inset-bottom="true" closable
+      custom-style="height: auto; max-height: 60vh; border-top-left-radius: 32rpx; border-top-right-radius: 32rpx;" @close="closePopup"
+    >
+      <view class="p-6 space-y-2">
+        <view v-if="clickBanner?.title" class="text-lg text-gray-900 font-bold">
+          {{ clickBanner.title }}
+        </view>
+
+        <view v-if="clickBanner?.subtitle" class="text-base text-gray-600">
+          {{ clickBanner.subtitle }}
+        </view>
+
+        <view v-if="clickBanner?.popupContent" class="mt-1.5 text-sm text-gray-700 leading-normal">
+          <rich-text :nodes="clickBanner.popupContent" />
+        </view>
       </view>
-    </view>
+    </wd-popup>
   </view>
 </template>
 
