@@ -56,13 +56,16 @@ async function confirmEvaluation(baby: any) {
   if (!baby.id) {
     return
   }
+
   await participateAssessment({
     assessmentId: selectedEvaluation.value.id,
     babyId: baby.id,
   })
 
+  console.log('选择的测评', selectedEvaluation.value)
+
   uni.navigateTo({
-    url: `/pages/evaluation/questionnaire?id=${selectedEvaluation.value.id}&babyId=${baby.id}&isRepeatable=${selectedEvaluation.value.isRepeatable}`,
+    url: `/pages/evaluation/questionnaire?id=${selectedEvaluation.value.id}&babyId=${baby.id}&isRepeatable=${selectedEvaluation.value.isRepeatable ? 1 : 0}`,
   })
 }
 

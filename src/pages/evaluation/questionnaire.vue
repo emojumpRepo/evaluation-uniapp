@@ -10,14 +10,17 @@
 
 <script setup lang="ts">
 import type { IQuestionnaire } from '@/api/types/evaluation'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { getPublishedQuestionnaires, recordQuestionnaireAccess } from '@/api/evaluation'
 
 const props = defineProps<{
   id: number
   babyId: number
-  isRepeatable: boolean
+  isRepeatable: number
 }>()
+
+// 将数字参数转换为布尔值
+const isRepeatable = computed(() => Boolean(Number(props.isRepeatable)))
 
 const questionnaires = ref<IQuestionnaire[]>([])
 
@@ -26,9 +29,11 @@ const questionnaires = ref<IQuestionnaire[]>([])
  * @param item 问卷信息
  */
 async function goToQuestionnaire(item: IQuestionnaire) {
-  if (props.isRepeatable && item.completed) {
-    uni.showToast({ title: '该问卷已完成', icon: 'none' })
-    return
+  if (!isRepeatable.value) {
+    if (item.completed) {
+      uni.showToast({ title: '该问卷已完成', icon: 'none' })
+      return
+    }
   }
 
   // 添加访问次数
