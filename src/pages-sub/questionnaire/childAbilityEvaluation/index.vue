@@ -237,7 +237,7 @@ onLoad((options) => {
         </view>
 
         <button
-          class="w-full rounded bg-blue-500 py-2 text-white"
+          class="w-full rounded bg-blue-500 text-white"
           @click="goBack"
         >
           返回
@@ -314,13 +314,13 @@ onLoad((options) => {
       <!-- 答题按钮（上下排列） -->
       <view class="mb-2 flex flex-col gap-3">
         <button
-          class="w-full flex items-center justify-center rounded bg-green-500 py-3 text-lg text-white"
+          class="w-full flex items-center justify-center border-0 rounded-xl bg-[#16a34a] py-3 text-lg text-white font-semibold"
           @click="handleAnswerWithUI(true)"
         >
           能做到
         </button>
         <button
-          class="w-full flex items-center justify-center border border-red-200 rounded bg-red-50 py-3 text-lg text-red-500"
+          class="w-full flex items-center justify-center border-2 border-red-300 rounded-xl border-solid py-3 text-lg text-red-400 font-semibold"
           @click="handleAnswerWithUI(false)"
         >
           暂时不能
