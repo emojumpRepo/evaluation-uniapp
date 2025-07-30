@@ -10,12 +10,11 @@
 <script setup lang="ts">
 import type { IBabyInfo } from '@/api/types/baby'
 import type { IAssessmentResult } from '@/api/types/evaluation'
-import dayjs from 'dayjs'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
 import { getBabyQuestionnaireResult } from '@/api/evaluation'
-import { getLevelClass } from '@/api/types/evaluation'
 import { useBabyStore } from '@/store/index'
+import Collapse from './components/collapse.vue'
 
 const babyStore = useBabyStore()
 const { babyList } = storeToRefs(babyStore)
@@ -28,6 +27,8 @@ const assessmentResultList = ref<IAssessmentResult[]>([])
 const defaultAvatar = 'http://test.yudao.iocoder.cn/user/avatar/20250715/G0bTIS90DRSvc90f423c08a6cb7bb3ab969a5301474c_1752564908905.png'
 // 加载状态
 const loading = ref(false)
+// 切换宝宝加载状态
+const switchBabyLoading = ref(false)
 // 是否显示宝宝选择器
 const showBabyPicker = ref(false)
 // 当前展开的测评ID数组（用于折叠面板）
@@ -40,9 +41,13 @@ const selectedBaby = computed(() => {
 
 // 选择宝宝
 async function selectBaby(baby: IBabyInfo) {
-  selectedBabyId.value = baby.id || null
-  await getAssessmentResultList()
+  switchBabyLoading.value = true
   showBabyPicker.value = false
+  selectedBabyId.value = baby.id || null
+  // 清空之前的折叠面板展开状态，避免状态冲突
+  expandedAssessments.value = []
+  await getAssessmentResultList()
+  switchBabyLoading.value = false
 }
 
 function openSelectBabyPicker() {
@@ -58,9 +63,9 @@ function openSelectBabyPicker() {
 }
 
 // 查看问卷结果
-function handleQuestionnaire(questionnaire: any, assessmentId: number) {
+function handleQuestionnaire(questionnaireId: number, assessmentId: number) {
   uni.navigateTo({
-    url: `/pages-sub/record/history-record?babyId=${selectedBabyId.value}&questionnaireId=${questionnaire.questionnaireId}&assessmentId=${assessmentId}`,
+    url: `/pages-sub/record/history-record?babyId=${selectedBabyId.value}&questionnaireId=${questionnaireId}&assessmentId=${assessmentId}`,
   })
 }
 
@@ -73,7 +78,7 @@ async function getAssessmentResultList() {
     const { code, data } = res
     console.log('获取测评结果', res)
     if (code === 0) {
-      assessmentResultList.value = data as unknown as IAssessmentResult[]
+      assessmentResultList.value = (data as unknown as IAssessmentResult[]).sort((a, b) => b.assessmentId - a.assessmentId)
     }
   }
   catch (err) {
@@ -91,16 +96,12 @@ onMounted(async () => {
 })
 </script>
 
-<script lang="ts">
-export default {
-  options: {
-    styleIsolation: 'shared',
-  },
-}
-</script>
-
 <template>
-  <view class="min-h-screen bg-gray-50">
+  <view class="relative min-h-screen bg-gray-50">
+    <view v-if="switchBabyLoading" class="absolute left-0 top-0 z-10 h-full w-full flex items-center justify-center bg-white/70">
+      <wd-loading size="18" />
+    </view>
+
     <!-- 宝宝选择器 -->
     <view class="sticky top-0 z-10 bg-white px-4 py-3 shadow-sm">
       <view class="flex items-center justify-between">
@@ -146,67 +147,7 @@ export default {
           v-for="item in assessmentResultList" :key="item.assessmentId"
           class="overflow-hidden rounded-lg shadow-sm"
         >
-          <wd-collapse v-model="expandedAssessments">
-            <wd-collapse-item :name="`item-${item.assessmentId}`">
-              <template #title="{ expanded }">
-                <view class="w-full flex items-center">
-                  <view class="flex-1">
-                    <view class="mb-2 flex items-center justify-between">
-                      <text class="text-base text-gray-800 font-medium">
-                        {{ item.assessmentTitle }}
-                      </text>
-                      <wd-icon v-if="expanded" name="chevron-up" size="22px" color="#999" />
-                      <wd-icon v-else name="chevron-down" size="22px" color="#999" />
-                    </view>
-                    <!-- 进度条 -->
-                    <div class="mr-4 flex items-center gap-2 text-xs text-gray-400">
-                      <span class="whitespace-nowrap">完成进度</span>
-                      <div class="w-full flex items-center gap-3">
-                        <wd-progress
-                          :percentage="Math.round((item.questionnaireResults.length / item.questionnaireCount) * 100)"
-                          :color="item.questionnaireResults.length === item.questionnaireCount ? '#10B981' : '#3B82F6'"
-                          hide-text
-                        />
-                        <span>{{ item.questionnaireResults.length }}/{{ item.questionnaireCount }}</span>
-                      </div>
-                    </div>
-                  </view>
-                </view>
-              </template>
-
-              <!-- 问卷列表 -->
-              <div
-                v-for="questionnaire in item.questionnaireResults" :key="questionnaire.questionnaireId"
-                class="collapse-item py-4 space-y-1" @click="handleQuestionnaire(questionnaire, item.assessmentId)"
-              >
-                <view class="flex flex-col gap-3">
-                  <view class="flex items-center justify-between">
-                    <text class="text-sm">
-                      {{ questionnaire.questionnaireTitle }}
-                    </text>
-                    <wd-tag type="success" size="small">
-                      已完成
-                    </wd-tag>
-                  </view>
-                  <view class="flex items-center gap-4 text-xs">
-                    <text class="text-gray-600">
-                      得分：<text class="text-gray-800">
-                        {{ questionnaire.score }}
-                      </text>
-                    </text>
-                    <text class="text-gray-600">
-                      等级：<text :class="getLevelClass(questionnaire.level, 'color')">
-                        {{ questionnaire.level }}
-                      </text>
-                    </text>
-                  </view>
-                  <text class="text-xs text-gray-400">
-                    完成时间：{{ dayjs(questionnaire.completedTime).format('YYYY-MM-DD HH:mm:ss') }}
-                  </text>
-                </view>
-              </div>
-            </wd-collapse-item>
-          </wd-collapse>
+          <Collapse :info="item" @handle-questionnaire="handleQuestionnaire" />
         </div>
       </div>
     </view>
@@ -242,19 +183,3 @@ export default {
     </wd-popup>
   </view>
 </template>
-
-<style lang="scss" scoped>
-:deep(.wd-collapse-item__body) {
-  padding-top: 3px !important;
-  padding-left: 28px !important;
-  padding-right: 28px !important;
-}
-
-.collapse-item {
-  border-bottom: 1px solid #e8e8e8;
-}
-
-.collapse-item:last-child {
-  border-bottom: none;
-}
-</style>

@@ -58,6 +58,9 @@ export interface IAssessmentResult {
   assessmentId: number
   assessmentTitle: string
   questionnaireCount: number
+  overallScore: number
+  overallLevel: string
+  overallReport: string
   questionnaireResults: [
     {
       id: number
