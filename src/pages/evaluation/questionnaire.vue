@@ -32,7 +32,11 @@ function getQuestionnaireStatus(item: IQuestionnaire) {
     return item.completed ? '已完成' : '开始答题'
   }
 
-  return isRepeatable.value ? '开始答题' : '已完成'
+  if (isRepeatable.value) {
+    return '开始答题'
+  }
+
+  return item.completed ? '已完成' : '开始答题'
 }
 
 /**
