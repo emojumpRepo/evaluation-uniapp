@@ -46,7 +46,7 @@ const ALL_MONTH_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 18, 21, 24, 2
  * 获取问卷状态
  */
 function getQuestionnaireStatus(item: IQuestionnaire) {
-  if (props.id === specialAssessmentId) {
+  if (Number(props.id) === specialAssessmentId) {
     return item.completed ? '已完成' : '开始答题'
   }
 
@@ -165,7 +165,7 @@ async function handleGenerateAssessmentResult() {
     })
 
     if (res.code === 0) {
-      uni.showToast({ title: '测评结果生成成功', icon: 'success' })
+      uni.showToast({ title: '结果生成成功', icon: 'success' })
     }
     else {
       uni.showToast({ title: res.msg || '生成失败', icon: 'none' })
