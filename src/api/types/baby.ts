@@ -12,4 +12,6 @@ export interface IBabyInfo {
   birthType: BirthType
   guardian: Guardian
   avatar: string
+  // 添加月龄字段
+  monthAge?: number
 }

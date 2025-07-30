@@ -34,8 +34,8 @@ const filteredAssessmentList = computed(() => {
     return assessmentList.value
   }
   return assessmentList.value.filter(item =>
-    item.title.includes(searchKeyword.value)
-    || item.description.includes(searchKeyword.value),
+    (item.title && item.title.includes(searchKeyword.value))
+    || (item.description && item.description.includes(searchKeyword.value)),
   )
 })
 
@@ -56,16 +56,24 @@ async function confirmEvaluation(baby: any) {
   if (!baby.id) {
     return
   }
+
   await participateAssessment({
     assessmentId: selectedEvaluation.value.id,
     babyId: baby.id,
   })
 
+  console.log('选择的测评', selectedEvaluation.value)
+
   uni.navigateTo({
-    url: `/pages/evaluation/questionnaire?id=${selectedEvaluation.value.id}&babyId=${baby.id}&isRepeatable=${selectedEvaluation.value.isRepeatable}`,
+    url: `/pages/evaluation/questionnaire?id=${selectedEvaluation.value.id}&babyId=${baby.id}&isRepeatable=${selectedEvaluation.value.isRepeatable ? 1 : 0}`,
   })
 }
 
+/**
+ * 获取测评数据
+ * @param isFirstLoad 是否是第一次加载
+ * @returns
+ */
 async function getAssessmentData(isFirstLoad = false) {
   try {
     const currentPage = isFirstLoad ? 1 : page.value
@@ -186,7 +194,7 @@ onMounted(async () => {
           </view>
 
           <!-- 加载更多状态 -->
-          <view v-if="assessmentList.length > 0" class="flex items-center justify-center py-4">
+          <view v-if="assessmentList.length > 0" class="flex items-center justify-center gap-2 pb-4 pt-2">
             <template v-if="loadingMore">
               <wd-loading size="16px" />
               <text class="ml-2 text-sm text-gray-400">
@@ -204,9 +212,6 @@ onMounted(async () => {
               </text>
             </template>
           </view>
-
-          <!-- 底部间距 -->
-          <view class="h-20" />
         </div>
       </scroll-view>
     </template>
@@ -215,5 +220,3 @@ onMounted(async () => {
     <EvaluationDialog v-model:visible="showDialog" @confirm="confirmEvaluation" />
   </view>
 </template>
-
-<style scoped></style>

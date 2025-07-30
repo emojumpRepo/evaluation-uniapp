@@ -8,6 +8,8 @@ import RecommendedArticles from './components/RecommendedArticles.vue'
 
 // 测评数据
 const latestAssessment = ref<IAssessment | null>(null)
+// 推荐文章组件引用
+const recommendedArticlesRef = ref<InstanceType<typeof RecommendedArticles> | null>(null)
 
 // 跳转到测评页面
 function goToEvaluation() {
@@ -40,8 +42,16 @@ async function getLatestAssessment() {
   }
 }
 
-onShow(async () => {
+onMounted(async () => {
   await getLatestAssessment()
+})
+
+// 上拉加载更多
+onReachBottom(() => {
+  // 调用推荐文章组件的上拉加载更多方法
+  if (recommendedArticlesRef.value && recommendedArticlesRef.value.onLoadMore) {
+    recommendedArticlesRef.value.onLoadMore()
+  }
 })
 </script>
 
@@ -70,7 +80,7 @@ onShow(async () => {
     </view>
 
     <!-- 推荐文章组件 -->
-    <RecommendedArticles />
+    <RecommendedArticles ref="recommendedArticlesRef" />
   </view>
 </template>
 

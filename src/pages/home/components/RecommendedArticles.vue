@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { IArticle } from '@/api/types/article'
 import { computed, onMounted, ref } from 'vue'
-import { getArticleList, likeArticle } from '@/api/article'
+import { getArticleList } from '@/api/article'
 import useRequest from '@/hooks/useRequest'
 import { toast } from '@/utils/toast'
 
@@ -9,7 +9,9 @@ const page = ref(1)
 const pageSize = ref(10)
 const hasMore = ref(true)
 const searchKeyword = ref('')
-const isRefreshing = ref(false)
+
+// 添加单独的加载更多状态
+const loadingMore = ref(false)
 
 // 分类数据
 const categories = ref([
@@ -47,6 +49,21 @@ const filteredArticles = computed(() => {
   return result
 })
 
+// 格式化时间
+function formatTime(time: string) {
+  const date = new Date(time)
+  const now = new Date()
+  const diff = now.getTime() - date.getTime()
+
+  if (diff < 60000)
+    return '刚刚'
+  if (diff < 3600000)
+    return `${Math.floor(diff / 60000)}分钟前`
+  if (diff < 86400000)
+    return `${Math.floor(diff / 3600000)}小时前`
+  return `${Math.floor(diff / 86400000)}天前`
+}
+
 // 选择分类
 function selectCategory(id: string) {
   currentCategory.value = id
@@ -63,64 +80,53 @@ function goToDetail(id: number) {
   })
 }
 
-// 收藏文章
-async function toggleLike(article: IArticle, index: number) {
-  try {
-    await likeArticle(article.id!)
-    // 更新本地数据
-    articles.value[index].likeCount = (articles.value[index].likeCount || 0) + 1
-    toast.success('收藏成功')
-  }
-  catch (error) {
-    console.error('收藏失败:', error)
-    toast.error('收藏失败，请稍后重试')
-  }
-}
-
 /**
  * 获取文章列表
  */
 async function getArticleListData(loadMore = false) {
   try {
+    if (loadMore) {
+      loadingMore.value = true
+    }
+
     const res = await fetchArticles()
     console.log('👌获取文章列表', res)
-    if (res) {
-      if (loadMore) {
-        // 加载更多
-        articles.value.push(...res.list)
-      }
-      else {
-        // 重新加载
-        articles.value = res.list
-      }
-
-      // 判断是否还有更多数据
-      hasMore.value = articles.value.length < res.total
+    if (!res) {
+      return uni.showToast({
+        title: '数据加载失败',
+        icon: 'none',
+      })
     }
+
+    if (loadMore && res.list && res.list.length > 0) {
+      articles.value.push(...res.list)
+    }
+    else {
+      articles.value = res.list || []
+    }
+
+    hasMore.value = articles.value.length < res.total
   }
   catch (error) {
     console.error('获取文章列表失败:', error)
     toast.error('加载失败，请稍后重试')
-  }
-}
-
-// 下拉刷新
-async function onRefresh() {
-  isRefreshing.value = true
-  page.value = 1
-  hasMore.value = true
-
-  try {
-    await getArticleListData()
+    // 加载失败时回退页码
+    if (loadMore && page.value > 1) {
+      page.value--
+    }
   }
   finally {
-    isRefreshing.value = false
+    // 重置加载更多状态
+    if (loadMore) {
+      loadingMore.value = false
+    }
   }
 }
 
 // 上拉加载更多
 async function onLoadMore() {
-  if (!hasMore.value || loading.value)
+  // 防止重复加载和无更多数据时的加载
+  if (!hasMore.value || loading.value || loadingMore.value)
     return
 
   page.value++
@@ -132,34 +138,13 @@ function clearSearch() {
   searchKeyword.value = ''
 }
 
-// 格式化时间
-function formatTime(time: string) {
-  const date = new Date(time)
-  const now = new Date()
-  const diff = now.getTime() - date.getTime()
-
-  if (diff < 60000)
-    return '刚刚'
-  if (diff < 3600000)
-    return `${Math.floor(diff / 60000)}分钟前`
-  if (diff < 86400000)
-    return `${Math.floor(diff / 3600000)}小时前`
-  return `${Math.floor(diff / 86400000)}天前`
-}
-
-// 初始化
-async function init() {
-  await getArticleListData()
-}
-
-// 暴露初始化方法给父组件
 defineExpose({
-  init,
+  onLoadMore,
 })
 
 // 组件挂载时初始化
-onMounted(() => {
-  init()
+onMounted(async () => {
+  await getArticleListData()
 })
 </script>
 
@@ -173,147 +158,106 @@ onMounted(() => {
     </view>
 
     <!-- 分类标签 -->
-    <scroll-view
-      scroll-x
-      class="whitespace-nowrap bg-gray-100 py-4"
-      :show-scrollbar="false"
-    >
+    <scroll-view scroll-x class="whitespace-nowrap bg-gray-100 py-4" :show-scrollbar="false">
       <view class="inline-flex px-4">
         <view
-          v-for="(item, index) in categories"
-          :key="index"
-          class="mr-3 rounded-full px-5 py-2 text-sm font-bold transition-all"
-          :class="[
+          v-for="(item, index) in categories" :key="index"
+          class="mr-3 rounded-full px-5 py-2 text-sm font-bold transition-all" :class="[
             currentCategory === item.id
               ? 'bg-blue-400 text-white'
               : 'bg-gray-200 text-gray-600',
-          ]"
-          @click="selectCategory(item.id)"
+          ]" @click="selectCategory(item.id)"
         >
           {{ item.name }}
         </view>
       </view>
     </scroll-view>
 
-    <!-- 文章列表 -->
-    <scroll-view
-      scroll-y
-      class="box-border w-screen bg-gray-100 px-4 pb-5"
-      :refresher-enabled="true"
-      :refresher-triggered="isRefreshing"
-      @refresherrefresh="onRefresh"
-      @scrolltolower="onLoadMore"
-    >
-      <!-- 加载状态 -->
-      <view
-        v-if="loading && articles.length === 0"
-        class="flex flex-col items-center justify-center py-20"
-      >
-        <text class="text-gray-400">
-          加载中...
-        </text>
-      </view>
+    <!-- 加载状态 -->
+    <view v-if="loading && articles.length === 0" class="flex flex-col items-center justify-center py-20">
+      <wd-loading :size="20" />
+    </view>
 
-      <!-- 文章列表 -->
-      <view
-        v-for="(article) in filteredArticles"
-        :key="article.id"
-        class="mb-4 overflow-hidden rounded-xl bg-white transition-all"
-        @click="goToDetail(article.id!)"
-      >
-        <view class="flex gap-4 p-4">
-          <view class="flex-1">
-            <text class="line-clamp-2 mb-2 text-base text-gray-800 font-bold">
-              {{ article.title }}
-            </text>
-            <text v-if="article.remark" class="line-clamp-2 mb-3 text-sm text-gray-500 leading-relaxed">
-              {{ article.remark }}
-            </text>
+    <template v-else>
+      <view class="box-border w-screen bg-gray-100 px-4 pb-2">
+        <!-- 文章列表 -->
+        <view
+          v-for="(article) in filteredArticles" :key="article.id"
+          class="mb-4 overflow-hidden rounded-xl bg-white transition-all" @click="goToDetail(article.id!)"
+        >
+          <view class="flex gap-4 p-4">
+            <view class="flex-1">
+              <text class="line-clamp-2 mb-2 text-base text-gray-800 font-bold">
+                {{ article.title }}
+              </text>
+              <text v-if="article.remark" class="line-clamp-2 mb-3 text-sm text-gray-500 leading-relaxed">
+                {{ article.remark }}
+              </text>
 
-            <!-- 文章信息 -->
-            <view class="flex items-center justify-between">
-              <view class="flex items-center gap-4 text-xs text-gray-400">
-                <text>{{ formatTime(article.publishTime) }}</text>
-                <text>{{ article.viewCount || 0 }} 阅读</text>
+              <!-- 文章信息 -->
+              <view class="flex items-center justify-between">
+                <view class="flex items-center gap-4 text-xs text-gray-400">
+                  <text>{{ formatTime(article.publishTime) }}</text>
+                  <text>{{ article.viewCount || 0 }} 阅读</text>
+                </view>
               </view>
             </view>
-          </view>
 
-          <!-- 文章封面 -->
-          <view class="h-20 w-28 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
-            <image
-              v-if="article.coverImage"
-              class="h-full w-full"
-              :src="article.coverImage"
-              mode="aspectFill"
-              :lazy-load="true"
-            />
-            <view v-else class="h-full w-full flex items-center justify-center">
-              <text class="iconfont icon-image text-2xl text-gray-300" />
+            <!-- 文章封面 -->
+            <view class="h-20 w-28 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
+              <image
+                v-if="article.coverImage" class="h-full w-full" :src="article.coverImage" mode="aspectFill"
+                :lazy-load="true"
+              />
+              <view v-else class="h-full w-full flex items-center justify-center">
+                <text class="iconfont icon-image text-2xl text-gray-300" />
+              </view>
             </view>
           </view>
         </view>
       </view>
 
       <!-- 加载更多 -->
-      <view
-        v-if="loading && articles.length > 0"
-        class="flex items-center justify-center py-4"
-      >
-        <text class="text-sm text-gray-400">
-          加载中...
-        </text>
-      </view>
-
-      <!-- 没有更多数据 -->
-      <view
-        v-if="!hasMore && articles.length > 0"
-        class="flex items-center justify-center py-4"
-      >
-        <text class="text-sm text-gray-400">
-          没有更多数据了
-        </text>
+      <view v-if="articles.length > 0" class="flex items-center justify-center gap-2 pb-4">
+        <template v-if="hasMore">
+          <wd-loading v-if="loadingMore" :size="16" />
+          <text class="text-sm text-gray-400">
+            {{ loadingMore ? '加载中...' : '上拉加载更多' }}
+          </text>
+        </template>
+        <template v-else>
+          <text class="text-sm text-gray-400">
+            没有更多数据了
+          </text>
+        </template>
       </view>
 
       <!-- 无数据提示 -->
-      <view
-        v-if="!loading && filteredArticles.length === 0"
-        class="flex flex-col items-center justify-center py-20"
-      >
+      <view v-if="!loading && filteredArticles.length === 0" class="flex flex-col items-center justify-center py-20">
         <text class="mb-2 text-6xl text-gray-200">
           📝
         </text>
         <text class="text-sm text-gray-400">
           {{ searchKeyword ? '没有找到相关文章' : '暂无文章' }}
         </text>
-        <text
-          v-if="searchKeyword"
-          class="mt-2 text-sm text-blue-500"
-          @click="clearSearch"
-        >
+        <text v-if="searchKeyword" class="mt-2 text-sm text-blue-500" @click="clearSearch">
           清空搜索条件
         </text>
       </view>
 
       <!-- 错误提示 -->
-      <view
-        v-if="error"
-        class="flex flex-col items-center justify-center py-20"
-      >
+      <view v-if="error" class="flex flex-col items-center justify-center py-20">
         <text class="mb-2 text-6xl text-gray-200">
           😵
         </text>
         <text class="mb-4 text-sm text-gray-400">
           加载失败
         </text>
-        <text
-          class="rounded-full bg-blue-500 px-6 py-2 text-sm text-white"
-          @click="getArticleListData"
-        >
+        <text class="rounded-full bg-blue-500 px-6 py-2 text-sm text-white" @click="getArticleListData">
           重新加载
         </text>
       </view>
-    </scroll-view>
+    </template>
   </view>
 </template>
 
