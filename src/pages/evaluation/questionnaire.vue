@@ -25,11 +25,22 @@ const isRepeatable = computed(() => Boolean(Number(props.isRepeatable)))
 const questionnaires = ref<IQuestionnaire[]>([])
 
 /**
+ * 获取问卷状态
+ */
+function getQuestionnaireStatus(item: IQuestionnaire) {
+  if (props.id === 10) {
+    return item.completed ? '已完成' : '开始答题'
+  }
+
+  return isRepeatable.value ? '开始答题' : '已完成'
+}
+
+/**
  * 跳转到问卷页面
  * @param item 问卷信息
  */
 async function goToQuestionnaire(item: IQuestionnaire) {
-  if (!isRepeatable.value) {
+  if (!isRepeatable.value || props.id === 10) {
     if (item.completed) {
       uni.showToast({ title: '该问卷已完成', icon: 'none' })
       return
@@ -138,7 +149,7 @@ onMounted(async () => {
             </text>
             <view class="flex items-center gap-1 text-blue-600">
               <text class="text-sm font-medium">
-                {{ item.completed ? '已完成' : '开始答题' }}
+                {{ getQuestionnaireStatus(item) }}
               </text>
               <text class="text-sm">
                 {{ item.completed ? '✔' : '→' }}
