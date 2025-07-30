@@ -28,7 +28,7 @@ const questionnaires = ref<IQuestionnaire[]>([])
  * 获取问卷状态
  */
 function getQuestionnaireStatus(item: IQuestionnaire) {
-  if (props.id === 10) {
+  if (props.id === '10') {
     return item.completed ? '已完成' : '开始答题'
   }
 
@@ -44,7 +44,7 @@ function getQuestionnaireStatus(item: IQuestionnaire) {
  * @param item 问卷信息
  */
 async function goToQuestionnaire(item: IQuestionnaire) {
-  if (!isRepeatable.value || props.id === 10) {
+  if (!isRepeatable.value || props.id === '10') {
     if (item.completed) {
       uni.showToast({ title: '该问卷已完成', icon: 'none' })
       return
