@@ -100,7 +100,7 @@ export const LEVEL_COLOR_MAP: Record<string, { color: string, bg: string, icon: 
   中度风险: { color: 'text-yellow-600', bg: 'bg-yellow-50', icon: '🟡' },
   高风险: { color: 'text-red-600', bg: 'bg-red-50', icon: '🔴' },
   严重: { color: 'text-red-600', bg: 'bg-red-50', icon: '🔴' },
-  中度: { color: 'text-yellow-600', bg: 'bg-yellow-50', icon: '🟡' },
+  中等: { color: 'text-yellow-600', bg: 'bg-yellow-50', icon: '🟡' },
 }
 
 export type LevelType = 'color' | 'bg' | 'icon'
