@@ -94,5 +94,9 @@ export function getQuestionnaireResult(params: { id: number }) {
 
 // 提交问卷答案
 export function submitQuestionnaireAnswer(params: IQuestionnaireAnswerSubmitReq) {
-  return http.post('/emojump/questionnaire-result/submit-answer', params)
+  return http.post('/emojump/questionnaire-answer/submit-answer', params)
+}
+
+export function generateAssessmentResult(params: { assessmentId: number, babyId: number }) {
+  return http.post('/emojump/assessment-result/generate-result', params)
 }

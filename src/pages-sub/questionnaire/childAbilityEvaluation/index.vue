@@ -195,7 +195,7 @@ onLoad((options) => {
 </script>
 
 <template>
-  <view class="min-h-screen bg-gray-50 p-4">
+  <view class="box-border h-screen bg-gray-50 p-4">
     <view v-if="loading" class="h-40 flex items-center justify-center">
       <text>加载中...</text>
     </view>

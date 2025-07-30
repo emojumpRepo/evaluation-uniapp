@@ -522,8 +522,29 @@ export function useAssessment() {
    * 处理正常模式完成
    */
   function handleNormalModeCompletion() {
-    const nextMonth = getNextMonthToTest()
+    // 如果当前月龄有失败，进入回退模式
+    if (hasMonthFailed(currentMonthIndex.value)) {
+      isRetreating.value = true
+      retreatStartMonth.value = currentMonthIndex.value
+      // 回退到上一个月龄
+      const targetMonth = Math.max(0, currentMonthIndex.value - 1)
+      if (targetMonth < currentMonthIndex.value) {
+        navigateToMonth(targetMonth)
+      }
+      else {
+        completeAssessment()
+      }
+      return
+    }
 
+    // 检查是否有连续两个月龄都全部做对
+    if (checkConsecutivePassedMonths(currentMonthIndex.value, 0)) {
+      completeAssessment()
+      return
+    }
+
+    // 否则进入下一个月龄
+    const nextMonth = getNextMonthToTest()
     if (nextMonth !== null && nextMonth > currentMonthIndex.value) {
       navigateToMonth(nextMonth)
     }
