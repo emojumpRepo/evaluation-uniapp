@@ -95,8 +95,8 @@ onMounted(() => {
 <template>
   <view class="relative px-4">
     <swiper
-      v-if="banners.length > 0" class="h-40 w-full overflow-hidden rounded-lg" circular autoplay :interval="3000"
-      :duration="500" indicator-dots indicator-active-color="#ffa07a" :loading="bannerLoading" @change="onSwiperChange"
+      v-if="banners.length > 0" class="h-40 w-full overflow-hidden rounded-lg" :interval="3000"
+      :duration="500" indicator-dots circular autoplay indicator-active-color="#ffa07a" :loading="bannerLoading" @change="onSwiperChange"
     >
       <swiper-item v-for="banner in banners" :key="banner.id" class="relative" @tap="onBannerClick(banner)">
         <image :src="banner.imageUrl" mode="aspectFill" class="h-full w-full" />

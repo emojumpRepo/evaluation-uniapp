@@ -87,6 +87,14 @@ export interface IQuestionnaireResult extends IQuestionnaireResultList {
   report: string
 }
 
+export interface IQuestionnaireAnswerSubmitReq {
+  encryptedUserId: string
+  encryptedAssessmentId: string
+  encryptedQuestionnaireId: string
+  encryptedAnswerData: string
+  completedTime: string
+}
+
 export const LEVEL_COLOR_MAP: Record<string, { color: string, bg: string, icon: string }> = {
   正常范围: { color: 'text-green-600', bg: 'bg-green-50', icon: '🟢' },
   可能抑郁: { color: 'text-red-600', bg: 'bg-red-50', icon: '🔴' },
