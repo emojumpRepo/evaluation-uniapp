@@ -182,7 +182,7 @@ function startEvaluation() {
           </view>
 
           <!-- 时长 -->
-          <view class="flex items-center">
+          <view v-if="assessment?.duration" class="flex items-center">
             <text class="mr-1 text-xs">
               ⏱️
             </text>
@@ -192,7 +192,7 @@ function startEvaluation() {
           </view>
 
           <!-- 适合年龄 -->
-          <view class="flex items-center">
+          <view v-if="assessment?.targetAudience" class="flex items-center">
             <text class="mr-1 text-xs">
               🎯
             </text>

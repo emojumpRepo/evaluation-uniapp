@@ -8,10 +8,15 @@
 </route>
 
 <script setup lang="ts">
+import type { Schema } from '@/hooks/useAssessment'
 import { onLoad } from '@dcloudio/uni-app'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
+import { submitQuestionnaireAnswer } from '@/api/evaluation'
+import { useAssessment } from '@/hooks/useAssessment'
+import { aesEncrypt } from '@/utils/crypto'
 
-const titleToFile: Record<string, string> = {
+// ==================== 常量配置 ====================
+const QUESTIONNAIRE_FILES: Record<string, string> = {
   儿童精细动作测评量表: 'fineMotorQuestionnaire.json',
   儿童适应能力测评量表: 'adaptiveAbilityQuestionnaire.json',
   儿童语言测评量表: 'languageQuestionnaire.json',
@@ -19,109 +24,73 @@ const titleToFile: Record<string, string> = {
   儿童大运动测评量表: 'grossMotorQuestionnaire.json',
 }
 
+// ==================== 响应式状态 ====================
 const questionnaireTitle = ref('')
-const schema = ref<any>(null)
 const loading = ref(true)
 const error = ref('')
-
-const currentMonthIndex = ref(0)
-const currentQuestionIndex = ref(0)
 const currentMonthParam = ref('')
 const showDesc = ref(false)
+const userId = ref<number>(0)
+const assessmentId = ref<number>(0)
+const questionnaireId = ref<number>(0)
+const submitResult = ref<any>(null)
+const submitError = ref<string>('')
 
+// ==================== 使用 Composable ====================
+const {
+  schema,
+  currentMonthIndex,
+  currentQuestionIndex,
+  isCompleted,
+  resultData,
+  maxTestMonth,
+  answers,
+  isRetreating,
+  retreatStartMonth,
+  currentQuestion,
+  currentMonth,
+  totalQuestions,
+  currentFlatIndex,
+  handleAnswer,
+  initializeAssessment,
+  resetAssessment,
+  completeAssessment,
+  navigateToMonth,
+  getCurrentMonthStatus,
+  isMonthCompleted,
+  hasMonthFailed,
+  isMonthAnswered,
+  getFormattedAnswers,
+} = useAssessment()
+
+// ==================== 工具函数 ====================
 const schemaModules = import.meta.glob('./schema/*.json')
 
-const currentQuestion = computed(() => {
-  if (!schema.value || !Array.isArray(schema.value.questions))
-    return null
-  const monthObj = schema.value.questions[currentMonthIndex.value]
-  if (!monthObj || !Array.isArray(monthObj.questions))
-    return null
-  return monthObj.questions[currentQuestionIndex.value] || null
-})
-
-const currentMonth = computed(() => {
-  if (!schema.value || !Array.isArray(schema.value.questions))
-    return ''
-  const monthObj = schema.value.questions[currentMonthIndex.value]
-  return monthObj?.targetMonth || ''
-})
-
-const totalQuestions = computed(() => {
-  if (!schema.value || !Array.isArray(schema.value.questions))
-    return 0
-  return schema.value.questions.reduce((sum: number, m: any) => Array.isArray(m.questions) ? sum + m.questions.length : sum, 0)
-})
-
-const currentFlatIndex = computed(() => {
-  if (!schema.value || !Array.isArray(schema.value.questions))
-    return 1
-  let idx = 0
-  for (let i = 0; i < currentMonthIndex.value; i++) {
-    if (Array.isArray(schema.value.questions[i].questions)) {
-      idx += schema.value.questions[i].questions.length
-    }
-  }
-  return idx + currentQuestionIndex.value + 1
-})
-
-function nextQuestion() {
-  if (!schema.value || !Array.isArray(schema.value.questions))
-    return
-  const monthObj = schema.value.questions[currentMonthIndex.value]
-  if (!monthObj || !Array.isArray(monthObj.questions))
-    return
-  if (currentQuestionIndex.value < monthObj.questions.length - 1) {
-    currentQuestionIndex.value++
-  }
-  else if (currentMonthIndex.value < schema.value.questions.length - 1) {
-    currentMonthIndex.value++
-    currentQuestionIndex.value = 0
-  }
-  showDesc.value = false
-}
-function prevQuestion() {
-  if (!schema.value || !Array.isArray(schema.value.questions))
-    return
-  const monthObj = schema.value.questions[currentMonthIndex.value]
-  if (!monthObj || !Array.isArray(monthObj.questions))
-    return
-  if (currentQuestionIndex.value > 0) {
-    currentQuestionIndex.value--
-  }
-  else if (currentMonthIndex.value > 0) {
-    currentMonthIndex.value--
-    const prevMonthObj = schema.value.questions[currentMonthIndex.value]
-    currentQuestionIndex.value = Array.isArray(prevMonthObj.questions) ? prevMonthObj.questions.length - 1 : 0
-  }
-  showDesc.value = false
-}
-
+/**
+ * 根据标题加载问卷
+ */
 async function loadSchemaByTitle(title: string, month: string) {
   loading.value = true
   error.value = ''
+
   try {
-    const fileName = titleToFile[title]
-    if (!fileName)
+    const fileName = QUESTIONNAIRE_FILES[title]
+    if (!fileName) {
       throw new Error('未知问卷标题')
-    const importPath = `./schema/${fileName}`
-    let res: any
-    if (schemaModules[importPath]) {
-      res = (await schemaModules[importPath]() as any).default
     }
-    else {
+
+    const importPath = `./schema/${fileName}`
+    const schemaModule = schemaModules[importPath]
+
+    if (!schemaModule) {
       throw new Error('未找到本地问卷文件')
     }
-    schema.value = res
-    let foundIndex = 0
-    if (month && Array.isArray(schema.value.questions)) {
-      foundIndex = schema.value.questions.findIndex((q: any) => String(q.targetMonth) === String(month))
-      if (foundIndex === -1)
-        foundIndex = 0
-    }
-    currentMonthIndex.value = foundIndex
-    currentQuestionIndex.value = 0
-    showDesc.value = false
+
+    const res = (await schemaModule() as any).default
+    const schemaData: Schema = res
+
+    // 使用 composable 初始化测评
+    initializeAssessment(schemaData, month, maxTestMonth.value)
   }
   catch (e: any) {
     error.value = e.message || '加载问卷失败'
@@ -131,19 +100,91 @@ async function loadSchemaByTitle(title: string, month: string) {
   }
 }
 
+// ==================== UI 交互函数 ====================
 function toggleShowDesc() {
   showDesc.value = !showDesc.value
 }
 
 function playAudio() {
-  // 这里可以集成tts或播放音频，暂用console模拟
   console.log('播放语音', currentQuestion.value?.questionText)
 }
 
+function goBack() {
+  uni.navigateBack()
+}
+
+/**
+ * 处理答案并显示结果
+ */
+async function handleAnswerWithUI(canDo: boolean) {
+  handleAnswer(canDo)
+
+  // 如果测评完成，显示结果
+  if (isCompleted.value && resultData.value) {
+    // 获取格式化的答案列表
+    const formattedAnswers = getFormattedAnswers()
+    console.log('格式化的答案列表：', JSON.stringify(formattedAnswers, null, 2))
+
+    try {
+      // 加密数据
+      const encryptedUserId = aesEncrypt(userId.value)
+      const encryptedAssessmentId = aesEncrypt(assessmentId.value)
+      const encryptedQuestionnaireId = aesEncrypt(questionnaireId.value)
+      const encryptedAnswerData = aesEncrypt(formattedAnswers)
+
+      // 准备接口参数
+      const params = {
+        encryptedUserId,
+        encryptedAssessmentId,
+        encryptedQuestionnaireId,
+        encryptedAnswerData,
+        completedTime: Date.now(),
+      }
+
+      // 调用接口
+      const response = await submitQuestionnaireAnswer(params)
+      // 检查接口响应状态
+      if (response.code === 0) {
+        // 成功
+        submitResult.value = response.data
+        submitError.value = ''
+      }
+      else {
+        // 失败
+        submitResult.value = null
+        submitError.value = response.msg || '未知错误'
+      }
+    }
+    catch (error) {
+      console.error('提交失败：', error)
+      submitResult.value = null
+      submitError.value = '网络请求失败，请检查网络连接后重试'
+    }
+  }
+}
+
+// ==================== 生命周期 ====================
 onLoad((options) => {
   if (options.title) {
     questionnaireTitle.value = options.title
     currentMonthParam.value = options.currentMonth || ''
+
+    // 设置最高测试月龄
+    if (options.maxTestMonth) {
+      maxTestMonth.value = Number.parseInt(options.maxTestMonth)
+    }
+
+    // 获取必要的ID参数
+    if (options.userId) {
+      userId.value = Number.parseInt(options.userId)
+    }
+    if (options.assessmentId) {
+      assessmentId.value = Number.parseInt(options.assessmentId)
+    }
+    if (options.questionId) {
+      questionnaireId.value = Number.parseInt(options.questionId)
+    }
+
     loadSchemaByTitle(options.title, options.currentMonth)
   }
   else {
@@ -154,12 +195,54 @@ onLoad((options) => {
 </script>
 
 <template>
-  <view class="min-h-screen bg-gray-50 p-4">
+  <view class="box-border h-screen bg-gray-50 p-4">
     <view v-if="loading" class="h-40 flex items-center justify-center">
       <text>加载中...</text>
     </view>
     <view v-else-if="error" class="py-10 text-center text-red-500">
       {{ error }}
+    </view>
+    <view v-else-if="isCompleted && resultData" class="mx-auto max-w-xl">
+      <!-- 测评完成结果 -->
+      <view class="mb-4 rounded-xl bg-white p-6 text-center shadow">
+        <view class="mb-4">
+          <text class="text-2xl text-green-600 font-bold">
+            问卷已完成
+          </text>
+        </view>
+        <view class="mb-4">
+          <text class="text-lg font-medium">
+            {{ resultData.questionnaireTitle }}
+          </text>
+        </view>
+
+        <!-- 提交结果展示 -->
+        <view v-if="submitResult" class="mb-4 rounded-lg bg-green-50 p-4">
+          <text class="text-green-700 font-medium">
+            问卷已成功提交，请等待评估结果
+          </text>
+          <!-- 可以根据接口返回的数据展示更多内容 -->
+          <view v-if="submitResult.message" class="mt-2 text-sm text-green-600">
+            {{ submitResult.message }}
+          </view>
+        </view>
+
+        <view v-else-if="submitError" class="mb-4 rounded-lg bg-red-50 p-4">
+          <text class="text-red-700 font-medium">
+            提交失败
+          </text>
+          <view class="mt-2 text-sm text-red-600">
+            {{ submitError }}
+          </view>
+        </view>
+
+        <button
+          class="w-full rounded bg-blue-500 text-white"
+          @click="goBack"
+        >
+          返回
+        </button>
+      </view>
     </view>
     <view v-else-if="schema && currentQuestion" class="mx-auto max-w-xl">
       <!-- 问卷标题与月龄和进度 -->
@@ -172,9 +255,6 @@ onLoad((options) => {
             {{ currentMonth }}个月龄
           </text>
         </view>
-        <text class="text-xs text-gray-400">
-          {{ currentFlatIndex }}/{{ totalQuestions }}
-        </text>
       </view>
       <!-- 题目卡片 -->
       <view class="mb-4 rounded-xl bg-white p-4 shadow">
@@ -196,9 +276,6 @@ onLoad((options) => {
             <view class="h-80 w-full overflow-hidden rounded-xl">
               <swiper class="swiper" indicator-dots>
                 <swiper-item v-for="(item, index) in currentQuestion.pictureUrl" :key="index">
-                  <!-- <view class="h-full w-full flex items-center justify-center">
-                    <img :src="item" mode="aspectFit" class="max-h-full">
-                  </view> -->
                   <img :src="item" mode="aspectFit" class="w-full">
                 </swiper-item>
               </swiper>
@@ -237,23 +314,18 @@ onLoad((options) => {
       <!-- 答题按钮（上下排列） -->
       <view class="mb-2 flex flex-col gap-3">
         <button
-          class="w-full flex items-center justify-center rounded bg-green-500 py-3 text-lg text-white"
-          @click="nextQuestion"
+          class="w-full flex items-center justify-center border-0 rounded-xl bg-[#16a34a] py-3 text-lg text-white font-semibold"
+          @click="handleAnswerWithUI(true)"
         >
-          <text class="iconfont mr-2">
-            ✔️
-          </text>能做到
+          能做到
         </button>
         <button
-          class="w-full flex items-center justify-center border border-red-200 rounded bg-red-50 py-3 text-lg text-red-500"
-          @click="nextQuestion"
+          class="w-full flex items-center justify-center border-2 border-red-300 rounded-xl border-solid py-3 text-lg text-red-400 font-semibold"
+          @click="handleAnswerWithUI(false)"
         >
-          <text class="iconfont mr-2">
-            ❌
-          </text>暂时不能
+          暂时不能
         </button>
       </view>
-      <!-- 题目切换（已移除） -->
     </view>
     <view v-else class="py-10 text-center text-gray-400">
       暂无题目

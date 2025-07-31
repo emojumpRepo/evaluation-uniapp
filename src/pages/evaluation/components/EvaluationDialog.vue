@@ -119,9 +119,6 @@ function closeDialog() {
         <text class="mb-8 text-center text-sm text-gray-500">
           需要先添加宝宝信息才能进行测评
         </text>
-        <button class="w-full rounded-lg bg-blue-500 py-3 text-center text-white" @click="navigateToBabyManagement">
-          添加宝宝
-        </button>
       </div>
 
       <!-- 错误状态 -->
@@ -180,7 +177,7 @@ function closeDialog() {
                   {{ baby.name }}
                 </text>
                 <text class="text-sm text-gray-500">
-                  {{ baby.birthday }}
+                  月龄：{{ baby.monthAge }} 个月
                 </text>
               </div>
 

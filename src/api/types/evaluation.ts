@@ -58,6 +58,10 @@ export interface IAssessmentResult {
   assessmentId: number
   assessmentTitle: string
   questionnaireCount: number
+  overallScore: number
+  overallLevel: string
+  completedTime: string
+  overallReport: string
   questionnaireResults: [
     {
       id: number
@@ -68,6 +72,70 @@ export interface IAssessmentResult {
       level: string
     },
   ]
+}
+
+// 问卷结果响应VO
+export interface QuestionnaireResultRespVO {
+  id: number
+  questionnaireId: number
+  questionnaireTitle: string
+  score: number
+  level: string
+  weight: number
+  contribution: number
+  completedTime: string
+}
+
+// 最新测评结果响应VO
+export interface LatestAssessmentResultRespVO {
+  id: number
+  assessmentId: number
+  babyId: number
+  assessmentTitle: string
+  babyName: string
+  overallScore: number
+  overallLevel: string
+  overallReport: string
+  completedTime: string
+  createTime: string
+  questionnaireResults: QuestionnaireResultRespVO[]
+}
+
+// 历史测评结果响应VO
+export interface AssessmentResultRespVO {
+  id: number
+  assessmentId: number
+  babyId: number
+  assessmentName: string
+  babyName: string
+  babyGender: string
+  babyBirthday: string
+  overallScore: number
+  overallLevel: string
+  report: string
+  completedTime: string
+  createTime: string
+  questionnaireResults: QuestionnaireResultRespVO[]
+  hasLatestRecord: boolean
+}
+
+// 问卷结果详细VO
+export interface QuestionnaireResultRespVO {
+  id: number
+  questionnaireId: number
+  questionnaireTitle: string
+  resultData: string
+  answerData: string
+  score: number
+  level: string
+  report: string
+  completedTime: string
+}
+
+// 项目掌握情况
+export interface ProjectMastery {
+  mastered: string[] // 已掌握项目
+  pending: string[] // 待发展项目
 }
 
 export interface IQuestionnaireResultList {
@@ -87,6 +155,14 @@ export interface IQuestionnaireResult extends IQuestionnaireResultList {
   report: string
 }
 
+export interface IQuestionnaireAnswerSubmitReq {
+  encryptedUserId: string
+  encryptedAssessmentId: string
+  encryptedQuestionnaireId: string
+  encryptedAnswerData: string
+  completedTime: number
+}
+
 export const LEVEL_COLOR_MAP: Record<string, { color: string, bg: string, icon: string }> = {
   正常范围: { color: 'text-green-600', bg: 'bg-green-50', icon: '🟢' },
   可能抑郁: { color: 'text-red-600', bg: 'bg-red-50', icon: '🔴' },
@@ -100,7 +176,7 @@ export const LEVEL_COLOR_MAP: Record<string, { color: string, bg: string, icon: 
   中度风险: { color: 'text-yellow-600', bg: 'bg-yellow-50', icon: '🟡' },
   高风险: { color: 'text-red-600', bg: 'bg-red-50', icon: '🔴' },
   严重: { color: 'text-red-600', bg: 'bg-red-50', icon: '🔴' },
-  中度: { color: 'text-yellow-600', bg: 'bg-yellow-50', icon: '🟡' },
+  中等: { color: 'text-yellow-600', bg: 'bg-yellow-50', icon: '🟡' },
 }
 
 export type LevelType = 'color' | 'bg' | 'icon'

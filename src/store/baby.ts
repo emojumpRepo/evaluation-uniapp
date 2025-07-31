@@ -11,6 +11,32 @@ export const useBabyStore = defineStore('baby', () => {
   const isLoading = ref<boolean>(false)
   const error = ref<string | null>(null)
 
+  // 计算月龄的工具函数
+  function calculateMonthAge(birthday: string | number): number {
+    const birthDate = new Date(birthday)
+    const currentDate = new Date()
+
+    // 计算年份差和月份差
+    let monthAge = (currentDate.getFullYear() - birthDate.getFullYear()) * 12
+    monthAge += currentDate.getMonth() - birthDate.getMonth()
+
+    // 如果当前日期的天数小于出生日期的天数，则月龄减1
+    if (currentDate.getDate() < birthDate.getDate()) {
+      monthAge--
+    }
+
+    // 确保月龄不小于0
+    return Math.max(0, monthAge)
+  }
+
+  // 为宝宝列表添加月龄信息
+  function addMonthAgeToList(babies: IBabyInfo[]): IBabyInfo[] {
+    return babies.map(baby => ({
+      ...baby,
+      monthAge: calculateMonthAge(baby.birthday),
+    }))
+  }
+
   // 获取宝宝列表
   async function getBabyListData() {
     isLoading.value = true
@@ -21,7 +47,10 @@ export const useBabyStore = defineStore('baby', () => {
       console.log('获取宝宝列表', res)
 
       if (res.code === 0) {
-        babyList.value = res.data || []
+        // 获取数据后计算每个宝宝的月龄
+        const babiesWithAge = res.data ? addMonthAgeToList(res.data) : []
+        babyList.value = babiesWithAge
+        console.log('添加月龄后的宝宝列表', babiesWithAge)
       }
       else {
         error.value = '获取宝宝列表失败'
@@ -43,5 +72,8 @@ export const useBabyStore = defineStore('baby', () => {
     isLoading,
     error,
     getBabyListData,
+    // 导出工具函数，方便其他地方使用
+    calculateMonthAge,
+    addMonthAgeToList,
   }
 })

@@ -12,6 +12,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
+import { getUserAssessmentRecords } from '@/api/evaluation'
 import AuthModel from '@/components/AuthModel/index.vue'
 import { useUserStore } from '@/store'
 import { useBabyStore } from '@/store/index'
@@ -27,6 +28,7 @@ const babyStore = useBabyStore()
 const { babyList } = storeToRefs(babyStore)
 
 const showAuthModal = ref(false) // 登录弹窗
+const userAssessmentRecords = ref<number[]>([])
 
 // 显示登录弹窗
 function handleShowAuthModal() {
@@ -85,10 +87,28 @@ function handleLogout() {
   })
 }
 
+/**
+ * 获取用户测评记录
+ */
+async function getUserAssessmentRecordsData() {
+  try {
+    const res = await getUserAssessmentRecords(userInfo.value.userId)
+    console.log('用户测评记录', res)
+    const { code, data } = res
+    if (code === 0) {
+      userAssessmentRecords.value = data.assessmentIds
+    }
+  }
+  catch (error) {
+    console.error('获取用户测评记录失败', error)
+  }
+}
+
 onMounted(async () => {
   if (isLogin.value) {
     await userStore.getUserInfo()
     await babyStore.getBabyListData()
+    await getUserAssessmentRecordsData()
   }
 })
 </script>
@@ -136,7 +156,7 @@ onMounted(async () => {
         <view class="stat-divider" />
         <view class="stat-item">
           <text class="stat-number">
-            5
+            {{ userAssessmentRecords.length || 0 }}
           </text>
           <text class="stat-label">
             测评记录

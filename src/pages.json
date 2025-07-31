@@ -135,6 +135,22 @@
           }
         },
         {
+          "path": "record/assessment-result",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "测评结果"
+          }
+        },
+        {
+          "path": "record/history-comparison",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "历史对比报告"
+          }
+        },
+        {
           "path": "record/history-record",
           "type": "page",
           "layout": "default",

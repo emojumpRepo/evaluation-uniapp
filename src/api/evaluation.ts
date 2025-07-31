@@ -1,4 +1,4 @@
-import type { IAssessment, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireResult, IQuestionnaireResultList, IQuestionnaireSubmitReq } from '@/api/types/evaluation'
+import type { AssessmentResultRespVO, IAssessment, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireAnswerSubmitReq, IQuestionnaireResult, IQuestionnaireResultList, IQuestionnaireSubmitReq, LatestAssessmentResultRespVO } from '@/api/types/evaluation'
 import { http } from '@/http/http'
 
 // ================= 测评接口 =================
@@ -46,6 +46,11 @@ export function getAssessmentResult(params: { id: number, babyId: number }) {
   return http.get<{ result: string }>('/emojump/assessment/result', params)
 }
 
+// 获取用户测评记录
+export function getUserAssessmentRecords(userId: number) {
+  return http.post<{ assessmentIds: number[] }>('/emojump/assessment-result/user-assessment-records', { userId })
+}
+
 // =================== 问卷接口 ===================
 // 获得已发布问卷列表
 export function getPublishedQuestionnaires(params?: { assessmentId: number, babyId: number }) {
@@ -90,4 +95,24 @@ export function getHistoryQuestionnaireResult(params: { questionnaireId: number,
 // 获取问卷结果
 export function getQuestionnaireResult(params: { id: number }) {
   return http.get<IQuestionnaireResult>('/emojump/questionnaire-result/get', params)
+}
+
+// 提交问卷答案
+export function submitQuestionnaireAnswer(params: IQuestionnaireAnswerSubmitReq) {
+  return http.post('/emojump/questionnaire-result/submit-answer', params)
+}
+
+// 生成测评结果
+export function generateAssessmentResult(params: { assessmentId: number, babyId: number }) {
+  return http.get('/emojump/assessment-result/generate-result', params)
+}
+
+// 获取最新的测评结果
+export function getLatestAssessmentResult(params: { assessmentId: number, babyId: number }) {
+  return http.get<LatestAssessmentResultRespVO>('/emojump/assessment-result/latest-result', params)
+}
+
+// 获取历史测评结果
+export function getHistoryAssessmentResult(params: { assessmentId: number, babyId: number }) {
+  return http.get<AssessmentResultRespVO[]>('/emojump/assessment-result/history-results', params)
 }
