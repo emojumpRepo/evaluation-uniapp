@@ -4,16 +4,23 @@ import dayjs from 'dayjs'
 import { ref } from 'vue'
 import { getLevelClass } from '@/api/types/evaluation'
 
-defineProps<{
+const props = defineProps<{
   info: IAssessmentResult
+  specialAssessmentId: number
 }>()
 
 const emit = defineEmits<{
   (e: 'handleQuestionnaire', questionnaireId: number, assessmentId: number): void
+  (e: 'handleViewAssessmentResult', assessmentId: number): void
+  (e: 'handleViewHistoryComparison', assessmentId: number): void
 }>()
 
 // 当前展开的测评ID数组（用于折叠面板）
 const expandedAssessments = ref<string[]>([])
+
+const isShowAssessmentResult = computed(() => {
+  return props.info.questionnaireResults.length === props.info.questionnaireCount && props.info.assessmentId === props.specialAssessmentId
+})
 </script>
 
 <script lang="ts">
@@ -26,7 +33,7 @@ export default {
 
 <template>
   <wd-collapse v-model="expandedAssessments">
-    <wd-collapse-item :name="`item-${info.assessmentId}`">
+    <wd-collapse-item :name="`item-${info.completedTime}`">
       <template #title="{ expanded }">
         <view class="w-full flex items-center">
           <view class="flex-1">
@@ -38,16 +45,40 @@ export default {
               <wd-icon v-else name="chevron-down" size="22px" color="#999" />
             </view>
             <!-- 进度条 -->
-            <div class="mr-4 flex items-center gap-2 text-xs text-gray-400">
-              <span class="whitespace-nowrap">完成进度</span>
-              <div class="w-full flex items-center gap-3">
-                <wd-progress
-                  :percentage="Math.round((info.questionnaireResults.length / info.questionnaireCount) * 100)"
-                  :color="info.questionnaireResults.length === info.questionnaireCount ? '#10B981' : '#3B82F6'"
-                  hide-text
-                />
-                <span>{{ info.questionnaireResults.length }}/{{ info.questionnaireCount }}</span>
-              </div>
+            <div class="mr-4 flex flex-col gap-2">
+              <view>
+                <view class="flex items-center gap-2">
+                  <view
+                    v-if="isShowAssessmentResult"
+                    class="flex items-center justify-center rounded-lg bg-blue-50 px-2 py-1 active:bg-blue-100"
+                    @click.stop="emit('handleViewAssessmentResult', info.assessmentId)"
+                  >
+                    <text class="text-xs text-blue-600">
+                      查看结果
+                    </text>
+                  </view>
+                  <view
+                    v-if="isShowAssessmentResult"
+                    class="flex items-center justify-center rounded-lg bg-green-50 px-2 py-1 active:bg-green-100"
+                    @click.stop="emit('handleViewHistoryComparison', info.assessmentId)"
+                  >
+                    <text class="text-xs text-green-600">
+                      历史对比
+                    </text>
+                  </view>
+                </view>
+              </view>
+              <view class="flex items-center gap-2 text-xs text-gray-400">
+                <span class="whitespace-nowrap">完成进度</span>
+                <div class="w-full flex items-center gap-3">
+                  <wd-progress
+                    :percentage="Math.round((info.questionnaireResults.length / info.questionnaireCount) * 100)"
+                    :color="info.questionnaireResults.length === info.questionnaireCount ? '#10B981' : '#3B82F6'"
+                    hide-text
+                  />
+                  <span>{{ info.questionnaireResults.length }}/{{ info.questionnaireCount }}</span>
+                </div>
+              </view>
             </div>
           </view>
         </view>
