@@ -60,6 +60,7 @@ export interface IAssessmentResult {
   questionnaireCount: number
   overallScore: number
   overallLevel: string
+  completedTime: string
   overallReport: string
   questionnaireResults: [
     {
