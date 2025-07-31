@@ -46,6 +46,11 @@ export function getAssessmentResult(params: { id: number, babyId: number }) {
   return http.get<{ result: string }>('/emojump/assessment/result', params)
 }
 
+// 获取用户测评记录
+export function getUserAssessmentRecords(userId: number) {
+  return http.post<{ assessmentIds: number[] }>('/emojump/assessment-result/user-assessment-records', { userId })
+}
+
 // =================== 问卷接口 ===================
 // 获得已发布问卷列表
 export function getPublishedQuestionnaires(params?: { assessmentId: number, babyId: number }) {

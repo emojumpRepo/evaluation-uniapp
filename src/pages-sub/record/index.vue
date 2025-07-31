@@ -10,11 +10,9 @@
 <script setup lang="ts">
 import type { IBabyInfo } from '@/api/types/baby'
 import type { IAssessmentResult } from '@/api/types/evaluation'
-import dayjs from 'dayjs'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
 import { getBabyQuestionnaireResult } from '@/api/evaluation'
-import { getLevelClass } from '@/api/types/evaluation'
 import { useBabyStore } from '@/store/index'
 
 const specialAssessmentId = 10
@@ -30,6 +28,8 @@ const assessmentResultList = ref<IAssessmentResult[]>([])
 const defaultAvatar = 'http://test.yudao.iocoder.cn/user/avatar/20250715/G0bTIS90DRSvc90f423c08a6cb7bb3ab969a5301474c_1752564908905.png'
 // 加载状态
 const loading = ref(false)
+// 切换宝宝加载状态
+const switchBabyLoading = ref(false)
 // 是否显示宝宝选择器
 const showBabyPicker = ref(false)
 // 当前展开的测评ID数组（用于折叠面板）
@@ -42,9 +42,13 @@ const selectedBaby = computed(() => {
 
 // 选择宝宝
 async function selectBaby(baby: IBabyInfo) {
-  selectedBabyId.value = baby.id || null
-  await getAssessmentResultList()
+  switchBabyLoading.value = true
   showBabyPicker.value = false
+  selectedBabyId.value = baby.id || null
+  // 清空之前的折叠面板展开状态，避免状态冲突
+  expandedAssessments.value = []
+  await getAssessmentResultList()
+  switchBabyLoading.value = false
 }
 
 function openSelectBabyPicker() {
@@ -60,9 +64,9 @@ function openSelectBabyPicker() {
 }
 
 // 查看问卷结果
-function handleQuestionnaire(questionnaire: any, assessmentId: number) {
+function handleQuestionnaire(questionnaireId: number, assessmentId: number) {
   uni.navigateTo({
-    url: `/pages-sub/record/history-record?babyId=${selectedBabyId.value}&questionnaireId=${questionnaire.questionnaireId}&assessmentId=${assessmentId}`,
+    url: `/pages-sub/record/history-record?babyId=${selectedBabyId.value}&questionnaireId=${questionnaireId}&assessmentId=${assessmentId}`,
   })
 }
 
@@ -89,7 +93,7 @@ async function getAssessmentResultList() {
     const { code, data } = res
     console.log('获取测评结果', res)
     if (code === 0) {
-      assessmentResultList.value = data as unknown as IAssessmentResult[]
+      assessmentResultList.value = (data as unknown as IAssessmentResult[]).sort((a, b) => b.assessmentId - a.assessmentId)
     }
   }
   catch (err) {
@@ -107,16 +111,12 @@ onMounted(async () => {
 })
 </script>
 
-<script lang="ts">
-export default {
-  options: {
-    styleIsolation: 'shared',
-  },
-}
-</script>
-
 <template>
-  <view class="min-h-screen bg-gray-50">
+  <view class="relative min-h-screen bg-gray-50">
+    <view v-if="switchBabyLoading" class="absolute left-0 top-0 z-10 h-full w-full flex items-center justify-center bg-white/70">
+      <wd-loading size="18" />
+    </view>
+
     <!-- 宝宝选择器 -->
     <view class="sticky top-0 z-10 bg-white px-4 py-3 shadow-sm">
       <view class="flex items-center justify-between">
@@ -280,19 +280,3 @@ export default {
     </wd-popup>
   </view>
 </template>
-
-<style lang="scss" scoped>
-:deep(.wd-collapse-item__body) {
-  padding-top: 3px !important;
-  padding-left: 28px !important;
-  padding-right: 28px !important;
-}
-
-.collapse-item {
-  border-bottom: 1px solid #e8e8e8;
-}
-
-.collapse-item:last-child {
-  border-bottom: none;
-}
-</style>
