@@ -1,4 +1,4 @@
-import type { IAssessment, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireAnswerSubmitReq, IQuestionnaireResult, IQuestionnaireResultList, IQuestionnaireSubmitReq } from '@/api/types/evaluation'
+import type { AssessmentResultRespVO, IAssessment, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireAnswerSubmitReq, IQuestionnaireResult, IQuestionnaireResultList, IQuestionnaireSubmitReq, LatestAssessmentResultRespVO } from '@/api/types/evaluation'
 import { http } from '@/http/http'
 
 // ================= 测评接口 =================
@@ -94,9 +94,20 @@ export function getQuestionnaireResult(params: { id: number }) {
 
 // 提交问卷答案
 export function submitQuestionnaireAnswer(params: IQuestionnaireAnswerSubmitReq) {
-  return http.post('/emojump/questionnaire-answer/submit-answer', params)
+  return http.post('/emojump/questionnaire-result/submit-answer', params)
 }
 
+// 生成测评结果
 export function generateAssessmentResult(params: { assessmentId: number, babyId: number }) {
-  return http.post('/emojump/assessment-result/generate-result', params)
+  return http.get('/emojump/assessment-result/generate-result', params)
+}
+
+// 获取最新的测评结果
+export function getLatestAssessmentResult(params: { assessmentId: number, babyId: number }) {
+  return http.get<LatestAssessmentResultRespVO>('/emojump/assessment-result/latest-result', params)
+}
+
+// 获取历史测评结果
+export function getHistoryAssessmentResult(params: { assessmentId: number, babyId: number }) {
+  return http.get<AssessmentResultRespVO[]>('/emojump/assessment-result/history-results', params)
 }

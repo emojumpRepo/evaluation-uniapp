@@ -70,6 +70,70 @@ export interface IAssessmentResult {
   ]
 }
 
+// 问卷结果响应VO
+export interface QuestionnaireResultRespVO {
+  id: number
+  questionnaireId: number
+  questionnaireTitle: string
+  score: number
+  level: string
+  weight: number
+  contribution: number
+  completedTime: string
+}
+
+// 最新测评结果响应VO
+export interface LatestAssessmentResultRespVO {
+  id: number
+  assessmentId: number
+  babyId: number
+  assessmentTitle: string
+  babyName: string
+  overallScore: number
+  overallLevel: string
+  overallReport: string
+  completedTime: string
+  createTime: string
+  questionnaireResults: QuestionnaireResultRespVO[]
+}
+
+// 历史测评结果响应VO
+export interface AssessmentResultRespVO {
+  id: number
+  assessmentId: number
+  babyId: number
+  assessmentName: string
+  babyName: string
+  babyGender: string
+  babyBirthday: string
+  overallScore: number
+  overallLevel: string
+  report: string
+  completedTime: string
+  createTime: string
+  questionnaireResults: QuestionnaireResultRespVO[]
+  hasLatestRecord: boolean
+}
+
+// 问卷结果详细VO
+export interface QuestionnaireResultRespVO {
+  id: number
+  questionnaireId: number
+  questionnaireTitle: string
+  resultData: string
+  answerData: string
+  score: number
+  level: string
+  report: string
+  completedTime: string
+}
+
+// 项目掌握情况
+export interface ProjectMastery {
+  mastered: string[] // 已掌握项目
+  pending: string[] // 待发展项目
+}
+
 export interface IQuestionnaireResultList {
   id: number
   questionnaireId: number
@@ -92,7 +156,7 @@ export interface IQuestionnaireAnswerSubmitReq {
   encryptedAssessmentId: string
   encryptedQuestionnaireId: string
   encryptedAnswerData: string
-  completedTime: string
+  completedTime: number
 }
 
 export const LEVEL_COLOR_MAP: Record<string, { color: string, bg: string, icon: string }> = {

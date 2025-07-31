@@ -17,6 +17,8 @@ import { getBabyQuestionnaireResult } from '@/api/evaluation'
 import { getLevelClass } from '@/api/types/evaluation'
 import { useBabyStore } from '@/store/index'
 
+const specialAssessmentId = 10
+
 const babyStore = useBabyStore()
 const { babyList } = storeToRefs(babyStore)
 
@@ -61,6 +63,20 @@ function openSelectBabyPicker() {
 function handleQuestionnaire(questionnaire: any, assessmentId: number) {
   uni.navigateTo({
     url: `/pages-sub/record/history-record?babyId=${selectedBabyId.value}&questionnaireId=${questionnaire.questionnaireId}&assessmentId=${assessmentId}`,
+  })
+}
+
+// 查看测评整体结果
+function handleViewAssessmentResult(assessmentId: number) {
+  uni.navigateTo({
+    url: `/pages-sub/record/assessment-result?assessmentId=${assessmentId}&babyId=${selectedBabyId.value}`,
+  })
+}
+
+// 查看历史对比报告
+function handleViewHistoryComparison(assessmentId: number) {
+  uni.navigateTo({
+    url: `/pages-sub/record/history-comparison?assessmentId=${assessmentId}&babyId=${selectedBabyId.value}`,
   })
 }
 
@@ -151,10 +167,32 @@ export default {
               <template #title="{ expanded }">
                 <view class="w-full flex items-center">
                   <view class="flex-1">
-                    <view class="mb-2 flex items-center justify-between">
-                      <text class="text-base text-gray-800 font-medium">
-                        {{ item.assessmentTitle }}
-                      </text>
+                    <view class="mb-2 flex items-center justify-between gap-2">
+                      <view class="flex flex-1 items-center justify-between">
+                        <text class="text-base text-gray-800 font-medium">
+                          {{ item.assessmentTitle }}
+                        </text>
+                        <view class="flex items-center gap-2">
+                          <view
+                            v-if="item.questionnaireResults.length === item.questionnaireCount && item.assessmentId === specialAssessmentId"
+                            class="flex items-center justify-center rounded-lg bg-blue-50 px-2 py-1 active:bg-blue-100"
+                            @click.stop="handleViewAssessmentResult(item.assessmentId)"
+                          >
+                            <text class="text-xs text-blue-600">
+                              查看结果
+                            </text>
+                          </view>
+                          <view
+                            v-if="item.questionnaireResults.length === item.questionnaireCount && item.assessmentId === specialAssessmentId"
+                            class="flex items-center justify-center rounded-lg bg-green-50 px-2 py-1 active:bg-green-100"
+                            @click.stop="handleViewHistoryComparison(item.assessmentId)"
+                          >
+                            <text class="text-xs text-green-600">
+                              历史对比
+                            </text>
+                          </view>
+                        </view>
+                      </view>
                       <wd-icon v-if="expanded" name="chevron-up" size="22px" color="#999" />
                       <wd-icon v-else name="chevron-down" size="22px" color="#999" />
                     </view>

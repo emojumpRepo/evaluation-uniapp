@@ -138,7 +138,7 @@ async function handleAnswerWithUI(canDo: boolean) {
         encryptedAssessmentId,
         encryptedQuestionnaireId,
         encryptedAnswerData,
-        completedTime: new Date().toISOString(),
+        completedTime: Date.now(),
       }
 
       // 调用接口

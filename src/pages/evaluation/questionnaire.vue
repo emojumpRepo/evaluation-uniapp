@@ -165,7 +165,8 @@ async function handleGenerateAssessmentResult() {
     })
 
     if (res.code === 0) {
-      uni.showToast({ title: '结果生成成功', icon: 'success' })
+      uni.showToast({ title: '结果生成成功，可在“我的-我的测评”中查看' })
+      uni.switchTab({ url: '/pages/evaluation/index' })
     }
     else {
       uni.showToast({ title: res.msg || '生成失败', icon: 'none' })
@@ -278,8 +279,8 @@ function getMainTestMonth(monthAge: number, monthList: number[]): number {
 
     <!-- 生成测评结果按钮 -->
     <view v-if="Number(props.id) === specialAssessmentId && allQuestionnairesCompleted()" class="mb-6 flex justify-center">
-      <button class="rounded bg-blue-600 px-8 py-3 text-lg text-white font-bold shadow" @click="handleGenerateAssessmentResult">
-        生成测评结果
+      <button class="rounded bg-blue-600 px-8 py-2 text-sm text-white font-semibold shadow" @click="handleGenerateAssessmentResult">
+        完成此次测评，点击生成结果
       </button>
     </view>
 
