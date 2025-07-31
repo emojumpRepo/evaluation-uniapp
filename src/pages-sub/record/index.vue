@@ -10,9 +10,11 @@
 <script setup lang="ts">
 import type { IBabyInfo } from '@/api/types/baby'
 import type { IAssessmentResult } from '@/api/types/evaluation'
+import dayjs from 'dayjs'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
 import { getBabyQuestionnaireResult } from '@/api/evaluation'
+import { getLevelClass } from '@/api/types/evaluation'
 import { useBabyStore } from '@/store/index'
 
 const specialAssessmentId = 10
@@ -215,7 +217,7 @@ onMounted(async () => {
               <!-- 问卷列表 -->
               <div
                 v-for="questionnaire in item.questionnaireResults" :key="questionnaire.questionnaireId"
-                class="collapse-item py-4 space-y-1" @click="handleQuestionnaire(questionnaire, item.assessmentId)"
+                class="collapse-item py-4 space-y-1" @click="handleQuestionnaire(questionnaire.questionnaireId, item.assessmentId)"
               >
                 <view class="flex flex-col gap-3">
                   <view class="flex items-center justify-between">
