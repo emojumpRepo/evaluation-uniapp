@@ -38,7 +38,7 @@ export const useUserStore = defineStore(
     // 定义用户信息
     const userInfo = ref<IUserInfoVo>({ ...(uni.getStorageSync('userInfo') || userInfoState) })
 
-    const isLogin = computed(() => !!(userInfo.value.expiresTime && userInfo.value.expiresTime > Date.now()))
+    const isLogin = computed(() => !!(userInfo.value?.refreshToken))
 
     // 设置用户信息
     const setUserInfo = (val: IUserInfoVo) => {
