@@ -92,7 +92,6 @@ const lineChartOption = computed(() => {
         return [
           `${result.date}`,
           `发育月龄：${data.value}月`,
-          `等级：${result.level}`,
         ].join('\n')
       },
     },
