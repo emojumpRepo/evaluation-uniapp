@@ -165,8 +165,11 @@ async function handleGenerateAssessmentResult() {
     })
 
     if (res.code === 0) {
-      uni.showToast({ title: '结果生成成功，可在“我的-我的测评”中查看' })
-      uni.switchTab({ url: '/pages/evaluation/index' })
+      uni.showToast({ title: '结果生成成功，可在“我的-我的测评”中查看', icon: 'none', duration: 3000, mask: true, success: () => {
+        setTimeout(() => {
+          uni.switchTab({ url: '/pages/evaluation/index' })
+        }, 3000)
+      } })
     }
     else {
       uni.showToast({ title: res.msg || '生成失败', icon: 'none' })

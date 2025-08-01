@@ -6,6 +6,7 @@ export interface Question {
   questionDescription: string
   pictureUrl: string | string[]
   videoUrl?: string
+  audioUrl: string
 }
 
 export interface MonthQuestion {

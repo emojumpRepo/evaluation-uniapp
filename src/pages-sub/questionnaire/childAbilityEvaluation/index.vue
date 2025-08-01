@@ -10,9 +10,10 @@
 <script setup lang="ts">
 import type { Schema } from '@/hooks/useAssessment'
 import { onLoad } from '@dcloudio/uni-app'
-import { ref } from 'vue'
+import { onUnmounted, ref } from 'vue'
 import { submitQuestionnaireAnswer } from '@/api/evaluation'
 import { useAssessment } from '@/hooks/useAssessment'
+import { cloudManager } from '@/utils/cloudManager'
 import { aesEncrypt } from '@/utils/crypto'
 
 // ==================== 常量配置 ====================
@@ -35,31 +36,19 @@ const assessmentId = ref<number>(0)
 const questionnaireId = ref<number>(0)
 const submitResult = ref<any>(null)
 const submitError = ref<string>('')
+const isPlaying = ref(false)
+const audioContext = ref<any>(null)
 
 // ==================== 使用 Composable ====================
 const {
   schema,
-  currentMonthIndex,
-  currentQuestionIndex,
   isCompleted,
   resultData,
   maxTestMonth,
-  answers,
-  isRetreating,
-  retreatStartMonth,
   currentQuestion,
   currentMonth,
-  totalQuestions,
-  currentFlatIndex,
   handleAnswer,
   initializeAssessment,
-  resetAssessment,
-  completeAssessment,
-  navigateToMonth,
-  getCurrentMonthStatus,
-  isMonthCompleted,
-  hasMonthFailed,
-  isMonthAnswered,
   getFormattedAnswers,
 } = useAssessment()
 
@@ -105,8 +94,167 @@ function toggleShowDesc() {
   showDesc.value = !showDesc.value
 }
 
-function playAudio() {
-  console.log('播放语音', currentQuestion.value?.questionText)
+/**
+ * 播放语音功能
+ */
+async function playAudio() {
+  if (!currentQuestion.value?.audioUrl) {
+    uni.showToast({
+      title: '当前题目没有语音文件',
+      icon: 'none',
+    })
+    return
+  }
+
+  // 如果正在播放，先停止
+  if (isPlaying.value) {
+    stopAudio()
+    // 等待一段时间确保音频资源完全释放
+    await new Promise(resolve => setTimeout(resolve, 500))
+  }
+
+  try {
+    // 优先使用云存储音频文件
+    if (currentQuestion.value.audioUrl) {
+      await playCloudAudio(currentQuestion.value.audioUrl)
+    }
+    else {
+      // 如果没有音频文件，显示文字提示
+      showTextFallback()
+    }
+  }
+  catch (error) {
+    console.error('语音播放出错:', error)
+    showTextFallback()
+  }
+}
+
+/**
+ * 播放云存储音频文件
+ */
+async function playCloudAudio(fileID: string) {
+  try {
+    // 使用云开发管理类获取临时文件链接
+    const tempFileURL = await cloudManager.getTempFileURL(fileID)
+
+    if (tempFileURL) {
+      playAudioWithUrl(tempFileURL)
+    }
+    else {
+      console.error('获取临时文件链接失败')
+      showTextFallback()
+    }
+  }
+  catch (error) {
+    console.error('云存储音频播放失败:', error)
+    showTextFallback()
+  }
+}
+
+/**
+ * 使用URL播放音频
+ */
+function playAudioWithUrl(audioUrl: string) {
+  try {
+    console.log('开始创建音频上下文，URL:', audioUrl)
+
+    // 确保先清理旧的音频上下文
+    if (audioContext.value) {
+      console.log('清理旧的音频上下文')
+      audioContext.value.stop()
+      audioContext.value.destroy()
+      audioContext.value = null
+    }
+
+    uni.setInnerAudioOption({
+      mixWithOther: false, // 不与其他音频混播
+      obeyMuteSwitch: false, // 不遵循系统静音开关
+      speakerOn: true,
+    })
+
+    audioContext.value = uni.createInnerAudioContext()
+
+    // 设置音频属性
+    audioContext.value.volume = 1
+    audioContext.value.loop = false
+    audioContext.value.autoplay = false
+
+    // 设置事件监听器
+    audioContext.value.onPlay(() => {
+      console.log('开始播放音频')
+      isPlaying.value = true
+    })
+
+    audioContext.value.onEnded(() => {
+      console.log('音频播放结束')
+      isPlaying.value = false
+    })
+
+    audioContext.value.onError((err: any) => {
+      console.error('音频播放错误:', err)
+      isPlaying.value = false
+      showTextFallback()
+    })
+
+    audioContext.value.onCanplay(() => {
+      console.log('音频可以播放')
+    })
+
+    audioContext.value.onWaiting(() => {
+      console.log('音频加载中...')
+    })
+
+    audioContext.value.onStop(() => {
+      console.log('音频播放停止')
+      isPlaying.value = false
+    })
+
+    audioContext.value.onTimeUpdate(() => {
+      console.log('音频播放进度:', audioContext.value.currentTime)
+    })
+
+    console.log('事件监听器设置成功')
+
+    // 设置音频源
+    audioContext.value.src = audioUrl
+
+    // 延迟播放，确保音频加载完成
+    setTimeout(() => {
+      if (audioContext.value) {
+        audioContext.value.play()
+      }
+    }, 200)
+  }
+  catch (error) {
+    console.error('音频播放失败:', error)
+    showTextFallback()
+  }
+}
+
+/**
+ * 显示文字提示（降级方案）
+ */
+function showTextFallback() {
+  isPlaying.value = false
+
+  uni.showToast({
+    title: currentQuestion.value.questionText,
+    icon: 'none',
+    duration: 3000,
+  })
+}
+
+/**
+ * 停止语音播放
+ */
+function stopAudio() {
+  if (audioContext.value) {
+    audioContext.value.stop()
+    audioContext.value.destroy()
+    audioContext.value = null
+  }
+
+  isPlaying.value = false
 }
 
 function goBack() {
@@ -117,10 +265,17 @@ function goBack() {
  * 处理答案并显示结果
  */
 async function handleAnswerWithUI(canDo: boolean) {
+  // 停止音频播放，释放资源
+  stopAudio()
+
   handleAnswer(canDo)
 
   // 如果测评完成，显示结果
   if (isCompleted.value && resultData.value) {
+    uni.showLoading({
+      title: '正在提交...',
+      mask: true,
+    })
     // 获取格式化的答案列表
     const formattedAnswers = getFormattedAnswers()
     console.log('格式化的答案列表：', JSON.stringify(formattedAnswers, null, 2))
@@ -160,6 +315,9 @@ async function handleAnswerWithUI(canDo: boolean) {
       submitResult.value = null
       submitError.value = '网络请求失败，请检查网络连接后重试'
     }
+    finally {
+      uni.hideLoading()
+    }
   }
 }
 
@@ -192,6 +350,11 @@ onLoad((options) => {
     loading.value = false
   }
 })
+
+// 页面卸载时停止语音播放
+onUnmounted(() => {
+  stopAudio()
+})
 </script>
 
 <template>
@@ -202,7 +365,7 @@ onLoad((options) => {
     <view v-else-if="error" class="py-10 text-center text-red-500">
       {{ error }}
     </view>
-    <view v-else-if="isCompleted && resultData" class="mx-auto max-w-xl">
+    <view v-else-if="isCompleted && resultData && (submitResult || submitError)" class="mx-auto max-w-xl">
       <!-- 测评完成结果 -->
       <view class="mb-4 rounded-xl bg-white p-6 text-center shadow">
         <view class="mb-4">
@@ -260,8 +423,12 @@ onLoad((options) => {
       <view class="mb-4 rounded-xl bg-white p-4 shadow">
         <!-- 题目+语音按钮 -->
         <view class="mb-2 flex gap-2">
-          <view class="h-fit rounded-md bg-blue-50 p-2 text-blue-500 !border-0" @click="playAudio">
-            <wd-icon name="sound" size="18" />
+          <view
+            class="h-fit rounded-md p-2 transition-colors duration-200 !border-0"
+            :class="isPlaying ? 'bg-red-50 text-red-500' : 'bg-blue-50 text-blue-500'"
+            @click="playAudio"
+          >
+            <wd-icon :name="isPlaying ? 'stop' : 'sound'" size="18" />
           </view>
           <text class="text-base font-medium">
             {{ currentQuestion.questionText }}

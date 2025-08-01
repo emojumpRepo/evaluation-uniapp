@@ -9,19 +9,22 @@
           "questionText": "听到铃声有一种或多种反应",
           "questionDescription": "给宝宝播放铃声，观察其是否有如转头、眨眼、手脚动作等一种或多种反应。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_1_1.mp3"
         },
         {
           "questionText": "可以注视发声者的面部",
           "questionDescription": "发出声音吸引宝宝注意，观察其是否能主动注视发声者的面部。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_1_2.mp3"
         },
         {
           "questionText": "眼睛可以跟随走动的人转动",
           "questionDescription": "在宝宝面前有人走动时，观察其眼睛是否能跟随人的移动方向转动。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_1_3.mp3"
         }
       ]
     },
@@ -32,19 +35,22 @@
           "questionText": "听到玩具声音有表情和肢体动作的变化",
           "questionDescription": "给宝宝播放玩具发出的声音，观察其是否会出现表情变化或肢体动作反应。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_2_1.mp3"
         },
         {
           "questionText": "可以自发出现微笑（睡眠时微笑不通过）",
           "questionDescription": "在宝宝清醒时观察其是否会自发微笑，睡眠中的微笑不计入。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_2_2.mp3"
         },
         {
           "questionText": "逗引时会出现微笑、发声、手脚乱动等表现",
           "questionDescription": "逗引宝宝时，观察其是否会出现微笑、发声或手脚乱动等愉快表现。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_2_3.mp3"
         }
       ]
     },
@@ -55,13 +61,15 @@
           "questionText": "无人逗引时，见到人可以自行笑起来",
           "questionDescription": "在无人主动逗引的情况下，观察宝宝见到人时是否会主动微笑。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_3_1.mp3"
         },
         {
           "questionText": "不经逗引可以观察周围环境，会东张西望",
           "questionDescription": "在没有人逗引时，观察宝宝是否会主动环顾四周，对环境表现出好奇。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_3_2.mp3"
         }
       ]
     },
@@ -72,19 +80,22 @@
           "questionText": "抱坐，在耳后上方15cm处摇沙锤，可以回头找到声源，一侧耳朵通过即可",
           "questionDescription": "让宝宝抱坐，成人在其耳后上方15厘米处摇动沙锤，观察宝宝是否能回头准确找到声源，任一侧耳朵能通过即可。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_4_1.mp3"
         },
         {
           "questionText": "可以经过逗引或自发注视镜子中的人像",
           "questionDescription": "将镜子放在宝宝面前，逗引或不逗引时，观察其是否会主动注视镜子中的自己或人像。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_4_2.mp3"
         },
         {
           "questionText": "在看到母亲或其他亲人时，会变得高兴起来",
           "questionDescription": "当宝宝看到母亲或其他亲人时，观察其是否会表现出高兴、兴奋等情绪。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_4_3.mp3"
         }
       ]
     },
@@ -95,13 +106,15 @@
           "questionText": "对镜子中自己的影像有面部表情变化或伴有肢体动作",
           "questionDescription": "让宝宝看镜子，观察其是否会对镜中自己的影像做出面部表情变化或伴随肢体动作。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_5_1.mp3"
         },
         {
           "questionText": "看到奶瓶、食物等会表现出高兴要吃的样子",
           "questionDescription": "当宝宝看到奶瓶、食物等喜欢的东西时，观察其是否会表现出高兴、期待或主动伸手的动作。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_5_2.mp3"
         }
       ]
     },
@@ -112,19 +125,22 @@
           "questionText": "带养人伸手表示要抱，理解并将手伸向带养人（两次测试完成一次即通过，不得出声提示）",
           "questionDescription": "带养人伸手示意要抱，观察宝宝是否能理解并主动将手伸向带养人，两次测试中有一次成功即为通过，不得有明显提示。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_6_1.mp3"
         },
         {
           "questionText": "能将饼干送入口中并咀嚼，有张嘴咬的动作",
           "questionDescription": "给宝宝一块饼干，观察其是否能主动将饼干送入口中并有咀嚼、张嘴咬的动作。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_6_2.mp3"
         },
         {
           "questionText": "会玩躲猫猫",
           "questionDescription": "与宝宝玩躲猫猫游戏，观察其是否能主动参与并表现出寻找或被找到的反应。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_6_3.mp3"
         }
       ]
     },
@@ -135,13 +151,15 @@
           "questionText": "仰卧位，能抱住脚玩或吸吮",
           "questionDescription": "让宝宝仰卧，观察其是否能主动抱住自己的脚玩耍或放入口中吸吮。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_7_1.mp3"
         },
         {
           "questionText": "面对陌生人，有拒抱、哭、不高兴或惊奇等表现",
           "questionDescription": "当有陌生人靠近时，观察宝宝是否会表现出拒绝、哭闹、不高兴或惊奇等情绪反应。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_7_2.mp3"
         }
       ]
     },
@@ -152,13 +170,15 @@
           "questionText": "是否常有主动伸手表示要抱；摊开手表示没有；咂咂嘴表示好吃等动作手势（有两项即可通过）",
           "questionDescription": "观察宝宝是否经常主动伸手表示要抱、摊开手表示没有、咂咂嘴表示好吃等动作手势，三项中有两项即可通过。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_8_1.mp3"
         },
         {
           "questionText": "面对训斥或赞许，会表现出委屈或兴奋等反应",
           "questionDescription": "当宝宝被训斥或表扬时，观察其是否会表现出委屈、兴奋等明显情绪反应。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_8_2.mp3"
         }
       ]
     },
@@ -169,13 +189,15 @@
           "questionText": "说再见，不做手势示范，能够做出欢迎的手势",
           "questionDescription": "对宝宝说“再见”但不做手势，观察其是否能主动做出挥手等欢迎或告别的手势。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_9_1.mp3"
         },
         {
           "questionText": "对不感兴趣的物品有摇头或推开的动作",
           "questionDescription": "给宝宝不感兴趣的物品，观察其是否会主动摇头或用手推开。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_9_2.mp3"
         }
       ]
     },
@@ -186,13 +208,15 @@
           "questionText": "询问“妈妈在哪里？”“灯在哪里？”“阿姨在哪里？”等人或物的名称，会用眼睛注视或指出2种或以上的人或物",
           "questionDescription": "询问宝宝“妈妈在哪里”等问题，观察其是否能用眼睛注视或用手指出两种或以上的人或物。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_10_1.mp3"
         },
         {
           "questionText": "按指令取东西，能理解指令并成功拿对其中一种或一种以上物品",
           "questionDescription": "给宝宝下达取物指令，观察其是否能理解并准确拿到指定的物品。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_10_2.mp3"
         }
       ]
     },
@@ -203,19 +227,22 @@
           "questionText": "玩玩具时，说“不动”、“不拿”，不要做手势，会停止拿取玩具的动作",
           "questionDescription": "在宝宝玩玩具时，说“不动”或“不拿”，不做手势，观察其是否会停止拿取玩具的动作。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_11_1.mp3"
         },
         {
           "questionText": "能从成人拿的杯子中喝到水",
           "questionDescription": "给宝宝一个装有水的杯子，由成人递给，观察其是否能自己喝到水。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_11_2.mp3"
         },
         {
           "questionText": "将帽子戴在头上，能用单手或双手摘下帽子",
           "questionDescription": "给宝宝戴上帽子，观察其是否能用单手或双手主动摘下帽子。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_11_3.mp3"
         }
       ]
     },
@@ -226,19 +253,22 @@
           "questionText": "经要求，会把玩具主动递给家长，并主动松手",
           "questionDescription": "成人要求宝宝递玩具，观察其是否能主动将玩具递给家长并松手放开。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_12_1.mp3"
         },
         {
-          "questionText": "经要求，会把玩具主动递给家长，并主动松手",
+          "questionText": "穿衣时，会有伸手、伸腿等配合动作，不一定穿进",
           "questionDescription": "成人要求宝宝递玩具，观察其是否能主动将玩具递给家长并松手放开。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_12_2.mp3"
         },
         {
           "questionText": "指示某一场景或过程，能与家长一起关注有共同注意力的过程",
           "questionDescription": "成人指向某一场景或物品，观察宝宝是否能与家长一起关注该过程或物品，表现出共同注意力。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_12_3.mp3"
         }
       ]
     },
@@ -249,13 +279,15 @@
           "questionText": "有意识地说3～5个字（妈、爸除外）",
           "questionDescription": "观察宝宝是否能主动说出3到5个有意义的字或词（不包括“妈”“爸”）。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_15_1.mp3"
         },
         {
           "questionText": "能正确且有意识地脱下袜子",
           "questionDescription": "让宝宝自己脱袜子，观察其是否能主动、正确地将袜子脱下。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_15_2.mp3"
         }
       ]
     },
@@ -266,19 +298,22 @@
           "questionText": "有意识说10个或以上单字或词（爸、妈除外）",
           "questionDescription": "观察宝宝是否能主动说出10个或以上有意义的单字或词（不包括“爸”“妈”）。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_18_1.mp3"
         },
         {
           "questionText": "经人提醒或主动示意大小便， 白天基本不尿湿裤子",
           "questionDescription": "白天时，观察宝宝是否能在大人提醒或主动表达时如厕，基本不尿湿裤子。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_18_2.mp3"
         },
         {
           "questionText": "能自己用匙吃饭，允许少量洒落",
           "questionDescription": "给宝宝一把匙，观察其是否能自己用匙吃饭，允许有少量洒落。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_18_3.mp3"
         }
       ]
     },
@@ -289,19 +324,22 @@
           "questionText": "能有意识地说出3～5个字的句子，有主谓语",
           "questionDescription": "观察宝宝是否能主动说出包含主谓语的3到5个字的完整句子。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_21_1.mp3"
         },
         {
           "questionText": "能表示个人需要，会说出三种或以上的需要，如“吃饭、喝水、玩汽车、上街”等，可伴手势",
           "questionDescription": "观察宝宝是否能主动表达三种或以上的个人需要，如“吃饭”“喝水”“玩汽车”“上街”等，可配合手势。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_21_2.mp3"
         },
         {
           "questionText": "有想象性游戏，如假装给娃娃或动物玩具喂饭、盖被子、打针等",
           "questionDescription": "给宝宝娃娃或动物玩具，观察其是否能进行如喂饭、盖被子、打针等想象性游戏。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_21_3.mp3"
         }
       ]
     },
@@ -317,19 +355,22 @@
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/basketball.png",
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/pen.png"
           ],
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_24_1.mp3"
         },
         {
           "questionText": "会自发或模仿说“你好”、“再见”等",
           "questionDescription": "观察宝宝是否能主动或模仿说出“你好”“再见”等问候语。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_24_2.mp3"
         },
         {
           "questionText": "会自发提出问题，主动问“这是什么？”",
           "questionDescription": "观察宝宝是否能主动提出问题，如“这是什么？”等。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_24_3.mp3"
         }
       ]
     },
@@ -340,19 +381,22 @@
           "questionText": "能按指令做出举手或抬脚动作",
           "questionDescription": "给宝宝下达举手或抬脚的指令，观察其是否能准确做出相应动作。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_27_1.mp3"
         },
         {
           "questionText": "不用帮忙，自己脱掉单衣或单裤",
           "questionDescription": "让宝宝自己脱掉单衣或单裤，观察其是否能独立完成。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_27_2.mp3"
         },
         {
           "questionText": "询问“打人对不对”可以摇头或说出不对",
           "questionDescription": "询问宝宝“打人对不对”，观察其是否能摇头或明确说出“不对”。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_27_3.mp3"
         }
       ]
     },
@@ -363,19 +407,22 @@
           "questionText": "能正确回答自己的大名",
           "questionDescription": "询问宝宝的名字，观察其是否能准确说出自己的大名。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_30_1.mp3"
         },
         {
           "questionText": "杯中注入1/3杯水，会来回倒水不洒",
           "questionDescription": "给宝宝一个装有1/3水的杯子，观察其是否能来回倒水而不洒出。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_30_2.mp3"
         },
         {
           "questionText": "回答简单图片问题（他在干什么？应该扔哪里？）",
           "questionDescription": "出示简单图片，提问“他在干什么”“应该扔哪里”，观察宝宝是否能正确回答。",
           "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-1.png",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_30_3.mp3"
         }
       ]
     },
@@ -386,19 +433,22 @@
           "questionText": "将一颗小丸放入30毫升小瓶问“小丸是在瓶里？还是在瓶外？”会正确说出是在里边",
           "questionDescription": "将小丸放入30毫升小瓶，提问“小丸是在瓶里还是瓶外”，观察宝宝是否能正确回答“在里边”。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_33_1.mp3"
         },
         {
           "questionText": "会穿鞋（不要求分左右）",
           "questionDescription": "给宝宝一双鞋，观察其是否能自己穿上鞋，不要求分左右。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_33_2.mp3"
         },
         {
           "questionText": "会自己解开某一个扣子",
           "questionDescription": "给宝宝带扣子的衣服，观察其是否能自己解开其中一个扣子。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_33_3.mp3"
         }
       ]
     },
@@ -409,19 +459,22 @@
           "questionText": "会发清楚大多数语音，不影响交流",
           "questionDescription": "与宝宝交流，观察其是否能发清楚大多数语音，不影响正常交流。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_36_1.mp3"
         },
         {
           "questionText": "问“饿了怎么办？冷了怎么办？累了怎么办？”能正确回答两问或以上",
           "questionDescription": "提问“饿了怎么办”“冷了怎么办”“累了怎么办”，观察宝宝是否能正确回答至少两问。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_36_2.mp3"
         },
         {
           "questionText": "能自己扣上娃娃的某一个扣子",
           "questionDescription": "给宝宝带扣子的娃娃，观察其是否能自己扣上其中一个扣子。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_36_3.mp3"
         }
       ]
     },
@@ -432,19 +485,22 @@
           "questionText": "回答图形(△◯▢)",
           "questionDescription": "出示不同图形，提问“这是什么形状”，观察宝宝是否能正确回答。",
           "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/shape.png",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_42_1.mp3"
         },
         {
           "questionText": "无需大人帮忙，会穿上衣并将扣子扣好或拉链拉好",
           "questionDescription": "让宝宝自己穿上衣服并扣好扣子或拉好拉链，观察其是否能独立完成。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_42_2.mp3"
         },
         {
           "questionText": "能回答出原因，吃饭之前为什么要洗手？",
           "questionDescription": "提问“吃饭前为什么要洗手”，观察宝宝是否能说出原因。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_42_3.mp3"
         }
       ]
     },
@@ -459,19 +515,22 @@
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/boil-water.png",
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/phone.png"
           ],
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_48_1.mp3"
         },
         {
           "questionText": "可以主动参加集体游戏，并能遵守游戏规则",
           "questionDescription": "组织集体游戏，观察宝宝是否能主动参与并遵守游戏规则。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_48_2.mp3"
         },
         {
           "questionText": "能正确辨别男女厕所标志并用语言表达出性别意义",
           "questionDescription": "出示男女厕所标志，观察宝宝是否能正确辨别并用语言表达出性别意义。",
           "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/toilet-logo.jpg",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_48_3.mp3"
         }
       ]
     },
@@ -493,19 +552,22 @@
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/nine.png",
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/ten.png"
           ],
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_54_1.mp3"
         },
         {
           "questionText": "可以区分上午、下午并回答相关问题",
           "questionDescription": "提问“现在是上午还是下午”，观察宝宝是否能正确区分并回答相关问题。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_54_2.mp3"
         },
         {
           "questionText": "可以数出双手手指个数",
           "questionDescription": "让宝宝数自己的双手手指，观察其是否能准确数出总数。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_54_3.mp3"
         }
       ]
     },
@@ -516,19 +578,22 @@
           "questionText": "可以说出两种或以上圆形的东西",
           "questionDescription": "让宝宝说出两种或以上圆形的物品，如皮球、硬币等。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_60_1.mp3"
         },
         {
           "questionText": "可以说出家的地址",
           "questionDescription": "询问宝宝家的地址，观察其是否能准确说出。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_60_2.mp3"
         },
         {
           "questionText": "出示图画，能正确回答鸡不能在水里游泳",
           "questionDescription": "出示相关图画，提问“鸡能不能在水里游泳”，观察宝宝是否能正确回答不能。",
           "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-3.png",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_60_3.mp3"
         }
       ]
     },
@@ -539,19 +604,22 @@
           "questionText": "可以较流利地 正确数出13～1",
           "questionDescription": "让宝宝从13倒数到1，观察其是否能较流利且正确地完成。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_66_1.mp3"
         },
         {
           "questionText": "能正确回答，为什么要走人行道？",
           "questionDescription": "提问“为什么要走人行道”，观察宝宝是否能说出正确原因。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_66_2.mp3"
         },
         {
           "questionText": "出示图画，能正确回答鸡不能在水里游泳",
           "questionDescription": "出示相关图画，提问“鸡能不能在水里游泳”，观察宝宝是否能正确回答不能。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_66_3.mp3"
         }
       ]
     },
@@ -562,13 +630,15 @@
           "questionText": "提问：（1）人为什么要上班？—挣钱或建设国家（2）房子为什么要有窗户？—透光或通风（3）苹果和香蕉有什么共同点？—水果；可以回答两题及以上",
           "questionDescription": "依次提问相关问题，观察宝宝是否能正确回答其中两题及以上。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_72_1.mp3"
         },
         {
           "questionText": "能回答一年有哪四个季节？",
           "questionDescription": "提问“一年有哪四个季节”，观察宝宝是否能说出春、夏、秋、冬。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_72_2.mp3"
         },
         {
           "questionText": "可以认识危险标识",
@@ -577,7 +647,8 @@
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/blast.png",
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/exit.png"
           ],
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_72_3.mp3"
         }
       ]
     },
@@ -592,19 +663,22 @@
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/clock-2.png",
             "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/clock-3.png"
           ],
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_78_1.mp3"
         },
         {
           "questionText": "告知今天星期几，能回答“明天星期几？后天星期几？”",
           "questionDescription": "询问宝宝今天星期几，再问明天和后天星期几，观察其是否能正确回答。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_78_2.mp3"
         },
         {
           "questionText": "看图能正确回答下雨了，不能在雨里看书，会淋湿、生病、 书湿了",
           "questionDescription": "出示下雨场景的图片，提问“下雨了能不能在雨里看书”，观察宝宝是否能说出会淋湿、生病等正确答案。",
           "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-5.png",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_78_3.mp3"
         }
       ]
     },
@@ -615,19 +689,22 @@
           "questionText": "可以说出毛衣、裤子、鞋的共同点",
           "questionDescription": "让宝宝说出毛衣、裤子、鞋的共同点，如都是穿在身上的衣物。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_84_1.mp3"
         },
         {
           "questionText": "提问“警察、消防员、救护车的电话号码？”（回答两种或者以上即通过）",
           "questionDescription": "提问“警察、消防员、救护车的电话号码”，观察宝宝是否能说出其中两种或以上。",
           "pictureUrl": "",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_84_2.mp3"
         },
         {
           "questionText": "说出图示中的错误地方",
           "questionDescription": "出示图片，要求宝宝指出图中的错误之处，观察其是否能正确指出。",
           "pictureUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/questionnaire/scene-6.png",
-          "videoUrl": ""
+          "videoUrl": "",
+          "audioUrl": "cloud://cloud1-2gfs8qx88df51b5f.636c-cloud1-2gfs8qx88df51b5f-1368710546/audio/socialBehavior/socialBehavior_84_3.mp3"
         }
       ]
     }
