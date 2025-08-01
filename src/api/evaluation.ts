@@ -51,6 +51,11 @@ export function getUserAssessmentRecords(userId: number) {
   return http.post<{ assessmentIds: number[] }>('/emojump/assessment-result/user-assessment-records', { userId })
 }
 
+// 检查当前测评是否都已经完成
+export function checkQuestionnairesCompleted(params: { assessmentId: number, babyId: number }) {
+  return http.post<{ isAllCompleted: boolean }>('/emojump/assessment-result/check-completed', params)
+}
+
 // =================== 问卷接口 ===================
 // 获得已发布问卷列表
 export function getPublishedQuestionnaires(params?: { assessmentId: number, babyId: number }) {

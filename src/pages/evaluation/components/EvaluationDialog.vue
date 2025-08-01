@@ -198,7 +198,7 @@ function closeDialog() {
           class="w-full rounded-lg py-2.5 text-center text-sm text-white transition-colors"
           :class="selectedBabyId ? 'bg-blue-500' : 'bg-gray-300'" :disabled="!selectedBabyId" @click="startEvaluation"
         >
-          {{ babyList.length === 1 ? '开始测评' : (selectedBabyId ? '开始测评' : '请先选择宝宝') }}
+          开始测评
         </button>
       </div>
     </div>

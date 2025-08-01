@@ -61,9 +61,9 @@ function openSelectBabyPicker() {
 }
 
 // 查看问卷结果
-function handleQuestionnaire(questionnaireId: number, assessmentId: number) {
+function handleQuestionnaire(id: number) {
   uni.navigateTo({
-    url: `/pages-sub/record/history-record?babyId=${selectedBabyId.value}&questionnaireId=${questionnaireId}&assessmentId=${assessmentId}`,
+    url: `/pages-sub/record/result?id=${id}`,
   })
 }
 

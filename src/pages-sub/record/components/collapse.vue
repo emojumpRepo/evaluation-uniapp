@@ -10,7 +10,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'handleQuestionnaire', questionnaireId: number, assessmentId: number): void
+  (e: 'handleQuestionnaire', id: number): void
   (e: 'handleViewAssessmentResult', assessmentId: number): void
   (e: 'handleViewHistoryComparison', assessmentId: number): void
 }>()
@@ -87,7 +87,7 @@ export default {
       <!-- 问卷列表 -->
       <div
         v-for="questionnaire in info.questionnaireResults" :key="questionnaire.questionnaireId"
-        class="collapse-item py-4 space-y-1" @click="emit('handleQuestionnaire', questionnaire.questionnaireId, info.assessmentId)"
+        class="collapse-item py-4 space-y-1" @click="emit('handleQuestionnaire', questionnaire.id)"
       >
         <view class="flex flex-col gap-3">
           <view class="flex items-center justify-between">
