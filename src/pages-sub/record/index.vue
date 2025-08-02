@@ -98,6 +98,9 @@ async function getAssessmentResultList() {
     const { code, data } = res
     console.log('获取测评结果', res)
     if (code === 0) {
+      if (!data.length)
+        return
+
       const sortedData = (data as unknown as IAssessmentResult[]).sort((a, b) => b.assessmentId - a.assessmentId)
 
       const groupedMap = sortedData.reduce((acc, item) => {
