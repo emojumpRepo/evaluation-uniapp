@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import type { IBabyInfo } from '@/api/types/baby'
-import type { IAssessmentResult } from '@/api/types/evaluation'
+import type { IAssessmentResult, IAssessmentResultGroup } from '@/api/types/evaluation'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
 import { getBabyQuestionnaireResult } from '@/api/evaluation'
@@ -24,7 +24,7 @@ const { babyList } = storeToRefs(babyStore)
 // 当前选中的宝宝
 const selectedBabyId = ref<number | null>(null)
 // 测评结果列表
-const assessmentResultList = ref<IAssessmentResult[]>([])
+const assessmentResultList = ref<IAssessmentResultGroup[]>([])
 // 默认头像
 const defaultAvatar = 'http://test.yudao.iocoder.cn/user/avatar/20250715/G0bTIS90DRSvc90f423c08a6cb7bb3ab969a5301474c_1752564908905.png'
 // 加载状态
@@ -38,6 +38,14 @@ const showBabyPicker = ref(false)
 const selectedBaby = computed(() => {
   return babyList.value.find(baby => baby.id === selectedBabyId.value)
 })
+
+// 是否显示查看结果按钮
+function isShowHistoryButton(assessment: IAssessmentResultGroup) {
+  if (assessment.assessmentId === specialAssessmentId) {
+    return assessment.questionnaires.some(item => item.completedTime)
+  }
+  return false
+}
 
 // 选择宝宝
 async function selectBaby(baby: IBabyInfo) {
@@ -90,7 +98,23 @@ async function getAssessmentResultList() {
     const { code, data } = res
     console.log('获取测评结果', res)
     if (code === 0) {
-      assessmentResultList.value = (data as unknown as IAssessmentResult[]).sort((a, b) => b.assessmentId - a.assessmentId)
+      const sortedData = (data as unknown as IAssessmentResult[]).sort((a, b) => b.assessmentId - a.assessmentId)
+
+      const groupedMap = sortedData.reduce((acc, item) => {
+        const key = item.assessmentId
+        if (!acc[key]) {
+          acc[key] = {
+            assessmentId: item.assessmentId,
+            assessmentTitle: item.assessmentTitle,
+            questionnaires: [],
+          }
+        }
+        acc[key].questionnaires.push(item)
+        return acc
+      }, {} as Record<number, IAssessmentResultGroup>)
+
+      assessmentResultList.value = Object.values(groupedMap)
+      console.log('assessmentResultList', assessmentResultList.value)
     }
   }
   catch (err) {
@@ -154,12 +178,22 @@ onMounted(async () => {
       </div>
 
       <!-- 测评主题卡片 -->
-      <div class="flex flex-col gap-5 pb-10">
-        <div
-          v-for="item in assessmentResultList" :key="item.completedTime"
-          class="overflow-hidden rounded-lg shadow-sm"
-        >
-          <Collapse :info="item" :special-assessment-id="specialAssessmentId" @handle-questionnaire="handleQuestionnaire" @handle-view-assessment-result="handleViewAssessmentResult" @handle-view-history-comparison="handleViewHistoryComparison" />
+      <div class="flex flex-col gap-8 pb-10">
+        <div v-for="assessment in assessmentResultList" :key="assessment.assessmentId" class="flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <text class="text-gray-800 font-bold">
+              {{ assessment.assessmentTitle }}
+            </text>
+            <wd-button v-if="isShowHistoryButton(assessment)" type="primary" size="small" @click="handleViewHistoryComparison(assessment.assessmentId)">
+              历史记录
+            </wd-button>
+          </div>
+          <div
+            v-for="(item, index) in assessment.questionnaires" :key="item.completedTime"
+            class="overflow-hidden rounded-lg shadow-sm"
+          >
+            <Collapse :info="item" :special-assessment-id="specialAssessmentId" :index="index" @handle-questionnaire="handleQuestionnaire" @handle-view-assessment-result="handleViewAssessmentResult" />
+          </div>
         </div>
       </div>
     </view>

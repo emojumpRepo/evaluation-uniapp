@@ -74,6 +74,12 @@ export interface IAssessmentResult {
   ]
 }
 
+export interface IAssessmentResultGroup {
+  assessmentId: number
+  assessmentTitle: string
+  questionnaires: IAssessmentResult[]
+}
+
 // 问卷结果响应VO
 export interface QuestionnaireResultRespVO {
   id: number
