@@ -2,7 +2,8 @@
 import type { IAssessment } from '@/api/types/evaluation'
 import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
-import { getPublishedAssessmentList, participateAssessment } from '@/api/evaluation'
+import { useToast } from 'wot-design-uni'
+import { checkQuestionnairesCompleted, getPublishedAssessmentList, participateAssessment } from '@/api/evaluation'
 import { useBabyStore, useUserStore } from '@/store/index'
 import EvaluationDialog from './components/EvaluationDialog.vue'
 import EvaluationItem from './components/EvaluationItem.vue'
@@ -11,12 +12,14 @@ const userStore = useUserStore()
 const { isLogin } = storeToRefs(userStore)
 const babyStore = useBabyStore()
 
+const toast = useToast()
+
 // 搜索关键词
 const searchKeyword = ref('')
 
 // 弹窗相关
 const showDialog = ref(false)
-const selectedEvaluation = ref(null)
+const selectedEvaluation = ref<IAssessment>(null)
 const loading = ref(true)
 const loadingMore = ref(false)
 
@@ -39,6 +42,22 @@ const filteredAssessmentList = computed(() => {
   )
 })
 
+async function checked(assessmentId: number, babyId: number) {
+  try {
+    const res = await checkQuestionnairesCompleted({ assessmentId, babyId })
+    console.log('检查当前问卷是否都已经完成', res)
+    const { code, data } = res
+    if (code === 0) {
+      return data.isAllCompleted
+    }
+    return false
+  }
+  catch (err) {
+    console.error('检查当前问卷是否都已经完成失败', err)
+    return false
+  }
+}
+
 // 开始测评
 function startEvaluation(evaluation: any) {
   if (!isLogin.value) {
@@ -57,12 +76,22 @@ async function confirmEvaluation(baby: any) {
     return
   }
 
+  const isCompleted = await checked(selectedEvaluation.value.id, baby.id)
+
+  if (isCompleted && !selectedEvaluation.value.isRepeatable) {
+    toast.success('当前测评已完成')
+    return
+  }
+
+  if (selectedEvaluation.value.currentParticipants >= selectedEvaluation.value.maxParticipants) {
+    toast.warning('当前测评已满员')
+    return
+  }
+
   await participateAssessment({
     assessmentId: selectedEvaluation.value.id,
     babyId: baby.id,
   })
-
-  console.log('选择的测评', selectedEvaluation.value)
 
   uni.navigateTo({
     url: `/pages/evaluation/questionnaire?id=${selectedEvaluation.value.id}&babyId=${baby.id}&isRepeatable=${selectedEvaluation.value.isRepeatable ? 1 : 0}`,
@@ -151,6 +180,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <wd-toast />
   <view class="min-h-screen bg-white">
     <!-- 搜索框 -->
     <view class="px-4 pb-4 pt-4 shadow-sm">

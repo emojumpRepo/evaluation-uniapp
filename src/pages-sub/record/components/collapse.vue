@@ -7,19 +7,19 @@ import { getLevelClass } from '@/api/types/evaluation'
 const props = defineProps<{
   info: IAssessmentResult
   specialAssessmentId: number
+  index: number
 }>()
 
 const emit = defineEmits<{
-  (e: 'handleQuestionnaire', questionnaireId: number, assessmentId: number): void
+  (e: 'handleQuestionnaire', id: number): void
   (e: 'handleViewAssessmentResult', assessmentId: number): void
-  (e: 'handleViewHistoryComparison', assessmentId: number): void
 }>()
 
 // 当前展开的测评ID数组（用于折叠面板）
 const expandedAssessments = ref<string[]>([])
 
 const isShowAssessmentResult = computed(() => {
-  return props.info.questionnaireResults.length === props.info.questionnaireCount && props.info.assessmentId === props.specialAssessmentId
+  return props.info.assessmentId === props.specialAssessmentId && props.info.completedTime
 })
 </script>
 
@@ -38,36 +38,28 @@ export default {
         <view class="w-full flex items-center">
           <view class="flex-1">
             <view class="mb-2 flex items-center justify-between">
-              <text class="text-base text-gray-800 font-medium">
-                {{ info?.assessmentTitle }}
+              <text class="text-sm text-gray-800 font-medium">
+                {{ `第${index + 1}次测评` }}
               </text>
               <wd-icon v-if="expanded" name="chevron-up" size="22px" color="#999" />
               <wd-icon v-else name="chevron-down" size="22px" color="#999" />
             </view>
             <!-- 进度条 -->
             <div class="mr-4 flex flex-col gap-2">
-              <view>
-                <view class="flex items-center gap-2">
-                  <view
-                    v-if="isShowAssessmentResult"
-                    class="flex items-center justify-center rounded-lg bg-blue-50 px-2 py-1 active:bg-blue-100"
-                    @click.stop="emit('handleViewAssessmentResult', info.assessmentId)"
-                  >
-                    <text class="text-xs text-blue-600">
-                      查看结果
-                    </text>
-                  </view>
-                  <view
-                    v-if="isShowAssessmentResult"
-                    class="flex items-center justify-center rounded-lg bg-green-50 px-2 py-1 active:bg-green-100"
-                    @click.stop="emit('handleViewHistoryComparison', info.assessmentId)"
-                  >
-                    <text class="text-xs text-green-600">
-                      历史对比
-                    </text>
-                  </view>
-                </view>
+              <view
+                v-if="isShowAssessmentResult"
+                class="flex items-center justify-center rounded-lg bg-blue-50 py-2 active:bg-blue-100"
+                @click.stop="emit('handleViewAssessmentResult', info.assessmentId)"
+              >
+                <text class="text-xs text-blue-600">
+                  查看结果
+                </text>
               </view>
+
+              <view v-if="info.completedTime" class="text-xs text-gray-400">
+                完成时间：{{ dayjs(info.completedTime).format('YYYY-MM-DD HH:mm:ss') }}
+              </view>
+
               <view class="flex items-center gap-2 text-xs text-gray-400">
                 <span class="whitespace-nowrap">完成进度</span>
                 <div class="w-full flex items-center gap-3">
@@ -87,7 +79,7 @@ export default {
       <!-- 问卷列表 -->
       <div
         v-for="questionnaire in info.questionnaireResults" :key="questionnaire.questionnaireId"
-        class="collapse-item py-4 space-y-1" @click="emit('handleQuestionnaire', questionnaire.questionnaireId, info.assessmentId)"
+        class="collapse-item py-4 space-y-1" @click="emit('handleQuestionnaire', questionnaire.id)"
       >
         <view class="flex flex-col gap-3">
           <view class="flex items-center justify-between">

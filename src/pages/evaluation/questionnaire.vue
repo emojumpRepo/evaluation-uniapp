@@ -42,20 +42,9 @@ const ORDERED_TITLES = [
 // 量表所有月龄段
 const ALL_MONTH_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 18, 21, 24, 27, 30, 33, 36, 42, 48, 54, 60, 66, 72, 78, 84]
 
-/**
- * 获取问卷状态
- */
-function getQuestionnaireStatus(item: IQuestionnaire) {
-  if (Number(props.id) === specialAssessmentId) {
-    return item.completed ? '已完成' : '开始答题'
-  }
-
-  if (isRepeatable.value) {
-    return '开始答题'
-  }
-
-  return item.completed ? '已完成' : '开始答题'
-}
+const isAllQuestionnairesCompleted = computed(() => {
+  return questionnaires.value.length > 0 && questionnaires.value.every(q => q.completed)
+})
 
 /**
  * 判断问卷是否可点击（顺序填写）
@@ -91,11 +80,9 @@ async function goToQuestionnaire(item: IQuestionnaire) {
     }
   }
 
-  if (!isRepeatable.value || Number(props.id) === specialAssessmentId) {
-    if (item.completed) {
-      uni.showToast({ title: '该问卷已完成', icon: 'none' })
-      return
-    }
+  if (item.completed) {
+    uni.showToast({ title: '该问卷已完成', icon: 'none' })
+    return
   }
 
   try {
@@ -153,10 +140,6 @@ async function getQuestionnaires() {
   }
 }
 
-function allQuestionnairesCompleted() {
-  return questionnaires.value.length > 0 && questionnaires.value.every(q => q.completed)
-}
-
 async function handleGenerateAssessmentResult() {
   try {
     const res = await generateAssessmentResult({
@@ -198,7 +181,7 @@ function getMainTestMonth(monthAge: number, monthList: number[]): number {
 <template>
   <view class="min-h-screen bg-gray-50 p-4">
     <!-- 页面标题 -->
-    <view class="mb-4 text-center">
+    <view v-if="questionnaires.length > 0" class="mb-4 text-center">
       <text class="mt-2 block text-sm text-gray-500">
         请完成以下问卷
       </text>
@@ -266,7 +249,7 @@ function getMainTestMonth(monthAge: number, monthList: number[]): number {
             </text>
             <view class="flex items-center gap-1 text-blue-600">
               <text class="text-sm font-medium">
-                {{ getQuestionnaireStatus(item) }}
+                {{ item.completed ? '已完成' : '开始答题' }}
               </text>
               <text class="text-sm">
                 {{ item.completed ? '✔' : '→' }}
@@ -278,14 +261,17 @@ function getMainTestMonth(monthAge: number, monthList: number[]): number {
     </view>
 
     <!-- 生成测评结果按钮 -->
-    <view v-if="Number(props.id) === specialAssessmentId && allQuestionnairesCompleted()" class="mb-6 flex justify-center">
-      <button class="rounded bg-blue-600 px-8 py-2 text-sm text-white font-semibold shadow" @click="handleGenerateAssessmentResult">
+    <view v-if="questionnaires.length > 0" class="mb-6 flex justify-center">
+      <wd-button
+        :disabled="!isAllQuestionnairesCompleted"
+        @click="handleGenerateAssessmentResult"
+      >
         完成此次测评，点击生成结果
-      </button>
+      </wd-button>
     </view>
 
     <!-- 空状态 -->
-    <view v-if="questionnaires.length === 0" class="py-20 text-center">
+    <view v-else class="py-20 text-center">
       <text class="mb-4 block text-4xl">
         📋
       </text>

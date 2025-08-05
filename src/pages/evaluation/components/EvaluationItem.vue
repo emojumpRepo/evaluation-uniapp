@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { IAssessment } from '@/api/types/evaluation'
+import dayjs from 'dayjs'
+import { computed } from 'vue'
 
 // Props 定义
 interface Props {
@@ -12,6 +14,18 @@ const props = defineProps<Props>()
 const emit = defineEmits<{
   start: [assessment: IAssessment]
 }>()
+
+// 计算评估是否过期
+const assessmentExpired = computed(() => {
+  if (!props.assessment.endTime) {
+    return false // 如果没有结束时间，则认为未过期
+  }
+
+  const endDateTime = dayjs(Number(props.assessment.endTime))
+  const now = dayjs()
+
+  return now.isAfter(endDateTime)
+})
 
 // 测评类型 - 使用统一的主题色系渐变
 const assessment_type = [
@@ -121,6 +135,14 @@ function formatParticipants(num: number) {
 
 // 开始测评
 function startEvaluation() {
+  if (assessmentExpired.value) {
+    uni.showToast({
+      title: '该评估已过期，无法参与',
+      icon: 'none',
+    })
+    return
+  }
+
   emit('start', props.assessment)
 }
 </script>
@@ -169,7 +191,7 @@ function startEvaluation() {
       </text>
 
       <!-- 测评信息 -->
-      <view class="mb-4 flex items-center justify-between">
+      <view class="mb-4 flex flex-col gap-2">
         <view class="flex items-center gap-3">
           <!-- 参与人数 -->
           <view class="flex items-center">
@@ -200,6 +222,9 @@ function startEvaluation() {
               {{ assessment.targetAudience }}
             </text>
           </view>
+        </view>
+        <view v-if="assessment?.endTime" class="text-xs text-gray-500">
+          有效期至：{{ dayjs(Number(assessment.endTime)).format('YYYY-MM-DD HH:mm:ss') }}
         </view>
       </view>
 

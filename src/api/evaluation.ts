@@ -1,4 +1,4 @@
-import type { AssessmentResultRespVO, IAssessment, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireAnswerSubmitReq, IQuestionnaireResult, IQuestionnaireResultList, IQuestionnaireSubmitReq, LatestAssessmentResultRespVO } from '@/api/types/evaluation'
+import type { AssessmentResultRespVO, IAssessment, IAssessmentResult, IAssessmentSubmitReq, IQuestionnaire, IQuestionnaireAnswerSubmitReq, IQuestionnaireResult, IQuestionnaireResultList, IQuestionnaireSubmitReq, LatestAssessmentResultRespVO } from '@/api/types/evaluation'
 import { http } from '@/http/http'
 
 // ================= 测评接口 =================
@@ -51,6 +51,11 @@ export function getUserAssessmentRecords(userId: number) {
   return http.post<{ assessmentIds: number[] }>('/emojump/assessment-result/user-assessment-records', { userId })
 }
 
+// 检查当前测评是否都已经完成
+export function checkQuestionnairesCompleted(params: { assessmentId: number, babyId: number }) {
+  return http.post<{ isAllCompleted: boolean }>('/emojump/assessment-result/check-completed', params)
+}
+
 // =================== 问卷接口 ===================
 // 获得已发布问卷列表
 export function getPublishedQuestionnaires(params?: { assessmentId: number, babyId: number }) {
@@ -84,7 +89,7 @@ export function searchQuestionnaires(params: { keyword: string }) {
 
 // 获取宝宝问卷测评结果
 export function getBabyQuestionnaireResult(params: { babyId: number }) {
-  return http.get<{ list: IQuestionnaire[], total: number }>('/emojump/questionnaire-result/baby-result-list', params)
+  return http.get<IAssessmentResult[]>('/emojump/questionnaire-result/baby-result-list', params)
 }
 
 // 获取某个测评的问卷结果列表
