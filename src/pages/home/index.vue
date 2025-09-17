@@ -57,7 +57,12 @@ onReachBottom(() => {
 
 <template>
   <view class="min-h-screen w-screen bg-gray-100">
-    <image src="/static/images/logo.png" class="mb-2 mt-2 h-10 px-2" mode="heightFix" />
+    <view class="mb-2 h-10 flex items-center justify-between px-2">
+      <image src="/static/images/logo.png" class="h-full" mode="heightFix" />
+      <button open-type="contact" session-from="home" class="contact-btn" hover-class="none" aria-label="联系客服">
+        <text class="contact-icon i-carbon-headset" />
+      </button>
+    </view>
 
     <!-- 轮播图组件 -->
     <BannerSwiper />
@@ -85,4 +90,25 @@ onReachBottom(() => {
 </template>
 
 <style scoped>
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx;
+  height: 64rpx;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.contact-btn:after {
+  border: none; /* 去除小程序按钮默认边框 */
+}
+
+.contact-icon {
+  color: #9ca3af; /* 灰色，低对比度 */
+  font-size: 36rpx;
+}
 </style>
