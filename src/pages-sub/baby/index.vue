@@ -33,13 +33,13 @@ function handleEditBaby(baby: IBabyInfo) {
  * 添加宝宝
  */
 function navigateToAdd() {
-  if (babyList.value.length >= 2) {
-    uni.showToast({
-      title: '最多可添加两个宝宝哦~',
-      icon: 'none',
-    })
-    return
-  }
+  // if (babyList.value.length >= 2) {
+  //   uni.showToast({
+  //     title: '最多可添加两个宝宝哦~',
+  //     icon: 'none',
+  //   })
+  //   return
+  // }
 
   uni.navigateTo({
     url: '/pages-sub/baby/add',
@@ -56,7 +56,7 @@ function navigateToAdd() {
           <div class="flex items-center">
             <image
               class="mr-3 h-10 w-10 rounded-full"
-              :src="baby.avatar || 'http://119.29.105.88:48080/admin-api/infra/file/4/get/user/avatar/20250805/k0mV6Ib96lYr316b275dd4b27ded549fbb77a63880ea_1754380895469.png'"
+              :src="baby.avatar || 'https://kangpei-1371067330.cos.ap-guangzhou.myqcloud.com/20250821/baby_1755741480792.png'"
               mode="aspectFill"
             />
             <div class="flex-1">
