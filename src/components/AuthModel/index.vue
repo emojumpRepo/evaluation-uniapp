@@ -20,7 +20,7 @@ const show = defineModel({
 const userStore = useUserStore()
 const babyStore = useBabyStore()
 
-const isAgree = ref(true) // 是否同意协议
+const isAgree = ref(false) // 是否同意协议
 const showAgreement = ref(false) // 是否显示协议弹窗
 const agreementType = ref<PolicyType>(PolicyType.SERVICE_AGREEMENT) // 协议类型
 
