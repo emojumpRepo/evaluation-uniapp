@@ -226,8 +226,16 @@ export const useUserStore = defineStore(
     /**
      * 退出登录 并 删除用户信息
      */
-    const logout = async () => {
-      _logout()
+    const logout = async (options?: { skipRequest?: boolean }) => {
+      const skipRequest = options?.skipRequest ?? false
+      if (!skipRequest) {
+        try {
+          await _logout()
+        }
+        catch (error) {
+          console.warn('[userStore] logout request failed', error)
+        }
+      }
       removeUserInfo()
     }
 

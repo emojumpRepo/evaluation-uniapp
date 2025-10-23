@@ -27,7 +27,7 @@ export function http<T>(options: CustomRequestOptions) {
             return uni.request({ ...retryOptions, async success(retryRes) {
               // 递归处理401
               if (retryRes.data && typeof retryRes.data === 'object' && (retryRes.data as any).code === 401) {
-                userStore.logout()
+                userStore.logout({ skipRequest: true })
                 uni.showToast({ title: '登录已过期，请重新登录', icon: 'none' })
                 reject(retryRes)
                 return
@@ -42,7 +42,7 @@ export function http<T>(options: CustomRequestOptions) {
             }, fail: reject })
           }
           else {
-            userStore.logout()
+            userStore.logout({ skipRequest: true })
             uni.showToast({ title: '登录已过期，请重新登录', icon: 'none' })
             reject(res)
             return
