@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { IArticle } from '@/api/types/article'
+import type { IArticle, IArticleCategory } from '@/api/types/article'
 import { computed, onMounted, ref } from 'vue'
-import { getArticleList } from '@/api/article'
+import { getArticleCategoryList, getArticleList } from '@/api/article'
 import useRequest from '@/hooks/useRequest'
 import { toast } from '@/utils/toast'
 
@@ -14,22 +14,23 @@ const searchKeyword = ref('')
 const loadingMore = ref(false)
 
 // 分类数据
-const categories = ref([
+const categories = ref<Array<{ id: number | string, name: string }>>([
   { id: 'all', name: '全部分类' },
-  { id: 'psychology', name: '心理健康' },
-  { id: 'guide', name: '发育指导' },
-  { id: 'family', name: '家庭' },
 ])
 
 // 当前选中的分类
-const currentCategory = ref('all')
+const currentCategory = ref<number | string>('all')
 
 // 文章列表数据
 const articles = ref<IArticle[]>([])
 
 // 使用 useRequest 管理请求状态
 const { loading, error, run: fetchArticles } = useRequest(
-  () => getArticleList({ page: page.value, pageSize: pageSize.value, ...(currentCategory.value !== 'all' && { category: currentCategory.value }) }),
+  () => getArticleList({
+    page: page.value,
+    pageSize: pageSize.value,
+    ...(currentCategory.value !== 'all' && typeof currentCategory.value === 'number' && { categoryId: currentCategory.value }),
+  }),
   { immediate: false },
 )
 
@@ -65,12 +66,29 @@ function formatTime(time: string) {
 }
 
 // 选择分类
-function selectCategory(id: string) {
+function selectCategory(id: number | string) {
   currentCategory.value = id
   page.value = 1
   hasMore.value = true
   articles.value = []
   getArticleListData()
+}
+
+// 获取分类列表
+async function getCategoryListData() {
+  try {
+    const res = await getArticleCategoryList()
+    if (res && res.data && res.data.length > 0) {
+      categories.value = [
+        { id: 'all', name: '全部分类' },
+        ...res.data.map((item: IArticleCategory) => ({ id: item.id, name: item.name })),
+      ]
+    }
+  }
+  catch (error) {
+    console.error('获取分类列表失败:', error)
+    // 失败时保持默认分类
+  }
 }
 
 // 跳转到文章详情
@@ -144,6 +162,7 @@ defineExpose({
 
 // 组件挂载时初始化
 onMounted(async () => {
+  await getCategoryListData()
   await getArticleListData()
 })
 </script>

@@ -237,14 +237,39 @@ onMounted(async () => {
 // 用户信息头部
 .user-header {
   position: relative;
-  background: #3b82f6;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 60rpx 40rpx 100rpx;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300rpx;
+    height: 300rpx;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 250rpx;
+    height: 250rpx;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+  }
 }
 
 .header-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 1;
 }
 
 .user-info {
@@ -262,7 +287,8 @@ onMounted(async () => {
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .avatar-badge {
@@ -272,8 +298,9 @@ onMounted(async () => {
   width: 20rpx;
   height: 20rpx;
   background: #10b981;
-  border: 2px solid white;
+  border: 3px solid white;
   border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .user-details {
@@ -288,17 +315,27 @@ onMounted(async () => {
   color: white;
   margin-bottom: 8rpx;
   gap: 10rpx;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .user-phone {
   font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .edit-btn {
   padding: 16rpx;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 12rpx;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+
+  &:active {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0.95);
+  }
 
   text {
     font-size: 32rpx;
@@ -315,36 +352,60 @@ onMounted(async () => {
 
 .stats-card {
   background: white;
-  border-radius: 16rpx;
+  border-radius: 20rpx;
   padding: 40rpx 0;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rpx;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  }
 }
 
 .stat-item {
   text-align: center;
   flex: 1;
+  position: relative;
+  transition: transform 0.3s ease;
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .stat-number {
   display: block;
-  font-size: 44rpx;
+  font-size: 48rpx;
   font-weight: 700;
-  color: #3b82f6;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 8rpx;
 }
 
 .stat-label {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #6b7280;
+  font-weight: 500;
 }
 
 .stat-divider {
-  width: 1rpx;
+  width: 2rpx;
   height: 50rpx;
-  background: #e5e7eb;
+  background: linear-gradient(180deg, transparent 0%, #e5e7eb 50%, transparent 100%);
 }
 
 // 菜单容器
@@ -370,9 +431,11 @@ onMounted(async () => {
 
 .menu-card {
   background: white;
-  border-radius: 16rpx;
+  border-radius: 20rpx;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .menu-item {
@@ -380,10 +443,28 @@ onMounted(async () => {
   align-items: center;
   justify-content: space-between;
   padding: 32rpx 40rpx;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
   &:active {
     background-color: #f8fafc;
+    transform: scale(0.98);
+
+    &::after {
+      opacity: 0.03;
+    }
   }
 
   &:not(:last-child) {
@@ -395,22 +476,31 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .menu-icon-wrapper {
-  width: 72rpx;
-  height: 72rpx;
-  border-radius: 12rpx;
-  background: #eff6ff;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 24rpx;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+  transition: all 0.3s ease;
 
   text {
-    color: #3b82f6;
-    font-size: 32rpx;
+    color: #667eea;
+    font-size: 36rpx;
   }
+}
+
+.menu-item:active .menu-icon-wrapper {
+  transform: scale(0.95);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
 
 .menu-info {
@@ -420,19 +510,27 @@ onMounted(async () => {
 .menu-title {
   display: block;
   font-size: 32rpx;
-  font-weight: 500;
+  font-weight: 600;
   color: #1f2937;
   margin-bottom: 6rpx;
 }
 
 .menu-desc {
-  font-size: 24rpx;
+  font-size: 26rpx;
   color: #9ca3af;
 }
 
 .menu-arrow {
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #d1d5db;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.menu-item:active .menu-arrow {
+  color: #667eea;
+  transform: translateX(4rpx);
 }
 
 // 退出登录
@@ -442,20 +540,45 @@ onMounted(async () => {
 
 .logout-btn {
   background: white;
-  border-radius: 16rpx;
+  border-radius: 20rpx;
   padding: 32rpx;
   text-align: center;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-  transition: all 0.2s ease;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
   &:active {
     background-color: #fef2f2;
+    transform: scale(0.98);
+    border-color: #fecaca;
+
+    &::before {
+      opacity: 1;
+    }
   }
 }
 
 .logout-text {
   font-size: 32rpx;
-  font-weight: 500;
+  font-weight: 600;
   color: #ef4444;
+  position: relative;
+  z-index: 1;
 }
 </style>

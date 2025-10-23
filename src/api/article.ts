@@ -1,11 +1,11 @@
-import type { Banner, IArticle } from './types/article'
+import type { Banner, IArticle, IArticleCategory } from './types/article'
 import { http } from '@/http/http'
 
-export function getArticleList(params: { page: number, pageSize: number, category?: string }) {
+export function getArticleList(params: { page: number, pageSize: number, categoryId?: number }) {
   return http.get<{ list: IArticle[], total: number }>('/emojump/article/page', {
     pageNo: params.page,
     pageSize: params.pageSize,
-    ...(params.category && { category: params.category }),
+    ...(params.categoryId && { categoryId: params.categoryId }),
   })
 }
 
@@ -15,6 +15,13 @@ export function getArticleDetail(id: number) {
 
 export function likeArticle(id: number) {
   return http.post('/emojump/article/like', null, { id })
+}
+
+/**
+ * 获取文章分类列表
+ */
+export function getArticleCategoryList() {
+  return http.get<IArticleCategory[]>('/emojump/article-category/list')
 }
 
 /**

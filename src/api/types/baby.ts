@@ -15,3 +15,24 @@ export interface IBabyInfo {
   // 添加月龄字段
   monthAge?: number
 }
+
+// 宝宝附件接口类型
+export interface BabyFile {
+  id: number
+  babyId: number
+  assessmentId?: number
+  fileId: number
+  fileName: string
+  fileType: string
+  fileSize: number
+  description?: string
+  fileUrl?: string
+  createTime: string
+  uploadUserId?: number
+}
+
+// 附件下载响应类型
+export interface FileDownloadResponse {
+  url: string
+  fileName: string
+}
