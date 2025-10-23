@@ -63,6 +63,19 @@ function handleMenuClick(type: string) {
         url: '/pages-sub/record/index',
       })
       break
+    case 'contact':
+      // #ifdef MP-WEIXIN
+      // 在微信小程序中，使用 open-type="contact" 的按钮直接拉起客服，无需在这里处理
+      // 这里作为兜底，避免其它平台误触
+      // #endif
+      // #ifndef MP-WEIXIN
+      uni.showModal({
+        title: '联系客服',
+        content: '请在微信小程序内使用“联系客服”，或添加客服微信：wecare。',
+        showCancel: false,
+      })
+      // #endif
+      break
     case 'edit':
       uni.navigateTo({
         url: '/pages/user/personal',
@@ -218,6 +231,45 @@ onMounted(async () => {
           </view>
           <text class="i-carbon-chevron-right menu-arrow" />
         </view>
+
+        <!-- 微信小程序内使用 open-type=contact 直接拉起客服 -->
+        <!-- #ifdef MP-WEIXIN -->
+        <button open-type="contact" session-from="user-center" class="menu-item" hover-class="none">
+          <view class="menu-content">
+            <view class="menu-icon-wrapper">
+              <text class="i-carbon-chat" />
+            </view>
+            <view class="menu-info">
+              <text class="menu-title">
+                联系客服
+              </text>
+              <text class="menu-desc">
+                遇到问题？请联系客服
+              </text>
+            </view>
+          </view>
+          <text class="i-carbon-chevron-right menu-arrow" />
+        </button>
+        <!-- #endif -->
+        <!-- 其它平台回退为点击提示 -->
+        <!-- #ifndef MP-WEIXIN -->
+        <view class="menu-item" @tap="handleMenuClick('contact')">
+          <view class="menu-content">
+            <view class="menu-icon-wrapper">
+              <text class="i-carbon-chat" />
+            </view>
+            <view class="menu-info">
+              <text class="menu-title">
+                联系客服
+              </text>
+              <text class="menu-desc">
+                遇到问题？请联系客服
+              </text>
+            </view>
+          </view>
+          <text class="i-carbon-chevron-right menu-arrow" />
+        </view>
+        <!-- #endif -->
       </view>
     </view>
 
@@ -234,6 +286,37 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
+wx-button {
+  background: transparent;
+
+  .menu-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .menu-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20rpx;
+
+      .menu-title {
+        width: fit-content;
+        line-height: 32rpx;
+      }
+
+      .menu-desc {
+        width: fit-content;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  &:after {
+    border: none;
+  }
+}
+
 // 用户信息头部
 .user-header {
   position: relative;
@@ -505,6 +588,10 @@ onMounted(async () => {
 
 .menu-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20rpx;
 }
 
 .menu-title {
@@ -512,7 +599,6 @@ onMounted(async () => {
   font-size: 32rpx;
   font-weight: 600;
   color: #1f2937;
-  margin-bottom: 6rpx;
 }
 
 .menu-desc {

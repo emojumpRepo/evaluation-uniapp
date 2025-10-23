@@ -32,7 +32,7 @@ const form = ref<IBabyInfo>({
   weight: null,
   birthType: '自然',
   guardian: '父母',
-  avatar: 'http://test.yudao.iocoder.cn/user/avatar/20250715/G0bTIS90DRSvc90f423c08a6cb7bb3ab969a5301474c_1752564908905.png',
+  avatar: 'https://kangpei-1371067330.cos.ap-guangzhou.myqcloud.com/20250821/baby_1755741480792.png',
 })
 
 // 选项配置
