@@ -19,6 +19,10 @@ import { useBabyStore, useUserStore } from '@/store/index'
 const props = defineProps<{
   id?: number
 }>()
+// 日期范围限制
+const minDate = dayjs('2000-01-01').valueOf()
+const maxDate = dayjs().valueOf()
+
 const userStore = useUserStore()
 const { userInfo } = storeToRefs(userStore)
 const babyStore = useBabyStore()
@@ -208,6 +212,8 @@ onMounted(async () => {
         <wd-datetime-picker
           v-model="form.birthday"
           :default-value="form.birthday"
+          :min-date="minDate"
+          :max-date="maxDate"
           prop="birthday"
           label="孩子生日"
           type="date"

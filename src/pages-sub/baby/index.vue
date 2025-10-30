@@ -928,18 +928,6 @@ onMounted(() => {
                   size="18px"
                 />
               </view>
-              <view
-                v-if="file.fileType?.startsWith('image/')"
-                class="h-10 w-10 flex items-center justify-center rounded-full"
-                style="background: #a855f7; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
-                @click="downloadFile(file)"
-              >
-                <wd-icon
-                  name="preview"
-                  custom-class="text-white"
-                  size="18px"
-                />
-              </view>
             </view>
           </view>
         </view>
